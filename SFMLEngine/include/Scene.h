@@ -29,7 +29,7 @@ public:
 
 	const std::string& GetName() const;
 
-	GameObject* CreateGameObject(const std::string& _name);
+	GameObject* CreateGameObject(const std::string& _name, const int id);
 	void DestroyGameObject(const GameObject* _game_object);
 	GameObject* FindGameObject(const std::string& _name) const;
 	const std::vector<GameObject*>& GetGameObjects() const;

@@ -14,11 +14,13 @@ public:
 	~GameObject();
 
 	std::string GetName() const { return name; }
+	int GetId() const { return id; }
 	Maths::Vector2<float> GetPosition() const { return position; }
 	float GetRotation() const { return rotation; }
 	Maths::Vector2<float> GetScale() const { return scale; }
 
 	void SetName(const std::string& _name) { name = _name; }
+	void SetId(const int& _id) { id = _id; }
 	void SetPosition(const Maths::Vector2<float>& _position) { position = _position; }
 	void SetRotation(const float _rotation) { rotation = _rotation; }
 	void SetScale(const Maths::Vector2<float>& _scale) { scale = _scale; }
@@ -54,6 +56,8 @@ public:
 
 private:
 	std::string name = "GameObject";
+
+	int id = NULL;
 
 	Maths::Vector2<float> position = Maths::Vector2f::Zero;
 	float rotation = 0.0f;

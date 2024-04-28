@@ -6,6 +6,8 @@
 #include "Scene.h"
 #include "SquareCollider.h"
 
+int id = 0;
+
 class DefaultScene final : public Scene
 {
 public:
@@ -20,7 +22,7 @@ public:
 
 	GameObject* CreaInGameObject(const std::string& _name, Maths::Vector2f _position, Maths::Vector2f _size, const sf::Color _color)
 	{
-		GameObject* game_object = CreateGameObject(_name);
+		GameObject* game_object = CreateGameObject(_name, id);
 		game_object->SetPosition(Maths::Vector2f(_position));
 
 		SquareCollider* square_collider = game_object->CreateComponent<SquareCollider>();
@@ -30,6 +32,8 @@ public:
 		RectangleShapeRenderer* shape_renderer = game_object->CreateComponent<RectangleShapeRenderer>();
 		shape_renderer->SetColor(_color);
 		shape_renderer->SetSize(_size);
+
+		id++;
 
 		return game_object;
 	}
