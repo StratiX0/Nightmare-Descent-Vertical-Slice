@@ -14,7 +14,7 @@ class DefaultScene final : public Scene
 public:
 	DefaultScene() : Scene("DefaultScene")
 	{
-		GameObject* player = CreaInGameObject("Player", Maths::Vector2f(300.f,300.0f), Maths::Vector2f(25.f, 40.0f), sf::Color::Red);
+		GameObject* player = CreaInGameObject("Player", Maths::Vector2f(300.f,300.0f), Maths::Vector2f(40.f, 40.0f), sf::Color::Red);
 		player->CreateComponent<Player>();
 
 		GameObject* enemy = CreaInGameObject("Enemy", Maths::Vector2f(400.f, 400.0f), Maths::Vector2f(10.f, 10.0f), sf::Color::Blue);
@@ -35,17 +35,17 @@ public:
 		shape_renderer->SetSize(_size);
 
 		AnimatedSpriteComponent* animated_sprite = game_object->CreateComponent<AnimatedSpriteComponent>();
-		animated_sprite->SetFrameCount(10);
+		animated_sprite->SetFrameCount(8);
 		animated_sprite->SetFrameTime(0.1f);
-		animated_sprite->LoadTexture("Assets/Run.png");
+		animated_sprite->LoadTexture("Assets/Run3.png");
 
 		// Obtenez la taille du sprite après avoir chargé la texture
 		sf::Vector2u spriteSize = animated_sprite->GetSprite()->getTexture()->getSize();
 
 		// Calculez l'échelle en fonction de la taille du gameObject
 		// Nous devons également prendre en compte l'échelle de base du sprite (1,1) et la taille correspondante du rectangle (25,40)
-		float scaleX = (_size.x / 25.0f) * 1.1f;
-		float scaleY = (_size.y / 40.0f) * 1.1f;
+		float scaleX = (_size.x / 30.0f);
+		float scaleY = (_size.y / 30.0f);
 
 		// Définissez l'échelle du sprite
 		animated_sprite->GetSprite()->setScale(scaleX, scaleY);

@@ -55,7 +55,7 @@ void AnimatedSpriteComponent::Update(float deltaTime)
     if (owner != nullptr) {
         // Mettez à jour la position du sprite pour qu'il soit centré sur le gameObject
         Maths::Vector2f gameObjectSize = owner->GetComponent<RectangleShapeRenderer>()->GetSize();
-        sprite->setPosition(owner->GetPosition().x - gameObjectSize.x, owner->GetPosition().y - gameObjectSize.y);
+        sprite->setPosition(owner->GetPosition().x, owner->GetPosition().y);
     }
 }
 
