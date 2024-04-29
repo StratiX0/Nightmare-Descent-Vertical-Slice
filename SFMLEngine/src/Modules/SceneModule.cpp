@@ -21,7 +21,7 @@ void SceneModule::Render()
 {
 	Module::Render();
 
-	for (const Scene* scene : scenes)
+	for (Scene* scene : scenes)
 	{
 		scene->Render(windowModule->GetWindow());
 	}

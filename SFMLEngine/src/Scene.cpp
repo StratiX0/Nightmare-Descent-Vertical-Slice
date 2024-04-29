@@ -111,8 +111,11 @@ void Scene::Update(const float _delta_time) const
 	}
 }
 
-void Scene::Render(sf::RenderWindow* _window) const
+void Scene::Render(sf::RenderWindow* _window)
 {
+	background.SetSize(_window);
+	_window->draw(background.GetSprite());
+
 	for (GameObject* const& game_object : gameObjects)
 	{
 		game_object->Render(_window);

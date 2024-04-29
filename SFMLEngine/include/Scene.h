@@ -7,6 +7,7 @@
 #include "Components/SquareCollider.h"
 #include "AnimatedSprite.h"
 #include "Physics.h"
+#include "Background.h"
 
 class Scene
 {
@@ -19,7 +20,7 @@ public:
 	void Update(float _delta_time) const;
 
 	void PreRender() const;
-	void Render(sf::RenderWindow* _window) const;
+	void Render(sf::RenderWindow* _window);
 	void OnGUI() const;
 	void OnDebug() const;
 	void OnDebugSelected() const;
@@ -41,8 +42,12 @@ public:
 	GameObject* FindGameObject(const std::string& _name) const;
 	const std::vector<GameObject*>& GetGameObjects() const;
 
+	void SetBackground(const std::string& _path) { background.SetPath(_path); }
+	void SetBackgroundSize(sf::RenderWindow* _window) { background.SetSize(_window); }
+
 private:
 	std::string name;
 	std::vector<GameObject*> gameObjects;
 	int id = 0;
+	Background background;
 };
