@@ -124,12 +124,50 @@ const std::string& Scene::GetName() const
 	return name;
 }
 
+GameObject* Scene::CreateInGameObject(const std::string& _name, Maths::Vector2f _position, Maths::Vector2f _size, const sf::Color _color)
+{
+	GameObject* game_object = CreateGameObject(_name, id);
+	game_object->SetPosition(Maths::Vector2f(_position));
+
+	SquareCollider* square_collider = game_object->CreateComponent<SquareCollider>();
+	square_collider->SetWidth(_size.x);
+	square_collider->SetHeight(_size.y);
+
+	RectangleShapeRenderer* shape_renderer = game_object->CreateComponent<RectangleShapeRenderer>();
+	shape_renderer->SetColor(_color);
+	shape_renderer->SetSize(_size);
+
+	if (game_object->GetName() == "Player")
+	{
+		AnimatedSpriteComponent* animated_sprite = game_object->CreateComponent<AnimatedSpriteComponent>();
+		animated_sprite->SetFrameCount(8);
+		animated_sprite->SetFrameTime(0.1f);
+		animated_sprite->LoadTexture("Assets/Run3.png");
+
+		// Calcule l'échelle en fonction de la taille du gameObject et du sprite (_size *taille du gameObject* / _sprite *taille du sprite*)
+		float scaleX = (_size.x / 30.0f);
+		float scaleY = (_size.y / 30.0f);
+
+		// Définis l'échelle du sprite
+		animated_sprite->GetSprite()->setScale(scaleX, scaleY);
+
+		Physics* physics = game_object->CreateComponent<Physics>();
+	}
+
+	game_object->SetScene(this);
+
+	id++;
+
+	return game_object;
+}
+
 GameObject* Scene::CreateGameObject(const std::string& _name, const int id)
 {
 	GameObject* const game_object = new GameObject();
 	game_object->SetName(_name);
 	game_object->SetId(id);
 	gameObjects.push_back(game_object);
+
 	return game_object;
 }
 

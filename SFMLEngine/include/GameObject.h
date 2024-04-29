@@ -6,6 +6,7 @@
 #include "Maths/Vector2.h"
 
 class Component;
+class Scene;
 
 class GameObject
 {
@@ -16,12 +17,14 @@ public:
 	std::string GetName() const { return name; }
 	int GetId() const { return id; }
 	Maths::Vector2<float> GetPosition() const { return position; }
+	Maths::Vector2<float> GetVelocity() const { return velocity; }
 	float GetRotation() const { return rotation; }
 	Maths::Vector2<float> GetScale() const { return scale; }
 
 	void SetName(const std::string& _name) { name = _name; }
 	void SetId(const int& _id) { id = _id; }
 	void SetPosition(const Maths::Vector2<float>& _position) { position = _position; }
+	void SetVelocity(const Maths::Vector2<float>& _velocity) { velocity = _velocity; }
 	void SetRotation(const float _rotation) { rotation = _rotation; }
 	void SetScale(const Maths::Vector2<float>& _scale) { scale = _scale; }
 
@@ -54,10 +57,16 @@ public:
 	void Destroy() const;
 	void Finalize() const;
 
+	Scene* GetScene() const { return scene; }
+	void SetScene(Scene* _scene) { scene = _scene; }
+
 private:
 	std::string name = "GameObject";
 
+	Scene* scene = nullptr;
+
 	int id = NULL;
+	Maths::Vector2<float> velocity = Maths::Vector2f::Zero;
 
 	Maths::Vector2<float> position = Maths::Vector2f::Zero;
 	float rotation = 0.0f;

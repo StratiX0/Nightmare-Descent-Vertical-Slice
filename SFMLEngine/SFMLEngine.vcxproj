@@ -82,6 +82,7 @@
     <ClInclude Include="include\Components\SquareCollider.h" />
     <ClInclude Include="include\Component.h" />
     <ClInclude Include="include\GameObject.h" />
+    <ClInclude Include="include\Physics.h" />
     <ClInclude Include="include\Scene.h" />
     <ClInclude Include="include\Maths\Vector2.h" />
     <ClCompile Include="src\ModuleManager.cpp" />
@@ -98,6 +99,7 @@
     <ClInclude Include="include\Modules\InputModule.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Physics.cpp" />
     <ClCompile Include="src\Scene.cpp" />
     <ClCompile Include="src\Component.cpp" />
     <ClCompile Include="src\Components\SquareCollider.cpp" />

@@ -2,6 +2,11 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 
 #include "GameObject.h"
+#include "Components/RectangleShapeRenderer.h"
+#include "Scene.h"
+#include "Components/SquareCollider.h"
+#include "AnimatedSprite.h"
+#include "Physics.h"
 
 class Scene
 {
@@ -29,6 +34,8 @@ public:
 
 	const std::string& GetName() const;
 
+	GameObject* CreateInGameObject(const std::string& _name, Maths::Vector2f _position, Maths::Vector2f _size, const sf::Color _color);
+
 	GameObject* CreateGameObject(const std::string& _name, const int id);
 	void DestroyGameObject(const GameObject* _game_object);
 	GameObject* FindGameObject(const std::string& _name) const;
@@ -37,4 +44,5 @@ public:
 private:
 	std::string name;
 	std::vector<GameObject*> gameObjects;
+	int id = 0;
 };
