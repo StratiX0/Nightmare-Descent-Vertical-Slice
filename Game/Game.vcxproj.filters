@@ -31,6 +31,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <CopyFileToFolders Include="..\Assets\Background.png">
+      <Filter>Assets</Filter>
+    </CopyFileToFolders>
     <CopyFileToFolders Include="..\Assets\Run.png">
       <Filter>Assets</Filter>
     </CopyFileToFolders>

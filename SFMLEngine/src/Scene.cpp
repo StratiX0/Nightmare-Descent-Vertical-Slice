@@ -145,7 +145,7 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, Maths::Vector2f 
 		AnimatedSpriteComponent* animated_sprite = game_object->CreateComponent<AnimatedSpriteComponent>();
 		animated_sprite->SetFrameCount(8);
 		animated_sprite->SetFrameTime(0.1f);
-		animated_sprite->LoadTexture("Assets/Run3.png");
+		animated_sprite->LoadTexture("Assets/Run.png");
 
 		// Calcule l'échelle en fonction de la taille du gameObject et du sprite (_size *taille du gameObject* / _sprite *taille du sprite*)
 		float scaleX = (_size.x / 30.0f);

@@ -172,6 +172,7 @@
     <ClInclude Include="Scenes\DefaultScene.h" />
   </ItemGroup>
   <ItemGroup>
+    <CopyFileToFolders Include="..\Assets\Background.png" />
     <CopyFileToFolders Include="..\Assets\Run.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
