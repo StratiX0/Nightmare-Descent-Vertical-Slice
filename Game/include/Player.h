@@ -2,33 +2,62 @@
 #include "Component.h"
 #include "InputModule.h"
 
+class Physics;
+
 class Player : public Component
 {
 public:
-	void Update(const float _delta_time) override
+
+	float lerp(float a, float b, float t) 
 	{
-		Maths::Vector2<float> position = GetOwner()->GetPosition();
-
-		if (InputModule::GetKey(sf::Keyboard::D))
-		{
-			position.x += speed * _delta_time;
-		}
-		if (InputModule::GetKey(sf::Keyboard::Q))
-		{
-			position.x -= speed * _delta_time;
-		}
-
-		if (InputModule::GetKey(sf::Keyboard::Z))
-		{
-			position.y -= speed * _delta_time;
-		}
-		if (InputModule::GetKey(sf::Keyboard::S))
-		{
-			position.y += speed * _delta_time;
-		}
-
-		GetOwner()->SetPosition(position);
+		return a + t * (b - a);
 	}
 
-	float speed = 100.0f;
+    void Update(const float _delta_time) override
+    {
+        Maths::Vector2<float> position = GetOwner()->GetPosition();
+        Maths::Vector2<float> velocity;
+        GameObject* owner = GetOwner();
+
+        if (InputModule::GetKey(sf::Keyboard::D))
+        {
+            velocity.x += speed * _delta_time;
+        }
+        if (InputModule::GetKey(sf::Keyboard::Q))
+        {
+            velocity.x -= speed * _delta_time;
+        }
+
+        if (InputModule::GetKey(sf::Keyboard::Z) && !owner->GetComponent<Physics>()->IsJumping())
+        {
+            targetY = owner->GetPosition().y - jumpForce;
+            owner->GetComponent<Physics>()->SetJumping(true);
+        }
+        if (InputModule::GetKey(sf::Keyboard::S))
+        {
+            //velocity.y += speed * _delta_time;
+        }
+
+        if (owner->GetComponent<Physics>()->IsJumping())
+        {
+            position.y = lerp(owner->GetPosition().y, targetY, _delta_time);
+            if (position.y <= targetY)
+            {
+                position.y = targetY;
+                owner->GetComponent<Physics>()->SetJumping(false);
+            }
+        }
+
+        position.x += velocity.x;
+        GetOwner()->SetPosition(position);
+    }
+
+
+private:
+
+	float targetY = 0.0f;
+	float newY = 0.0f;
+	float jumpForce = 300.0f;
+	float speed = 200.0f;
 };
+

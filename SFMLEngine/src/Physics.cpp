@@ -3,6 +3,7 @@
 
 Physics::Physics()
 {
+	isJumping = false;
 }
 
 Physics::~Physics()
@@ -19,6 +20,7 @@ bool Physics::IsGrounded()
     {
 		if (SquareCollider::IsColliding(*collider, *groundCollider))
 		{
+			SetJumping(false);
 			return true;
 		}
     }
@@ -32,7 +34,8 @@ void Physics::Update(float _delta_time)
 
     if (!IsGrounded())
     {
-        velocity += gravity * _delta_time;
+        // La gravité est maintenant divisée par la masse
+        velocity += (gravity / mass) * _delta_time;
     }
     else
     {

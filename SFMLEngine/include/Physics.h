@@ -10,11 +10,17 @@ public:
 	Physics();
 	~Physics() override;
 
-	void Update(float _delta_time) override;
 	bool IsGrounded();
+	bool IsJumping() { return isJumping; }
+	void SetJumping(bool _isJumping) { isJumping = _isJumping; }
+	float GetMass() { return mass; }
+	void SetMass(float _mass) { mass = _mass; }
+	void Update(float _delta_time) override;
 
 private:
 
-	Maths::Vector2f gravity = Maths::Vector2f(0.0f, 100.0f);
+	Maths::Vector2f gravity = Maths::Vector2f(0.0f, 200.0f);
+	bool isJumping;
+	float mass = 1.0f;
 
 };

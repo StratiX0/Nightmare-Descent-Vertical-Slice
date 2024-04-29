@@ -34,7 +34,7 @@ public:
 
 	const std::string& GetName() const;
 
-	GameObject* CreateInGameObject(const std::string& _name, Maths::Vector2f _position, Maths::Vector2f _size, const sf::Color _color);
+	GameObject* CreateInGameObject(const std::string& _name, Maths::Vector2f _position, Maths::Vector2f _size, float _mass, const sf::Color _color);
 
 	GameObject* CreateGameObject(const std::string& _name, const int id);
 	void DestroyGameObject(const GameObject* _game_object);

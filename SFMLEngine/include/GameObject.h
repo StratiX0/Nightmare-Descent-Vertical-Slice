@@ -17,6 +17,7 @@ public:
 	std::string GetName() const { return name; }
 	int GetId() const { return id; }
 	Maths::Vector2<float> GetPosition() const { return position; }
+	Maths::Vector2<float> GetLastPosition() const { return position; }
 	Maths::Vector2<float> GetVelocity() const { return velocity; }
 	float GetRotation() const { return rotation; }
 	Maths::Vector2<float> GetScale() const { return scale; }
@@ -24,6 +25,7 @@ public:
 	void SetName(const std::string& _name) { name = _name; }
 	void SetId(const int& _id) { id = _id; }
 	void SetPosition(const Maths::Vector2<float>& _position) { position = _position; }
+	void SetLastPosition(const Maths::Vector2<float>& _lastPosition) { lastPosition = _lastPosition; }
 	void SetVelocity(const Maths::Vector2<float>& _velocity) { velocity = _velocity; }
 	void SetRotation(const float _rotation) { rotation = _rotation; }
 	void SetScale(const Maths::Vector2<float>& _scale) { scale = _scale; }
@@ -69,6 +71,8 @@ private:
 	Maths::Vector2<float> velocity = Maths::Vector2f::Zero;
 
 	Maths::Vector2<float> position = Maths::Vector2f::Zero;
+	Maths::Vector2<float> lastPosition = Maths::Vector2f::Zero;
+
 	float rotation = 0.0f;
 	Maths::Vector2<float> scale = Maths::Vector2f::One;
 

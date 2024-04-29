@@ -124,7 +124,7 @@ const std::string& Scene::GetName() const
 	return name;
 }
 
-GameObject* Scene::CreateInGameObject(const std::string& _name, Maths::Vector2f _position, Maths::Vector2f _size, const sf::Color _color)
+GameObject* Scene::CreateInGameObject(const std::string& _name, Maths::Vector2f _position, Maths::Vector2f _size, float _mass, const sf::Color _color)
 {
 	GameObject* game_object = CreateGameObject(_name, id);
 	game_object->SetPosition(Maths::Vector2f(_position));
@@ -150,9 +150,17 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, Maths::Vector2f 
 
 		// Définis l'échelle du sprite
 		animated_sprite->GetSprite()->setScale(scaleX, scaleY);
-
-		Physics* physics = game_object->CreateComponent<Physics>();
 	}
+
+	if (game_object->GetName() != "Ground")
+	{
+		Physics* physics = game_object->CreateComponent<Physics>();
+		if (game_object->GetName() == "Player")
+		{
+			physics->SetMass(0.5f);
+		}
+	}
+
 
 	game_object->SetScene(this);
 
