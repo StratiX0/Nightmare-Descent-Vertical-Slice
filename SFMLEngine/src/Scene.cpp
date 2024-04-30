@@ -127,9 +127,9 @@ const std::string& Scene::GetName() const
 	return name;
 }
 
-GameObject* Scene::CreateInGameObject(const std::string& _name, Maths::Vector2f _position, Maths::Vector2f _size, float _mass, const sf::Color _color)
+GameObject* Scene::CreateInGameObject(const std::string& _name, const std::string& _type, Maths::Vector2f _position, Maths::Vector2f _size, float _mass, const sf::Color _color)
 {
-	GameObject* game_object = CreateGameObject(_name, id);
+	GameObject* game_object = CreateGameObject(_name, _type, id);
 	game_object->SetPosition(Maths::Vector2f(_position));
 
 	SquareCollider* square_collider = game_object->CreateComponent<SquareCollider>();
@@ -155,7 +155,7 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, Maths::Vector2f 
 		animated_sprite->GetSprite()->setScale(scaleX, scaleY);
 	}
 
-	if (game_object->GetName() != "Ground")
+	if (game_object->GetType() == "Entity")
 	{
 		Physics* physics = game_object->CreateComponent<Physics>();
 		if (game_object->GetName() == "Player")
@@ -172,10 +172,11 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, Maths::Vector2f 
 	return game_object;
 }
 
-GameObject* Scene::CreateGameObject(const std::string& _name, const int id)
+GameObject* Scene::CreateGameObject(const std::string& _name, const std::string& _type, const int id)
 {
 	GameObject* const game_object = new GameObject();
 	game_object->SetName(_name);
+	game_object->SetType(_type);
 	game_object->SetId(id);
 	gameObjects.push_back(game_object);
 
@@ -196,6 +197,18 @@ void Scene::DestroyGameObject(const GameObject* _game_object)
 }
 
 GameObject* Scene::FindGameObject(const std::string& _name) const
+{
+	for (GameObject* const& game_object : gameObjects)
+	{
+		if (game_object->GetName() == _name)
+		{
+			return game_object;
+		}
+	}
+	return nullptr;
+}
+
+GameObject* Scene::FindGameObjectType(const std::string& _name) const
 {
 	for (GameObject* const& game_object : gameObjects)
 	{

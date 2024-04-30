@@ -15,6 +15,7 @@ public:
 	~GameObject();
 
 	std::string GetName() const { return name; }
+	std::string GetType() const { return type; }
 	int GetId() const { return id; }
 	Maths::Vector2<float> GetPosition() const { return position; }
 	Maths::Vector2<float> GetLastPosition() const { return position; }
@@ -23,6 +24,7 @@ public:
 	Maths::Vector2<float> GetScale() const { return scale; }
 
 	void SetName(const std::string& _name) { name = _name; }
+	void SetType(const std::string& _type) { type = _type; }
 	void SetId(const int& _id) { id = _id; }
 	void SetPosition(const Maths::Vector2<float>& _position) { position = _position; }
 	void SetLastPosition(const Maths::Vector2<float>& _lastPosition) { lastPosition = _lastPosition; }
@@ -64,6 +66,7 @@ public:
 
 private:
 	std::string name = "GameObject";
+	std::string type = "Default";
 
 	Scene* scene = nullptr;
 

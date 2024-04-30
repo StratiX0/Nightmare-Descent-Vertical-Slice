@@ -14,16 +14,21 @@ bool Physics::IsGrounded()
 {
     // Vérifie si le gameObject est en contact avec le sol
     SquareCollider* collider = GetOwner()->GetComponent<SquareCollider>();
-    GameObject* ground = GetOwner()->GetScene()->FindGameObject("Ground");
-    SquareCollider* groundCollider = ground->GetComponent<SquareCollider>();
-    if (collider && ground)
+	for (auto& gameObject : GetOwner()->GetScene()->GetGameObjects())
     {
-		if (SquareCollider::IsColliding(*collider, *groundCollider))
-		{
-			SetJumping(false);
-			return true;
+        if (gameObject->GetType() == "Object")
+        {
+			SquareCollider* groundCollider = gameObject->GetComponent<SquareCollider>();
+            if (collider && groundCollider)
+            {
+                if (SquareCollider::IsColliding(*collider, *groundCollider) && GetOwner()->GetPosition().y < gameObject->GetPosition().y)
+                {
+					SetJumping(false);
+					return true;
+				}
+			}
 		}
-    }
+	}
     return false;
 }
 
@@ -34,7 +39,6 @@ void Physics::Update(float _delta_time)
 
     if (!IsGrounded())
     {
-        // La gravité est maintenant divisée par la masse
         velocity += (gravity / mass) * _delta_time;
     }
     else

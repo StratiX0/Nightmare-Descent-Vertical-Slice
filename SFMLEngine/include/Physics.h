@@ -19,7 +19,7 @@ public:
 
 private:
 
-	Maths::Vector2f gravity = Maths::Vector2f(0.0f, 200.0f);
+	Maths::Vector2f gravity = Maths::Vector2f(0.0f, 1000.0f);
 	bool isJumping;
 	float mass = 1.0f;
 

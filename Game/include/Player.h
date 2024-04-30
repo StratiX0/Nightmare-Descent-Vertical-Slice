@@ -57,7 +57,7 @@ private:
 
 	float targetY = 0.0f;
 	float newY = 0.0f;
-	float jumpForce = 300.0f;
-	float speed = 200.0f;
+	float jumpForce = 1000.0f;
+	float speed = 400.0f;
 };
 
