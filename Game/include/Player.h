@@ -3,6 +3,7 @@
 #include "InputModule.h"
 
 class Physics;
+class AnimatedSpriteComponent;
 
 class Player : public Component
 {
@@ -22,16 +23,19 @@ public:
         if (InputModule::GetKey(sf::Keyboard::D))
         {
             velocity.x += speed * _delta_time;
+			owner->GetComponent<AnimatedSpriteComponent>()->SetDirection(AnimatedSpriteComponent::MovementDirection::Right);
         }
         if (InputModule::GetKey(sf::Keyboard::Q))
         {
             velocity.x -= speed * _delta_time;
+			owner->GetComponent<AnimatedSpriteComponent>()->SetDirection(AnimatedSpriteComponent::MovementDirection::Left);
         }
 
         if (InputModule::GetKey(sf::Keyboard::Z) && !owner->GetComponent<Physics>()->IsJumping())
         {
             targetY = owner->GetPosition().y - jumpForce;
             owner->GetComponent<Physics>()->SetJumping(true);
+            owner->GetComponent<AnimatedSpriteComponent>()->SetDirection(AnimatedSpriteComponent::MovementDirection::Up);
         }
         if (InputModule::GetKey(sf::Keyboard::S))
         {

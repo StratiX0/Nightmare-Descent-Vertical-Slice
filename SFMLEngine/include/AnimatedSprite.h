@@ -5,6 +5,15 @@
 class AnimatedSpriteComponent : public Component
 {
 public:
+
+    enum MovementDirection
+    {
+        Left,
+        Right,
+        Up,
+        Down
+    };
+
     AnimatedSpriteComponent();
     ~AnimatedSpriteComponent() override;
 
@@ -18,6 +27,8 @@ public:
     void SetCurrentFrame(int _currentFrame) { currentFrame = _currentFrame; }
     void SetCurrentTime(float _currentTime) { currentTime = _currentTime; }
     void SetTextureRect(int _left, int _top, int _width, int _height);
+    void SetDirection(MovementDirection _direction);
+	void SetDefaultScale(float _scaleX, float _scaleY) { defaultScaleX = _scaleX; defaultScaleY = _scaleY; }
 
     void Update(float deltaTime) override;
     void Render(sf::RenderWindow* window) override;
@@ -29,4 +40,7 @@ private:
     float frameTime;
     int currentFrame;
     float currentTime;
+	MovementDirection direction;
+	float defaultOriginX, defaultOriginY;
+	float defaultScaleX, defaultScaleY;
 };

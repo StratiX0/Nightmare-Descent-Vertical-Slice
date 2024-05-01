@@ -23,7 +23,9 @@ void AnimatedSpriteComponent::SetTexture(sf::Texture* _texture)
     sprite->setTexture(*texture);
 
     // Définir l'origine du sprite à son centre
-    sprite->setOrigin(texture->getSize().x / 2.0f, texture->getSize().y / 2.0f);
+	defaultOriginX = texture->getSize().x / 2.0f;
+	defaultOriginY = texture->getSize().y;
+    sprite->setOrigin(defaultOriginX, defaultOriginY);
 }
 
 void AnimatedSpriteComponent::LoadTexture(const std::string& texturePath)
@@ -38,6 +40,22 @@ void AnimatedSpriteComponent::LoadTexture(const std::string& texturePath)
 void AnimatedSpriteComponent::SetTextureRect(int _left, int _top, int _width, int _height)
 {
     sprite->setTextureRect(sf::IntRect(_left, _top, _width, _height));
+}
+
+void AnimatedSpriteComponent::SetDirection(MovementDirection _direction)
+{
+    direction = _direction;
+    if (direction == MovementDirection::Right)
+    {
+        sprite->setScale(defaultScaleX, defaultScaleY);
+        sprite->setOrigin(defaultOriginX, defaultOriginY);
+    }
+    else if (direction == MovementDirection::Left)
+    {
+        sprite->setScale(-defaultScaleX, defaultScaleY);
+        sf::IntRect rect = sprite->getTextureRect();
+        sprite->setOrigin(rect.width, defaultOriginY);
+    }
 }
 
 void AnimatedSpriteComponent::Update(float deltaTime)
@@ -58,7 +76,6 @@ void AnimatedSpriteComponent::Update(float deltaTime)
         sprite->setPosition(owner->GetPosition().x, owner->GetPosition().y);
     }
 }
-
 
 void AnimatedSpriteComponent::Render(sf::RenderWindow* window)
 {

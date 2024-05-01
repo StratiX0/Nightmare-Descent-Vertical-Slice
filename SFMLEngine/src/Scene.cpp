@@ -153,6 +153,7 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 
 		// Définis l'échelle du sprite
 		animated_sprite->GetSprite()->setScale(scaleX, scaleY);
+		animated_sprite->SetDefaultScale(scaleX, scaleY);
 	}
 
 	if (game_object->GetType() == "Entity")
