@@ -24,6 +24,7 @@ bool Physics::IsGrounded()
                 bool aboveGround = GetOwner()->GetPosition().y <= gameObject->GetPosition().y;
                 if (SquareCollider::IsColliding(*collider, *groundCollider) && aboveGround)
                 {
+					GetOwner()->SetPosition(Maths::Vector2f(position.x, gameObject->GetPosition().y - collider->GetHeight()));
                     SetJumping(false);
                     return true;
                 }
