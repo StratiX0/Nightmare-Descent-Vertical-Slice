@@ -28,10 +28,13 @@ public:
     void SetCurrentTime(float _currentTime) { currentTime = _currentTime; }
     void SetTextureRect(int _left, int _top, int _width, int _height);
     void SetDirection(MovementDirection _direction);
+	MovementDirection GetDirection() const { return direction; }
 	void SetDefaultScale(float _scaleX, float _scaleY) { defaultScaleX = _scaleX; defaultScaleY = _scaleY; }
 
     void Update(float deltaTime) override;
     void Render(sf::RenderWindow* window) override;
+
+    MovementDirection direction;
 
 private:
     sf::Sprite* sprite;
@@ -40,7 +43,6 @@ private:
     float frameTime;
     int currentFrame;
     float currentTime;
-	MovementDirection direction;
 	float defaultOriginX, defaultOriginY;
 	float defaultScaleX, defaultScaleY;
 };
