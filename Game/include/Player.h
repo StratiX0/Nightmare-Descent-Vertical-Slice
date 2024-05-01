@@ -4,6 +4,7 @@
 
 class Physics;
 class AnimatedSpriteComponent;
+class Background;
 
 class Player : public Component
 {
@@ -23,12 +24,29 @@ public:
         if (InputModule::GetKey(sf::Keyboard::D))
         {
             velocity.x += speed * _delta_time;
-			owner->GetComponent<AnimatedSpriteComponent>()->SetDirection(AnimatedSpriteComponent::MovementDirection::Right);
+            owner->GetComponent<AnimatedSpriteComponent>()->SetDirection(AnimatedSpriteComponent::MovementDirection::Right);
+            for (auto& background : owner->GetScene()->GetBackgrounds())
+            {
+                background->SetPosition(background->GetPosition().x - speed * _delta_time, background->GetPosition().y);
+                if (background->GetPosition().x <= 0.0f - 1600.0f)
+                {
+                    background->SetPosition(1600.0f, background->GetPosition().y);
+                }
+            }
         }
         if (InputModule::GetKey(sf::Keyboard::Q))
         {
             velocity.x -= speed * _delta_time;
-			owner->GetComponent<AnimatedSpriteComponent>()->SetDirection(AnimatedSpriteComponent::MovementDirection::Left);
+            owner->GetComponent<AnimatedSpriteComponent>()->SetDirection(AnimatedSpriteComponent::MovementDirection::Left);
+            for (auto& background : owner->GetScene()->GetBackgrounds())
+            {
+                background->SetPosition(background->GetPosition().x + speed * _delta_time, background->GetPosition().y);
+                background->GetSize().x;
+                if (background->GetPosition().x >= 1600.0f)
+                {
+                    background->SetPosition(-1600.0f, background->GetPosition().y);
+                }
+            }
         }
 
         if (InputModule::GetKey(sf::Keyboard::Z) && !owner->GetComponent<Physics>()->IsJumping())

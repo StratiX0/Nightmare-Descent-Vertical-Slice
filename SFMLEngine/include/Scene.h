@@ -38,17 +38,17 @@ public:
 	GameObject* CreateInGameObject(const std::string& _name, const std::string& _type, Maths::Vector2f _position, Maths::Vector2f _size, float _mass, const sf::Color _color);
 
 	GameObject* CreateGameObject(const std::string& _name, const std::string& _type, const int id);
+	void CreateBackgrounds(const std::string& _path);
+	std::vector<Background*> GetBackgrounds() const { return backgrounds; }
+	void SetBackgroundSize(Background* background, float _width, float _height);
 	void DestroyGameObject(const GameObject* _game_object);
 	GameObject* FindGameObject(const std::string& _name) const;
 	GameObject* FindGameObjectType(const std::string& _name) const;
 	const std::vector<GameObject*>& GetGameObjects() const;
 
-	void SetBackground(const std::string& _path) { background.SetPath(_path); }
-	void SetBackgroundSize(sf::RenderWindow* _window) { background.SetSize(_window); }
-
 private:
 	std::string name;
 	std::vector<GameObject*> gameObjects;
 	int id = 0;
-	Background background;
+	std::vector<Background*> backgrounds;
 };

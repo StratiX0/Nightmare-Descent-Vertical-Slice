@@ -1,8 +1,9 @@
 #include "Background.h"
 
-void Background::SetPath(const std::string& _path)
+void Background::SetPath(const std::string& _path, int _id)
 {
     path = _path;
+	id = _id;
 
     if (!texture.loadFromFile(path))
     {
@@ -14,15 +15,20 @@ void Background::SetPath(const std::string& _path)
         return;
     }
 
-    sprite.setTexture(texture);
+	sprite.setTexture(texture);
 }
 
-void Background::SetSize(sf::RenderWindow* window)
+void Background::SetSize(float _width, float _height)
 {
-    if (texture.getSize().x > 0 && texture.getSize().y > 0)
-    {
-        float scaleX = static_cast<float>(window->getSize().x) / texture.getSize().x;
-        float scaleY = static_cast<float>(window->getSize().y) / texture.getSize().y;
-        sprite.setScale(scaleX, scaleY);
-    }
+    float scaleX = static_cast<float>(_width) / texture.getSize().x;
+    float scaleY = static_cast<float>(_height) / texture.getSize().y;
+    sprite.setScale(scaleX, scaleY);
+}
+
+void Background::MoveBackground(int _id, float x, float y)
+{
+	if (id == _id)
+	{
+		sprite.move(x, y);
+	}
 }

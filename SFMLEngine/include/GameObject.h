@@ -7,6 +7,7 @@
 
 class Component;
 class Scene;
+class Background;
 
 class GameObject
 {
@@ -63,12 +64,15 @@ public:
 
 	Scene* GetScene() const { return scene; }
 	void SetScene(Scene* _scene) { scene = _scene; }
+	const std::vector<Background*>& GetBackgrounds() const { return backgrounds; }
+	void SetBackgrounds(std::vector<Background*> _backgrounds) { backgrounds = _backgrounds; }
 
 private:
 	std::string name = "GameObject";
 	std::string type = "Default";
 
 	Scene* scene = nullptr;
+	std::vector<Background*> backgrounds;
 
 	int id = NULL;
 	Maths::Vector2<float> velocity = Maths::Vector2f::Zero;

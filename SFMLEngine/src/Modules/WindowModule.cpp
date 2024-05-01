@@ -9,7 +9,7 @@ void WindowModule::Awake()
 {
 	Module::Awake();
 
-	window = new sf::RenderWindow(sf::VideoMode(1600, 900), "Nightmare Survival");
+	window = new sf::RenderWindow(sf::VideoMode(1600, 900), "Nightmare Descent");
 }
 
 void WindowModule::PreRender()

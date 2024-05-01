@@ -113,8 +113,11 @@ void Scene::Update(const float _delta_time) const
 
 void Scene::Render(sf::RenderWindow* _window)
 {
-	background.SetSize(_window);
-	_window->draw(background.GetSprite());
+	for (Background* const& background : backgrounds)
+	{
+		sf::Sprite sprite = background->GetSprite();
+		_window->draw(sprite);
+	}
 
 	for (GameObject* const& game_object : gameObjects)
 	{
@@ -167,6 +170,7 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 
 
 	game_object->SetScene(this);
+	game_object->SetBackgrounds(backgrounds);
 
 	id++;
 
@@ -182,6 +186,32 @@ GameObject* Scene::CreateGameObject(const std::string& _name, const std::string&
 	gameObjects.push_back(game_object);
 
 	return game_object;
+}
+
+void Scene::CreateBackgrounds(const std::string& _path)
+{
+	for (int i = 0; i < 2; i++)
+	{
+		Background* const background = new Background();
+		background->SetPath(_path, i);
+		SetBackgroundSize(background, 1600.0f, 900.0f);
+
+		if (i == 0)
+		{
+			background->SetPosition(0, 0);
+		}
+		else
+		{
+			background->SetPosition(1600.0f, 0);
+		}
+
+		backgrounds.push_back(background);
+	}
+}
+
+void Scene::SetBackgroundSize(Background* background, float _width, float _height)
+{
+	background->SetSize(_width, _height);
 }
 
 void Scene::DestroyGameObject(const GameObject* _game_object)
