@@ -23,8 +23,8 @@ void AnimatedSpriteComponent::SetTexture(sf::Texture* _texture)
     sprite->setTexture(*texture);
 
     // Définir l'origine du sprite à son centre
-	defaultOriginX = texture->getSize().x / 2.0f;
-	defaultOriginY = texture->getSize().y;
+	defaultOriginX = static_cast<float>(texture->getSize().x / 2.0f);
+	defaultOriginY = static_cast<float>(texture->getSize().y / 2.0f);
     sprite->setOrigin(defaultOriginX, defaultOriginY);
 }
 
@@ -54,7 +54,7 @@ void AnimatedSpriteComponent::SetDirection(MovementDirection _direction)
     {
         sprite->setScale(-defaultScaleX, defaultScaleY);
         sf::IntRect rect = sprite->getTextureRect();
-        sprite->setOrigin(rect.width, defaultOriginY);
+        sprite->setOrigin(static_cast<float>(rect.width), defaultOriginY);
     }
 }
 
