@@ -3,6 +3,8 @@
 Physics::Physics()
 {
 	isJumping = false;
+    collidingLeft = false;
+    collidingRight = false;
 }
 
 Physics::~Physics()
@@ -22,9 +24,11 @@ bool Physics::IsGrounded()
             if (collider && groundCollider)
             {
                 bool aboveGround = GetOwner()->GetPosition().y <= gameObject->GetPosition().y;
-                if (SquareCollider::IsColliding(*collider, *groundCollider) && aboveGround)
+                // Vérifie si le joueur est sur la même tranche de position x que l'objet
+                bool sameXRange = (position.x + collider->GetWidth() > gameObject->GetPosition().x) && (position.x < gameObject->GetPosition().x + groundCollider->GetWidth());
+                if (SquareCollider::IsColliding(*collider, *groundCollider) && aboveGround && sameXRange)
                 {
-					GetOwner()->SetPosition(Maths::Vector2f(position.x, gameObject->GetPosition().y - collider->GetHeight()));
+                    GetOwner()->SetPosition(Maths::Vector2f(position.x, gameObject->GetPosition().y - collider->GetHeight()));
                     SetJumping(false);
                     return true;
                 }
@@ -34,25 +38,24 @@ bool Physics::IsGrounded()
     return false;
 }
 
+
 bool Physics::IsCollidingAbove()
 {
-    // Vérifie si le gameObject est en contact avec un objet au-dessus de lui
+    Maths::Vector2f velocity = GetOwner()->GetVelocity();
     SquareCollider* collider = GetOwner()->GetComponent<SquareCollider>();
+    Maths::Vector2f position = GetOwner()->GetPosition();
     for (auto& gameObject : GetOwner()->GetScene()->GetGameObjects())
     {
         if (gameObject->GetType() == "Object")
         {
-            SquareCollider* wallCollider = gameObject->GetComponent<SquareCollider>();
-            if (collider && wallCollider)
+            SquareCollider* objectCollider = gameObject->GetComponent<SquareCollider>();
+            if (collider && objectCollider)
             {
-                if (SquareCollider::IsColliding(*collider, *wallCollider) && (GetOwner()->GetPosition().y + collider->GetHeight() < wallCollider->GetOwner()->GetPosition().y))
+                bool underObject = position.y < (gameObject->GetPosition().y + objectCollider->GetHeight());
+                if (SquareCollider::IsColliding(*collider, *objectCollider) && underObject && isJumping)
                 {
-                    if (GetOwner()->GetPosition().y >= gameObject->GetPosition().y + collider->GetHeight())
-                    {
-                        // Ajuste la position du joueur s'il est en collision avec un objet au-dessus de lui
-                        GetOwner()->SetPosition(Maths::Vector2f(GetOwner()->GetPosition().x, gameObject->GetPosition().y + collider->GetHeight()));
-                        return true;
-                    }
+                    GetOwner()->SetPosition(Maths::Vector2f(position.x, gameObject->GetPosition().y + objectCollider->GetHeight()));
+                    return true;
                 }
             }
         }
@@ -62,58 +65,56 @@ bool Physics::IsCollidingAbove()
 
 void Physics::IsLateralColliding()
 {
-    // Vérifie si le gameObject est en contact avec un mur
     SquareCollider* collider = GetOwner()->GetComponent<SquareCollider>();
     Maths::Vector2f position = GetOwner()->GetPosition();
-    Maths::Vector2f velocity = GetOwner()->GetVelocity();
-    collidingRight = false;
-    collidingLeft = false;
     for (auto& gameObject : GetOwner()->GetScene()->GetGameObjects())
     {
         if (gameObject->GetType() == "Object")
         {
             SquareCollider* wallCollider = gameObject->GetComponent<SquareCollider>();
             Maths::Vector2f wallPosition = gameObject->GetPosition();
-            if (SquareCollider::IsColliding(*collider, *wallCollider) && position.y + collider->GetHeight() > wallPosition.y)
+            if (SquareCollider::IsColliding(*collider, *wallCollider))
             {
-                if (GetOwner()->GetComponent<AnimatedSpriteComponent>()->GetDirection() == AnimatedSpriteComponent::Right && position.x + collider->GetWidth() > wallPosition.x)
+                bool sameHeight = position.y + collider->GetHeight() - 5.f > wallPosition.y && position.y < wallPosition.y + wallCollider->GetHeight() - 5.f;
+                if (sameHeight)
                 {
-                    position.x = wallPosition.x - collider->GetWidth();
-                    collidingRight = true;
+                    if ((position.x + collider->GetWidth() > wallPosition.x && position.x < wallPosition.x))
+                    {
+                        collidingRight = true;
+                    }
+                    else if ((position.x < wallPosition.x + wallCollider->GetWidth() && position.x > wallPosition.x))
+                    {
+                        collidingLeft = true;
+                    }
+                    return;
                 }
-                else if (GetOwner()->GetComponent<AnimatedSpriteComponent>()->GetDirection() == AnimatedSpriteComponent::Left && position.x < wallPosition.x + wallCollider->GetWidth())
-                {
-                    position.x = wallPosition.x + wallCollider->GetWidth();
-                    collidingLeft = true;
-                }
-                GetOwner()->SetPosition(position);
-                return;
             }
         }
     }
+    collidingRight = false;
+    collidingLeft = false;
 }
-
 
 void Physics::Update(float _delta_time)
 {
+    IsLateralColliding();
+
     Maths::Vector2f position = GetOwner()->GetPosition();
     Maths::Vector2f velocity = GetOwner()->GetVelocity();
 
-    if (!IsGrounded())
+    if (IsGrounded())
     {
-        velocity += (gravity / mass) * _delta_time;
+        velocity.y = 0;
     }
     else
     {
-        velocity = Maths::Vector2f::Zero;
+        velocity += (gravity / mass) * _delta_time;
     }
 
-    IsLateralColliding();
-
-    //if (IsCollidingAbove())
-    //{
-    //    velocity.y = 0.0f;
-    //}
+    if (IsCollidingAbove())
+    {
+        velocity.y = 0;
+    }
 
     position += velocity * _delta_time;
 

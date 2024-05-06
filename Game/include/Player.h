@@ -20,45 +20,15 @@ public:
 
         GetOwner()->SetPosition(Maths::Vector2f(position.x, position.y - 0.1f));
 
-        if (InputModule::GetKey(sf::Keyboard::D))
+        if (InputModule::GetKey(sf::Keyboard::D) && !owner->GetComponent<Physics>()->collidingRight)
         {
-			if (!owner->GetComponent<Physics>()->collidingRight)
-            {
-                owner->GetComponent<AnimatedSpriteComponent>()->SetDirection(AnimatedSpriteComponent::MovementDirection::Right);
-                for (auto& background : owner->GetScene()->GetBackgrounds())
-                {
-                    background->SetPosition(background->GetPosition().x - speed * _delta_time, background->GetPosition().y);
-                    if (background->GetPosition().x <= 0.0f - 1600.0f)
-                    {
-                        background->SetPosition(1600.0f, background->GetPosition().y);
-                    }
-                }
-				for (auto& game_object : owner->GetScene()->GetGameObjects())
-                {
-					game_object->SetPosition(Maths::Vector2f(game_object->GetPosition().x - speed * _delta_time, game_object->GetPosition().y));
-				}
-			}
+            owner->GetComponent<AnimatedSpriteComponent>()->SetDirection(AnimatedSpriteComponent::MovementDirection::Right);
+            MoveWorld(-speed * _delta_time);
         }
-        if (InputModule::GetKey(sf::Keyboard::Q))
+        if (InputModule::GetKey(sf::Keyboard::Q) && !owner->GetComponent<Physics>()->collidingLeft)
         {
-            if (!owner->GetComponent<Physics>()->collidingLeft)
-            {
-                owner->GetComponent<AnimatedSpriteComponent>()->SetDirection(AnimatedSpriteComponent::MovementDirection::Left);
-                for (auto& background : owner->GetScene()->GetBackgrounds())
-                {
-                    background->SetPosition(background->GetPosition().x + speed * _delta_time, background->GetPosition().y);
-                    background->GetSize().x;
-                    if (background->GetPosition().x >= 1600.0f)
-                    {
-                        background->SetPosition(-1600.0f, background->GetPosition().y);
-                    }
-                }
-                for (auto& game_object : owner->GetScene()->GetGameObjects())
-                {
-                    game_object->SetPosition(Maths::Vector2f(game_object->GetPosition().x + speed * _delta_time, game_object->GetPosition().y));
-                }
-            }
-
+            owner->GetComponent<AnimatedSpriteComponent>()->SetDirection(AnimatedSpriteComponent::MovementDirection::Left);
+            MoveWorld(speed * _delta_time);
         }
 
         if (InputModule::GetKey(sf::Keyboard::S))
@@ -68,24 +38,40 @@ public:
 
         if (InputModule::GetKey(sf::Keyboard::Z) && !owner->GetComponent<Physics>()->IsJumping())
         {
-            velocity.y = -jumpForce; // Ajoute une force vers le haut
+            velocity.y = -jumpForce;
             owner->GetComponent<Physics>()->SetJumping(true);
             owner->GetComponent<AnimatedSpriteComponent>()->SetDirection(AnimatedSpriteComponent::MovementDirection::Up);
         }
 
         if (owner->GetComponent<Physics>()->IsJumping())
         {
-            velocity.y += gravity.y * _delta_time; // Applique la gravité
-            if (owner->GetComponent<Physics>()->IsCollidingAbove())
-            {
-                velocity.y = 0.0f; // Arrête le mouvement vertical si une collision est détectée au-dessus du joueur
-            }
+            velocity.y += gravity.y * _delta_time;
         }
 
         position += velocity * _delta_time;
 
         owner->SetVelocity(velocity);
         owner->SetPosition(position);
+    }
+
+    void MoveWorld(float delta)
+    {
+        for (auto& game_object : GetOwner()->GetScene()->GetGameObjects())
+        {
+            game_object->SetPosition(Maths::Vector2f(game_object->GetPosition().x + delta, game_object->GetPosition().y));
+        }
+        for (auto& background : GetOwner()->GetScene()->GetBackgrounds())
+        {
+            background->SetPosition(background->GetPosition().x + delta, background->GetPosition().y);
+            if (background->GetPosition().x <= 0.0f - 1600.0f)
+            {
+                background->SetPosition(1600.0f, background->GetPosition().y);
+            }
+            else if (background->GetPosition().x >= 1600.0f)
+            {
+                background->SetPosition(-1600.0f, background->GetPosition().y);
+            }
+        }
     }
 
 

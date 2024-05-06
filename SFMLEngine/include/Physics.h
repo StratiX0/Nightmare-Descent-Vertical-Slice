@@ -23,8 +23,8 @@ public:
 
 
 	Maths::Vector2f gravity = Maths::Vector2f(0.0f, 1000.0f);
-	bool collidingLeft = false;
-	bool collidingRight = false;
+	bool collidingLeft;
+	bool collidingRight;
 
 private:
 	bool isJumping;
