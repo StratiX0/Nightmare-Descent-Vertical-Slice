@@ -23,7 +23,7 @@ bool Physics::IsGrounded()
             SquareCollider* groundCollider = gameObject->GetComponent<SquareCollider>();
             if (collider && groundCollider)
             {
-                bool aboveGround = GetOwner()->GetPosition().y <= gameObject->GetPosition().y;
+                bool aboveGround = GetOwner()->GetPosition().y + collider->GetHeight() - 0.5f < gameObject->GetPosition().y;
                 // Vérifie si le joueur est sur la même tranche de position x que l'objet
                 bool sameXRange = (position.x + collider->GetWidth() > gameObject->GetPosition().x) && (position.x < gameObject->GetPosition().x + groundCollider->GetWidth());
                 if (SquareCollider::IsColliding(*collider, *groundCollider) && aboveGround && sameXRange)
@@ -51,10 +51,10 @@ bool Physics::IsCollidingAbove()
             SquareCollider* objectCollider = gameObject->GetComponent<SquareCollider>();
             if (collider && objectCollider)
             {
-                bool underObject = position.y < (gameObject->GetPosition().y + objectCollider->GetHeight());
-                if (SquareCollider::IsColliding(*collider, *objectCollider) && underObject && isJumping)
+                bool underObject = position.y > (gameObject->GetPosition().y + objectCollider->GetHeight() - 1);
+                if (SquareCollider::IsColliding(*collider, *objectCollider) && underObject)
                 {
-                    GetOwner()->SetPosition(Maths::Vector2f(position.x, gameObject->GetPosition().y + objectCollider->GetHeight()));
+                    GetOwner()->SetPosition(Maths::Vector2f(position.x, gameObject->GetPosition().y + objectCollider->GetHeight() + 1.0f));
                     return true;
                 }
             }
@@ -97,6 +97,7 @@ void Physics::IsLateralColliding()
 
 void Physics::Update(float _delta_time)
 {
+    IsCollidingAbove();
     IsLateralColliding();
 
     Maths::Vector2f position = GetOwner()->GetPosition();
@@ -109,11 +110,6 @@ void Physics::Update(float _delta_time)
     else
     {
         velocity += (gravity / mass) * _delta_time;
-    }
-
-    if (IsCollidingAbove())
-    {
-        velocity.y = 0;
     }
 
     position += velocity * _delta_time;
