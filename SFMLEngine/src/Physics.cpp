@@ -73,6 +73,7 @@ bool Physics::IsCollidingAbove()
                 // Si le proprietaire est en collision avec l'objet et est en dessous de l'objet, met a jour la velocite et la position du proprietaire pour qu'il soit juste en dessous de l'objet et renvoie vrai.
                 if (SquareCollider::IsColliding(*collider, *objectCollider) && underObject)
                 {
+                    GetOwner()->SetVelocity(Maths::Vector2f(velocity.x, 0.0f));
                     GetOwner()->SetPosition(Maths::Vector2f(position.x, gameObject->GetPosition().y + objectCollider->GetHeight() + 1.0f));
                     return true;
                 }
