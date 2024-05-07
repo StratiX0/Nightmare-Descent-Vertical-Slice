@@ -1,8 +1,7 @@
 #include "AnimatedSprite.h"
 #include "Components/RectangleShapeRenderer.h"
 
-// Constructeur de la classe AnimatedSpriteComponent.
-// Initialise les variables membres et cree les sprites et textures.
+// Constructeur de la classe AnimatedSpriteComponent. Initialise les variables membres et cree les sprites et textures.
 AnimatedSpriteComponent::AnimatedSpriteComponent()
     : frameCount(0), frameTime(0.0f), currentFrame(1), currentTime(0.0f), lastState(PlayerSpriteState::Idle)
 {
@@ -96,11 +95,11 @@ void AnimatedSpriteComponent::Update(float deltaTime)
 {
     // Verifier si l'etat a change
     if (state != lastState) {
-        // Charger la texture pour l'etat actuel
+        // Charge la texture pour l'etat actuel
         LoadTexture(GetStateFilePath(state));
-        // Mettre a jour frameCount pour l'etat actuel
+        // Met a jour frameCount pour l'etat actuel
         SetFrameCount(GetStateFrameCount(state));
-        // Mettre a jour lastState
+        // Met a jour lastState
         lastState = state;
     }
     currentTime += deltaTime;
@@ -114,7 +113,7 @@ void AnimatedSpriteComponent::Update(float deltaTime)
     }
     GameObject* owner = GetOwner();
     if (owner != nullptr) {
-        // Mettez a jour la position du sprite pour qu'il soit centre sur le gameObject
+        // Met a jour la position du sprite pour qu'il soit centre sur le gameObject
         Maths::Vector2f gameObjectSize = owner->GetComponent<RectangleShapeRenderer>()->GetSize();
         sprite->setPosition(owner->GetPosition().x, owner->GetPosition().y);
     }
