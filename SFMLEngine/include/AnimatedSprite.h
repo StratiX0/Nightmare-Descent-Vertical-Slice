@@ -14,6 +14,13 @@ public:
         Down
     };
 
+    enum class PlayerSpriteState
+    {
+        Idle = 15,      // 15 frames for Idle
+        Running = 8,   // 8 frames for Running
+    };
+
+
     AnimatedSpriteComponent();
     ~AnimatedSpriteComponent() override;
 
@@ -35,8 +42,19 @@ public:
     void Render(sf::RenderWindow* window) override;
 
     MovementDirection direction;
+    PlayerSpriteState state;
+    PlayerSpriteState lastState;
+
+	void SetState(PlayerSpriteState _state) { state = _state; }
+    void SetStateFrameCount(PlayerSpriteState state, int frameCount) { stateFrameCounts[state] = frameCount; SetFrameCount(frameCount); }
+    int GetStateFrameCount(PlayerSpriteState state) const;
+    void SetStateFilePath(PlayerSpriteState state, const std::string& filePath) { stateFilePaths[state] = filePath; }
+    std::string GetStateFilePath(PlayerSpriteState state) const;
 
 private:
+
+    std::map<PlayerSpriteState, int> stateFrameCounts;
+    std::map<PlayerSpriteState, std::string> stateFilePaths;
     sf::Sprite* sprite;
     sf::Texture* texture;
     int frameCount;
@@ -45,4 +63,5 @@ private:
     float currentTime;
 	float defaultOriginX, defaultOriginY;
 	float defaultScaleX, defaultScaleY;
+
 };

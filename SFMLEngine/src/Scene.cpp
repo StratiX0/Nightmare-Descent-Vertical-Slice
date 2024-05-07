@@ -146,9 +146,22 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 	if (game_object->GetName() == "Player")
 	{
 		AnimatedSpriteComponent* animated_sprite = game_object->CreateComponent<AnimatedSpriteComponent>();
-		animated_sprite->SetFrameCount(8);
 		animated_sprite->SetFrameTime(0.1f);
-		animated_sprite->LoadTexture("Assets/Run.png");
+		// Définir le chemin du fichier pour l'état Idle
+		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::PlayerSpriteState::Idle, "Assets/Idle.png");
+		// Charger la texture à partir du chemin du fichier pour l'état Idle
+		animated_sprite->LoadTexture(animated_sprite->GetStateFilePath(AnimatedSpriteComponent::PlayerSpriteState::Idle));
+
+		// Définir le nombre de frames pour l'état Running
+		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::PlayerSpriteState::Running, 8);
+
+		// Définir le nombre de frames pour l'état Idle
+		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::PlayerSpriteState::Idle, 15);
+
+		// Définir l'état actuel à Idle
+		animated_sprite->state = AnimatedSpriteComponent::PlayerSpriteState::Idle;
+
+
 
 		// Calcule l'échelle en fonction de la taille du gameObject et du sprite (_size *taille du gameObject* / _sprite *taille du sprite*)
 		float scaleX = (_size.x / 30.0f);

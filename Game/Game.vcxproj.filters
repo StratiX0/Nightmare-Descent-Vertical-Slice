@@ -37,5 +37,8 @@
     <CopyFileToFolders Include="..\Assets\Run.png">
       <Filter>Assets</Filter>
     </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Idle.png">
+      <Filter>Assets</Filter>
+    </CopyFileToFolders>
   </ItemGroup>
 </Project>

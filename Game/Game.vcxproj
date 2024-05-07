@@ -175,6 +175,9 @@
     <CopyFileToFolders Include="..\Assets\Background.png" />
     <CopyFileToFolders Include="..\Assets\Run.png" />
   </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="..\Assets\Idle.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

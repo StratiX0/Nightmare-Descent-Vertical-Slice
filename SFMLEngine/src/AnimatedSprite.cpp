@@ -2,10 +2,15 @@
 #include "Components/RectangleShapeRenderer.h"
 
 AnimatedSpriteComponent::AnimatedSpriteComponent()
-    : frameCount(0), frameTime(0.0f), currentFrame(0), currentTime(0.0f)
+    : frameCount(0), frameTime(0.0f), currentFrame(1), currentTime(0.0f), lastState(PlayerSpriteState::Idle)
 {
     sprite = new sf::Sprite();
     texture = new sf::Texture();
+    stateFilePaths[PlayerSpriteState::Idle] = "Assets/Idle.png";
+    stateFilePaths[PlayerSpriteState::Running] = "Assets/Run.png";
+    stateFrameCounts[PlayerSpriteState::Idle] = 15;
+    stateFrameCounts[PlayerSpriteState::Running] = 8;
+
 }
 
 
@@ -23,8 +28,8 @@ void AnimatedSpriteComponent::SetTexture(sf::Texture* _texture)
     sprite->setTexture(*texture);
 
     // Définir l'origine du sprite à son centre
-	defaultOriginX = static_cast<float>(texture->getSize().x / 2.0f);
-	defaultOriginY = static_cast<float>(texture->getSize().y / 2.0f);
+    defaultOriginX = static_cast<float>(texture->getSize().x / 2.0f);
+    defaultOriginY = static_cast<float>(texture->getSize().y / 2.0f);
     sprite->setOrigin(defaultOriginX, defaultOriginY);
 }
 
@@ -58,11 +63,44 @@ void AnimatedSpriteComponent::SetDirection(MovementDirection _direction)
     }
 }
 
+std::string AnimatedSpriteComponent::GetStateFilePath(PlayerSpriteState state) const
+{
+    if (stateFilePaths.count(state) > 0) {
+        return stateFilePaths.at(state);
+    }
+    else {
+        // Handle error: state not found in stateFilePaths
+        return "";
+    }
+}
+
+int AnimatedSpriteComponent::GetStateFrameCount(PlayerSpriteState state) const
+{
+    if (stateFrameCounts.count(state) > 0) {
+        return stateFrameCounts.at(state);
+    }
+    else {
+        // Handle error: state not found in stateFrameCounts
+        return 0;
+    }
+}
+
+
 void AnimatedSpriteComponent::Update(float deltaTime)
 {
+    // Vérifier si l'état a changé
+    if (state != lastState) {
+        // Charger la texture pour l'état actuel
+        LoadTexture(GetStateFilePath(state));
+        // Mettre à jour frameCount pour l'état actuel
+        SetFrameCount(GetStateFrameCount(state));
+        // Mettre à jour lastState
+        lastState = state;
+    }
     currentTime += deltaTime;
     if (currentTime >= frameTime)
-    {
+    { 
+
         currentFrame = (currentFrame + 1) % frameCount;
         if (frameCount > 0 && texture != nullptr) {
             sprite->setTextureRect(sf::IntRect(currentFrame * texture->getSize().x / frameCount, 0, texture->getSize().x / frameCount, texture->getSize().y));

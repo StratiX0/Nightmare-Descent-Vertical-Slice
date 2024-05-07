@@ -11,7 +11,7 @@ public:
 	{
 		CreateBackgrounds("Assets/Background2.png");
 
-		GameObject* player = CreateInGameObject("Player", "Entity", Maths::Vector2f(1600.0f / 2 - 40.0f / 2, -500.0f), Maths::Vector2f(40.f, 40.0f), 1.0f, sf::Color::White);
+		GameObject* player = CreateInGameObject("Player", "Entity", Maths::Vector2f(1600.0f / 2 - 40.0f / 2, -500.0f), Maths::Vector2f(60.f, 60.0f), 1.0f, sf::Color::White);
 		player->CreateComponent<Player>();
 
 		/////////////////////////////////
