@@ -157,6 +157,10 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 		// Définis l'échelle du sprite
 		animated_sprite->GetSprite()->setScale(scaleX, scaleY);
 		animated_sprite->SetDefaultScale(scaleX, scaleY);
+
+		Health* health = game_object->CreateComponent<Health>();
+		health->SetMaxHealth(100);
+		health->SetHealth(100);
 	}
 
 	if (game_object->GetType() == "Entity")
@@ -239,11 +243,11 @@ GameObject* Scene::FindGameObject(const std::string& _name) const
 	return nullptr;
 }
 
-GameObject* Scene::FindGameObjectType(const std::string& _name) const
+GameObject* Scene::FindGameObjectType(const std::string& _type) const
 {
 	for (GameObject* const& game_object : gameObjects)
 	{
-		if (game_object->GetName() == _name)
+		if (game_object->GetType() == _type)
 		{
 			return game_object;
 		}

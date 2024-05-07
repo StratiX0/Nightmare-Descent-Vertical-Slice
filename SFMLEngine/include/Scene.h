@@ -8,6 +8,7 @@
 #include "AnimatedSprite.h"
 #include "Physics.h"
 #include "Background.h"
+#include "Components/Health.h"
 
 class Scene
 {
@@ -43,7 +44,7 @@ public:
 	void SetBackgroundSize(Background* background, float _width, float _height);
 	void DestroyGameObject(const GameObject* _game_object);
 	GameObject* FindGameObject(const std::string& _name) const;
-	GameObject* FindGameObjectType(const std::string& _name) const;
+	GameObject* FindGameObjectType(const std::string& _type) const;
 	const std::vector<GameObject*>& GetGameObjects() const;
 
 private:

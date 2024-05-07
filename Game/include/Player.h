@@ -48,6 +48,11 @@ public:
             velocity.y += gravity.y * _delta_time;
         }
 
+		if (owner->GetComponent<Health>()->IsDead())
+        {
+			owner->GetComponent<RectangleShapeRenderer>()->SetColor(sf::Color::Red);
+		}
+
         position += velocity * _delta_time;
 
         owner->SetVelocity(velocity);
@@ -59,6 +64,11 @@ public:
         for (auto& game_object : GetOwner()->GetScene()->GetGameObjects())
         {
             game_object->SetPosition(Maths::Vector2f(game_object->GetPosition().x + delta, game_object->GetPosition().y));
+			if (game_object->GetPosition().x <= 0.0f)
+            {
+                GetOwner()->GetComponent<Health>()->TakeDamage(50);
+			}
+
         }
         for (auto& background : GetOwner()->GetScene()->GetBackgrounds())
         {
