@@ -165,14 +165,25 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 		physics->SetMass(1.0f);
 	}
 
-	// Cree un SquareCollider et un RectangleShapeRenderer pour le GameObject.
-	SquareCollider* square_collider = game_object->CreateComponent<SquareCollider>();
-	square_collider->SetWidth(_size.x);
-	square_collider->SetHeight(_size.y);
-
 	RectangleShapeRenderer* shape_renderer = game_object->CreateComponent<RectangleShapeRenderer>();
 	shape_renderer->SetColor(_color);
-	shape_renderer->SetSize(_size);
+
+	// Cree un SquareCollider et un RectangleShapeRenderer pour le GameObject.
+	SquareCollider* square_collider = game_object->CreateComponent<SquareCollider>();
+	square_collider->SetHeight(_size.y);
+
+	if (game_object->GetType() == "Player" || game_object->GetType() == "Enemy")
+	{
+		square_collider->SetWidth(_size.x / 2);
+		shape_renderer->SetSize(Maths::Vector2f(_size.x / 2, _size.y));
+	}
+	else
+	{
+		square_collider->SetWidth(_size.x);
+		shape_renderer->SetSize(_size);
+	}
+
+
 
 	// Si le GameObject est le joueur, cree un AnimatedSpriteComponent et un Health pour lui.
 	if (game_object->GetType() == "Player")
