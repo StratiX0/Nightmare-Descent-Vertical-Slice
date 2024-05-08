@@ -62,7 +62,7 @@ void AnimatedSpriteComponent::SetDirection(MovementDirection _direction)
     {
         sprite->setScale(-defaultScaleX, defaultScaleY);
         sf::IntRect rect = sprite->getTextureRect();
-        sprite->setOrigin(static_cast<float>(rect.width), defaultOriginY);
+        sprite->setOrigin(static_cast<float>(rect.width / 2), defaultOriginY);
     }
 }
 

@@ -32,7 +32,7 @@ bool Physics::IsGrounded()
             {
 
                 // Si le proprietaire est en collision avec l'objet et est au-dessus de l'objet, met a jour la position du proprietaire pour qu'il soit juste au-dessus de l'objet, arrête le saut et renvoie vrai.
-                bool aboveGround = GetOwner()->GetPosition().y + collider->GetHeight() - 0.5f < gameObject->GetPosition().y;
+                bool aboveGround = GetOwner()->GetPosition().y + collider->GetHeight() - 5.0f < gameObject->GetPosition().y;
 
                 // Verifie si le joueur est sur la même tranche de position x que l'objet
                 bool sameXRange = (position.x + collider->GetWidth() > gameObject->GetPosition().x) && (position.x < gameObject->GetPosition().x + groundCollider->GetWidth());
