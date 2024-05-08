@@ -152,14 +152,17 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 	GameObject* game_object = CreateGameObject(_name, _type, id);
 	game_object->SetPosition(Maths::Vector2f(_position));
 
-	// Si le GameObject est une entite, cree un composant Physics pour lui.
-	if (game_object->GetType() == "Entity")
+	// Si le GameObject est un joueur, cree un composant Physics pour lui.
+	if (game_object->GetType() == "Player")
 	{
 		Physics* physics = game_object->CreateComponent<Physics>();
-		if (game_object->GetName() == "Player")
-		{
-			physics->SetMass(0.5f);
-		}
+		physics->SetMass(1.0f);
+	}
+
+	if (game_object->GetType() == "Enemy")
+	{
+		Physics* physics = game_object->CreateComponent<Physics>();
+		physics->SetMass(1.0f);
 	}
 
 	// Cree un SquareCollider et un RectangleShapeRenderer pour le GameObject.
@@ -172,7 +175,7 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 	shape_renderer->SetSize(_size);
 
 	// Si le GameObject est le joueur, cree un AnimatedSpriteComponent et un Health pour lui.
-	if (game_object->GetName() == "Player")
+	if (game_object->GetType() == "Player")
 	{
 		AnimatedSpriteComponent* animated_sprite = game_object->CreateComponent<AnimatedSpriteComponent>();
 		animated_sprite->SetFrameTime(0.1f);
@@ -201,6 +204,38 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 		Health* health = game_object->CreateComponent<Health>();
 		health->SetMaxHealth(100);
 		health->SetHealth(100);
+	}
+
+	// Si le GameObject est le joueur, cree un AnimatedSpriteComponent et un Health pour lui.
+	if (game_object->GetType() == "Enemy")
+	{
+		AnimatedSpriteComponent* animated_sprite = game_object->CreateComponent<AnimatedSpriteComponent>();
+		animated_sprite->SetFrameTime(0.1f);
+		// Definir le chemin du fichier pour l'etat Idle
+		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::PlayerSpriteState::Idle, "Assets/Idle.png");
+		// Charger la texture a partir du chemin du fichier pour l'etat Idle
+		animated_sprite->LoadTexture(animated_sprite->GetStateFilePath(AnimatedSpriteComponent::PlayerSpriteState::Idle));
+
+		// Definir le nombre de frames pour l'etat Running
+		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::PlayerSpriteState::Running, 8);
+
+		// Definir le nombre de frames pour l'etat Idle
+		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::PlayerSpriteState::Idle, 15);
+
+		// Definir l'etat actuel a Idle
+		animated_sprite->state = AnimatedSpriteComponent::PlayerSpriteState::Idle;
+
+		// Calcule l'echelle en fonction de la taille du gameObject et du sprite (_size *taille du gameObject* / _sprite *taille du sprite*)
+		float scaleX = (_size.x / 30.0f);
+		float scaleY = (_size.y / 30.0f);
+
+		// Definis l'echelle du sprite
+		animated_sprite->GetSprite()->setScale(scaleX, scaleY);
+		animated_sprite->SetDefaultScale(scaleX, scaleY);
+
+		Health* health = game_object->CreateComponent<Health>();
+		health->SetMaxHealth(50);
+		health->SetHealth(50);
 	}
 
 	// Configure le GameObject pour qu'il appartienne a cette scene et ait les memes arriere-plans que cette scene.

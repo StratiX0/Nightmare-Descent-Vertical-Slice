@@ -76,6 +76,7 @@
     <ClCompile Include="src\Modules\SceneModule.cpp" />
     <ClCompile Include="src\Modules\TimeModule.cpp" />
     <ClCompile Include="src\Modules\WindowModule.cpp" />
+    <ClInclude Include="..\Game\include\Enemy.h" />
     <ClInclude Include="include\AnimatedSprite.h" />
     <ClInclude Include="include\Background.h" />
     <ClInclude Include="include\Components\Health.h" />

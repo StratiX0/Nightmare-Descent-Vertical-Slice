@@ -2,6 +2,7 @@
 
 #include "GameObject.h"
 #include "Player.h"
+#include "Enemy.h"
 #include "Background.h"
 
 // La classe DefaultScene herite de la classe Scene
@@ -16,9 +17,19 @@ public:
         // Cree les arriere-plans de la scene.
         CreateBackgrounds("Assets/Background2.png");
 
-        // Cree le joueur et le place au centre de l'ecran.
-        GameObject* player = CreateInGameObject("Player", "Entity", Maths::Vector2f(1600.0f / 2 - 40.0f / 2, -500.0f), Maths::Vector2f(60.f, 60.0f), 1.0f, sf::Color::White);
+        /////////////////////////////////
+        //    Creer l'entite joueur    //
+        /////////////////////////////////
+
+        GameObject* player = CreateInGameObject("Player", "Player", Maths::Vector2f(1600.0f / 2 - 40.0f / 2, -500.0f), Maths::Vector2f(60.f, 60.0f), 1.0f, sf::Color::White);
         player->CreateComponent<Player>();
+
+        //////////////////////////////////
+        //  Creer des entites ennemies  //
+        //////////////////////////////////
+
+        GameObject* enemy = CreateInGameObject("Enemy1", "Enemy", Maths::Vector2f(900.0f, -500.0f), Maths::Vector2f(60.f, 60.0f), 1.0f, sf::Color::White);
+        enemy->CreateComponent<Enemy>();
 
         /////////////////////////////////
 		//    Creer un objet au sol    //

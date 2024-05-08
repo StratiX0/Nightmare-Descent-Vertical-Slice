@@ -35,7 +35,7 @@ public:
     void Update(float _delta_time) override;
 
     // Variable pour stocker la gravite appliquee a l'objet.
-    Maths::Vector2f gravity = Maths::Vector2f(0.0f, 1000.0f);
+    Maths::Vector2f gravity = Maths::Vector2f(0.0f, 1500.0f);
 
     // Variables pour verifier si l'objet est en collision a gauche ou a droite.
     bool collidingLeft;

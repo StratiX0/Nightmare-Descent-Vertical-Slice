@@ -75,6 +75,9 @@
     <ClInclude Include="include\Components\Health.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\Game\include\Enemy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Maths\Vector2.cpp">
