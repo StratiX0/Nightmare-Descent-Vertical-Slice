@@ -83,13 +83,6 @@ public:
         for (auto& game_object : GetOwner()->GetScene()->GetGameObjects())
         {
             game_object->SetPosition(Maths::Vector2f(game_object->GetPosition().x + delta, game_object->GetPosition().y));
-
-            // Si un GameObject sort de l'ecran par la gauche, inflige des degâts au joueur.
-            if (game_object->GetPosition().x <= 0.0f)
-            {
-                GetOwner()->GetComponent<Health>()->TakeDamage(50);
-            }
-
         }
         // Deplace tous les Backgrounds de la scene.
         for (auto& background : GetOwner()->GetScene()->GetBackgrounds())

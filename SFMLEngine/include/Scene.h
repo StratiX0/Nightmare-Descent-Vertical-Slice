@@ -9,6 +9,7 @@
 #include "Physics.h"
 #include "Background.h"
 #include "Components/Health.h"
+#include "Components/PlayerAttack.h"
 
 // La classe Scene represente une scene dans votre jeu. Une scene contient un ensemble de GameObjects.
 class Scene

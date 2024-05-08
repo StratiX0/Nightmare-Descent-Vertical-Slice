@@ -10,6 +10,11 @@ class Enemy : public Component
 {
 public:
 
+	void Start() override
+	{
+		name = GetOwner()->GetName();
+	}
+
     // Met a jour l'ennemi.
     void Update(const float _delta_time) override
     {
@@ -34,6 +39,12 @@ public:
         {
             direction = 1;
             owner->GetComponent<AnimatedSpriteComponent>()->SetDirection(AnimatedSpriteComponent::MovementDirection::Right);
+        }
+
+        // Si l'ennemie est mort, change la couleur du RectangleShapeRenderer en rouge.
+        if (owner->GetComponent<Health>()->IsDead())
+        {
+            owner->GetComponent<RectangleShapeRenderer>()->SetColor(sf::Color::Red);
         }
 
         // Met a jour la position de l'ennemi.
@@ -62,6 +73,8 @@ public:
     }
 
 private:
+
+    std::string name;
 
     // Variables de deplacement de l'ennemi.
     float speed = 100.0f;

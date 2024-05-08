@@ -204,6 +204,9 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 		Health* health = game_object->CreateComponent<Health>();
 		health->SetMaxHealth(100);
 		health->SetHealth(100);
+
+		PlayerAttack* attack = game_object->CreateComponent<PlayerAttack>();
+		attack->SetCollisionDamage(100.0f);
 	}
 
 	// Si le GameObject est le joueur, cree un AnimatedSpriteComponent et un Health pour lui.
@@ -236,6 +239,9 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 		Health* health = game_object->CreateComponent<Health>();
 		health->SetMaxHealth(50);
 		health->SetHealth(50);
+
+		//Attack* attack = game_object->CreateComponent<Attack>();
+		//attack->SetUpCollisionDamage(100.0f);
 	}
 
 	// Configure le GameObject pour qu'il appartienne a cette scene et ait les memes arriere-plans que cette scene.

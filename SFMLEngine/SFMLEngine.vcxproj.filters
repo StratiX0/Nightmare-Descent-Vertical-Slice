@@ -75,7 +75,7 @@
     <ClInclude Include="include\Components\Health.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Game\include\Enemy.h">
+    <ClInclude Include="include\Components\PlayerAttack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -156,6 +156,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Components\Health.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\PlayerAttack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

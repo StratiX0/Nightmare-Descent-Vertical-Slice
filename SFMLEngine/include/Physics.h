@@ -4,8 +4,7 @@
 #include "Components/SquareCollider.h"
 #include "Scene.h"
 
-// La classe Physics herite de la classe Component
-// et represente les proprietes physiques d'un GameObject dans votre jeu.
+// La classe Physics herite de la classe Component et represente les proprietes physiques d'un GameObject dans le jeu.
 class Physics : public Component
 {
 public:
