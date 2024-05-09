@@ -5,6 +5,7 @@ Health::Health()
 {
     currentHealth = 100;
     maxHealth = 100;
+	invincibilityTime = 0.0f;
 }
 
 // Destructeur de la classe Health.
@@ -60,5 +61,21 @@ int Health::GetMaxHealth() const
 void Health::SetMaxHealth(int _maxHealth)
 {
     maxHealth = _maxHealth;
+}
+
+// Methode pour mettre à jour le Health.
+void Health::Update(float _delta_time)
+{
+	if (GetOwner()->GetType() == "Player")
+    {
+        if (invincibilityTime >= 0.0f)
+        {
+			invincibilityTime -= _delta_time;
+        }
+		if (invincibilityTime < 0.0f)
+		{
+			invincibilityTime = 0.0f;
+		}
+	}
 }
 

@@ -251,8 +251,8 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 		health->SetMaxHealth(50);
 		health->SetHealth(50);
 
-		//Attack* attack = game_object->CreateComponent<Attack>();
-		//attack->SetUpCollisionDamage(100.0f);
+		EnemyAttack* attack = game_object->CreateComponent<EnemyAttack>();
+		attack->SetCollisionDamage(25.0f);
 	}
 
 	// Configure le GameObject pour qu'il appartienne a cette scene et ait les memes arriere-plans que cette scene.
