@@ -4,14 +4,12 @@
 #include "Components/SquareCollider.h"
 #include "Scene.h"
 
-// La classe PlayerAttack herite de la classe Component et represente les proprietes physiques d'un GameObject dans votre jeu.
-class PlayerAttack : public Component
+// La classe EnemyAttack herite de la classe Component et represente les proprietes physiques d'un GameObject dans votre jeu.
+class EnemyAttack : public Component
 {
 public:
-
-    // Constructeur et destructeur de la classe PlayerAttack.
-	PlayerAttack();
-    ~PlayerAttack() override;
+	EnemyAttack();
+	~EnemyAttack();
 
 	// Methode pour infliger des degâts en cas de collision.
 	void InflictCollisionDamage(SquareCollider* playerCollider, SquareCollider* enemyCollider);
@@ -19,15 +17,20 @@ public:
 	// Methode pour verifier si l'objet est en collision avec un autre objet.
 	void IsColliding();
 
-	// Methode pour definir les degâts infliges par collision avec l'ennemie.
+	// Methode pour definir les degâts infliges par collision au joueur.
 	void SetCollisionDamage(float _collisionDamage) { collisionDamage = _collisionDamage; }
+
+	void SendProjectile();
 
 	// Methode pour mettre a jour le composant Attack.
 	void Update(float _delta_time) override;
-   
 
 private:
 
-	// Degâts infliges par collision avec l'ennemie.   
-	float collisionDamage; 
+	// Degâts infliges par collision au joueur.   
+	float collisionDamage;
+
+	float projectileTimer;
+
+	std::string name;
 };

@@ -47,6 +47,7 @@ public:
         if (owner->GetComponent<Health>()->IsDead())
         {
             owner->GetComponent<RectangleShapeRenderer>()->SetColor(sf::Color::Red);
+			owner->~GameObject();
         }
 
         // Met a jour la position de l'ennemi.

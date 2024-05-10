@@ -31,6 +31,9 @@ public:
         GameObject* enemy = CreateInGameObject("Enemy1", "Enemy", Maths::Vector2f(900.0f, -500.0f), Maths::Vector2f(80.f, 80.0f), 1.0f, sf::Color::White);
         enemy->CreateComponent<Enemy>();
 
+        GameObject* enemy2 = CreateInGameObject("Thrower", "Enemy", Maths::Vector2f(1000.0f, -500.0f), Maths::Vector2f(80.f, 80.0f), 1.0f, sf::Color::White);
+        enemy2->CreateComponent<Enemy>();
+
         /////////////////////////////////
 		//    Creer un objet au sol    //
 		/////////////////////////////////

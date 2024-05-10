@@ -12,27 +12,37 @@ public:
     Health();
     ~Health();
 
-    // Methode pour infliger des degâts a l'objet. Reduit la sante actuelle de l'objet de la quantite specifiee.
+    // Methode pour infliger des degâts. Reduit la sante actuelle avec la quantite specifiee.
     void TakeDamage(int amount);
 
-    // Methode pour soigner l'objet. Augmente la sante actuelle de l'objet de la quantite specifiee.
+    // Methode pour soigner l'entite. Augmente la sante actuelle avec la quantite specifiee.
     void Heal(int amount);
 
-    // Methode pour verifier si l'objet est mort. Renvoie vrai si la sante actuelle de l'objet est inferieure ou egale a zero.
+    // Methode pour verifier si l'entite est morte. Renvoie vrai si la sante actuelle est inferieure ou egale a zero.
     bool IsDead() const;
 
-    // Methodes pour obtenir et definir la sante actuelle de l'objet.
+    // Methodes pour obtenir et definir la sante actuelle.
     int GetHealth() const;
     void SetHealth(int _health);
 
-    // Methodes pour obtenir et definir la sante maximale de l'objet.
+    // Methodes pour obtenir et definir la sante maximale.
     int GetMaxHealth() const;
     void SetMaxHealth(int _maxHealth);
 
+	// Methodes pour obtenir et definir le temps d'invincibilite.
+	void SetInvincibilityTime(float _invincibilityTime) { invincibilityTime = _invincibilityTime; }
+	float GetInvincibilityTime() { return invincibilityTime; }
+
+    // Methode pour mettre a jour le composant Health.
+    void Update(float _delta_time) override;
+
 private:
 
-    // Variables pour stocker la sante actuelle et maximale de l'objet.
+    // Variables pour stocker la sante actuelle et maximale de l'entite.
     int currentHealth;
     int maxHealth;
+
+	// Variable pour stocker le temps d'invincibilite.
+	float invincibilityTime;
 };
 
