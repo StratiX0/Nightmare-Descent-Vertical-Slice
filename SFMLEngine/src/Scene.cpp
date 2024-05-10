@@ -276,6 +276,36 @@ GameObject* Scene::CreateGameObject(const std::string& _name, const std::string&
 	return game_object;
 }
 
+// Methode pour creer un projectile.
+GameObject* Scene::CreateProjectile(const std::string& _name, const std::string& _type, Maths::Vector2f _position, Maths::Vector2f _size, const float _damage, const float _speed, const sf::Color _color)
+{
+	// Cree le GameObject et le configure.
+	GameObject* game_object = CreateGameObject(_name, _type, id);
+	game_object->SetPosition(Maths::Vector2f(_position));
+
+	RectangleShapeRenderer* shape_renderer = game_object->CreateComponent<RectangleShapeRenderer>();
+	shape_renderer->SetColor(_color);
+
+	// Cree un SquareCollider et un RectangleShapeRenderer pour le GameObject.
+	SquareCollider* square_collider = game_object->CreateComponent<SquareCollider>();
+	square_collider->SetHeight(_size.y);
+	square_collider->SetWidth(_size.x);
+	shape_renderer->SetSize(_size);
+
+	// Cree un Projectile pour le GameObject.
+	Projectile* projectile = game_object->CreateComponent<Projectile>();
+	projectile->SetSpeed(_speed);
+	projectile->SetDamage(_damage);
+
+	// Configure le GameObject pour qu'il appartienne a cette scene et ait les memes arriere-plans que cette scene.
+	game_object->SetScene(this);
+	game_object->SetBackgrounds(backgrounds);
+
+	id++;
+
+	return game_object;
+}
+
 // Methode pour creer les arriere-plans de la scene.
 void Scene::CreateBackgrounds(const std::string& _path)
 {

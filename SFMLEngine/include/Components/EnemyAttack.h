@@ -20,6 +20,8 @@ public:
 	// Methode pour definir les degâts infliges par collision au joueur.
 	void SetCollisionDamage(float _collisionDamage) { collisionDamage = _collisionDamage; }
 
+	void SendProjectile();
+
 	// Methode pour mettre a jour le composant Attack.
 	void Update(float _delta_time) override;
 
@@ -27,4 +29,8 @@ private:
 
 	// Degâts infliges par collision au joueur.   
 	float collisionDamage;
+
+	float projectileTimer;
+
+	std::string name;
 };
