@@ -67,6 +67,11 @@ public:
 	const std::vector<Background*>& GetBackgrounds() const { return backgrounds; }
 	void SetBackgrounds(std::vector<Background*> _backgrounds) { backgrounds = _backgrounds; }
 
+	void MarkForDeletion() { markedForDeletion = true; }
+
+	bool IsMarkedForDeletion() const { return markedForDeletion;}
+
+
 private:
 	std::string name = "GameObject";
 	std::string type = "Default";
@@ -84,6 +89,8 @@ private:
 	Maths::Vector2<float> scale = Maths::Vector2f::One;
 
 	std::vector<Component*> components;
+
+	bool markedForDeletion = false;
 };
 
 template<typename T>

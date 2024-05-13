@@ -43,5 +43,8 @@
     <CopyFileToFolders Include="..\Assets\Idle.png">
       <Filter>Assets</Filter>
     </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\WaterBall.png">
+      <Filter>Assets</Filter>
+    </CopyFileToFolders>
   </ItemGroup>
 </Project>

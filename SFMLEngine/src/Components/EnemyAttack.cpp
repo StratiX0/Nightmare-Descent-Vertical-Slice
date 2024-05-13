@@ -76,7 +76,7 @@ void EnemyAttack::SendProjectile()
         }
 
         // Dzfinit la taille du projectile.
-        Maths::Vector2f size = Maths::Vector2f(20.0f, 10.0f);
+        Maths::Vector2f size = Maths::Vector2f(40.0f, 20.0f);
 
         // Recupere la position de l'ennemi.
         Maths::Vector2f ownerPosition = GetOwner()->GetPosition();
