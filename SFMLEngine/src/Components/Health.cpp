@@ -14,7 +14,7 @@ Health::~Health()
 }
 
 // Methode pour infliger des degâts à l'objet. Reduit la sante actuelle de l'objet de la quantite specifiee. Si la sante actuelle tombe en dessous de zero, elle est fixee à zero.
-void Health::TakeDamage(int amount)
+void Health::TakeDamage(float amount)
 {
     currentHealth -= amount;
     if (currentHealth < 0)
@@ -40,25 +40,25 @@ bool Health::IsDead() const
 }
 
 // Methode pour definir la sante actuelle de l'objet.
-void Health::SetHealth(int _health)
+void Health::SetHealth(float _health)
 {
     currentHealth = _health;
 }
 
 // Methode pour obtenir la sante actuelle de l'objet.
-int Health::GetHealth() const
+float Health::GetHealth() const
 {
     return currentHealth;
 }
 
 // Methode pour obtenir la sante maximale de l'objet.
-int Health::GetMaxHealth() const
+float Health::GetMaxHealth() const
 {
     return maxHealth;
 }
 
 // Methode pour definir la sante maximale de l'objet.
-void Health::SetMaxHealth(int _maxHealth)
+void Health::SetMaxHealth(float _maxHealth)
 {
     maxHealth = _maxHealth;
 }

@@ -55,12 +55,16 @@ void EnemyAttack::IsColliding()
 
 }
 
+// Méthode pour envoyer un projectile.
 void EnemyAttack::SendProjectile()
 {
+    // Verifie si un GameObject de type "Player" existe dans la scène.
     if (GetOwner()->GetScene()->FindGameObjectType("Player") != nullptr)
     {
+        // Recupere le GameObject de type "Player".
         GameObject* player = GetOwner()->GetScene()->FindGameObjectType("Player");
 
+        // Détermine la vitesse du projectile en fonction de la position du joueur par rapport à l'ennemi.
         float speed;
         if (player->GetPosition().x < GetOwner()->GetPosition().x)
         {
@@ -71,12 +75,16 @@ void EnemyAttack::SendProjectile()
             speed = 500.0f;
         }
 
+        // Dzfinit la taille du projectile.
         Maths::Vector2f size = Maths::Vector2f(20.0f, 10.0f);
 
+        // Recupere la position de l'ennemi.
         Maths::Vector2f ownerPosition = GetOwner()->GetPosition();
 
+        // Ajuste la position y du projectile pour qu'il soit centre sur l'ennemi.
         ownerPosition.y = ownerPosition.y + (GetOwner()->GetComponent<SquareCollider>()->GetHeight() / 2.0f) - (size.y / 2.0f);
 
+        // Cree le projectile et l'ajoute à la scène.
         GameObject* projectile = GetOwner()->GetScene()->CreateProjectile("Projectile", "Projectile", ownerPosition, size, 10.0f, speed, sf::Color::Magenta);
     }
 }

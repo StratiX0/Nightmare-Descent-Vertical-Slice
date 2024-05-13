@@ -11,13 +11,13 @@ public:
 	EnemyAttack();
 	~EnemyAttack();
 
-	// Methode pour infliger des degâts en cas de collision.
+	// Methode pour infliger des degats en cas de collision.
 	void InflictCollisionDamage(SquareCollider* playerCollider, SquareCollider* enemyCollider);
 
 	// Methode pour verifier si l'objet est en collision avec un autre objet.
 	void IsColliding();
 
-	// Methode pour definir les degâts infliges par collision au joueur.
+	// Methode pour definir les degats infliges par collision au joueur.
 	void SetCollisionDamage(float _collisionDamage) { collisionDamage = _collisionDamage; }
 
 	void SendProjectile();
@@ -27,7 +27,7 @@ public:
 
 private:
 
-	// Degâts infliges par collision au joueur.   
+	// Degats infliges par collision au joueur.   
 	float collisionDamage;
 
 	float projectileTimer;
