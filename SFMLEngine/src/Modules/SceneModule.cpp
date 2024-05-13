@@ -31,11 +31,15 @@ void SceneModule::Update()
 {
 	Module::Update();
 
-	for (const Scene* scene : scenes)
+	for (Scene* scene : scenes)
 	{
-		scene->Update(timeModule->GetDeltaTime());
+		if (scene != nullptr)
+		{
+			scene->Update(timeModule->GetDeltaTime());
+		}
 	}
 }
+
 
 void SceneModule::Awake()
 {

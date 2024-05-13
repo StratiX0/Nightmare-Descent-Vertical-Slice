@@ -20,7 +20,7 @@ public:
 	void SetDamage(float _damage) { damage = _damage; }
 
 	// Methode pour verifier si l'objet est en collision avec un autre objet.
-	void IsColliding();
+	bool IsColliding();
 
 	// Methode pour mettre a jour le composant Attack.
 	void Update(float _delta_time) override;

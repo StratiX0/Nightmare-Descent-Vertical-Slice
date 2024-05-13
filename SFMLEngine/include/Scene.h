@@ -25,7 +25,7 @@ public:
     // Methodes pour reveiller, demarrer, mettre a jour, pre-rendre, rendre, post-rendre, presenter, activer, desactiver, detruire et finaliser la scene.
     void Awake() const;
     void Start() const;
-    void Update(float _delta_time) const;
+    void Update(const float _delta_time);
     void PreRender() const;
     void Render(sf::RenderWindow* _window);
     void OnGUI() const;

@@ -13,7 +13,7 @@ public:
     ~Health();
 
     // Methode pour infliger des degâts. Reduit la sante actuelle avec la quantite specifiee.
-    void TakeDamage(int amount);
+    void TakeDamage(float amount);
 
     // Methode pour soigner l'entite. Augmente la sante actuelle avec la quantite specifiee.
     void Heal(int amount);
@@ -22,12 +22,12 @@ public:
     bool IsDead() const;
 
     // Methodes pour obtenir et definir la sante actuelle.
-    int GetHealth() const;
-    void SetHealth(int _health);
+    float GetHealth() const;
+    void SetHealth(float _health);
 
     // Methodes pour obtenir et definir la sante maximale.
-    int GetMaxHealth() const;
-    void SetMaxHealth(int _maxHealth);
+    float GetMaxHealth() const;
+    void SetMaxHealth(float _maxHealth);
 
 	// Methodes pour obtenir et definir le temps d'invincibilite.
 	void SetInvincibilityTime(float _invincibilityTime) { invincibilityTime = _invincibilityTime; }
@@ -39,8 +39,8 @@ public:
 private:
 
     // Variables pour stocker la sante actuelle et maximale de l'entite.
-    int currentHealth;
-    int maxHealth;
+    float currentHealth;
+    float maxHealth;
 
 	// Variable pour stocker le temps d'invincibilite.
 	float invincibilityTime;

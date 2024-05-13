@@ -116,13 +116,25 @@ void Scene::Finalize() const
 }
 
 // Methode pour mettre a jour tous les GameObjects de la scene.
-void Scene::Update(const float _delta_time) const
+void Scene::Update(const float _delta_time)
 {
-	for (GameObject* const& game_object : gameObjects)
-	{
-		game_object->Update(_delta_time);
+	// Update all GameObjects
+	for (auto& gameObject : gameObjects) {
+		gameObject->Update(_delta_time);
+	}
+
+	// Delete all GameObjects marked for deletion
+	for (auto it = gameObjects.begin(); it != gameObjects.end(); /* no increment here */) {
+		if ((*it)->IsMarkedForDeletion()) {
+			delete* it;
+			it = gameObjects.erase(it);
+		}
+		else {
+			++it;
+		}
 	}
 }
+
 
 // Methode pour dessiner tous les GameObjects de la scene.
 void Scene::Render(sf::RenderWindow* _window)
@@ -174,8 +186,8 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 
 	if (game_object->GetType() == "Player" || game_object->GetType() == "Enemy")
 	{
-		square_collider->SetWidth(_size.x / 2);
-		shape_renderer->SetSize(Maths::Vector2f(_size.x / 2, _size.y));
+		square_collider->SetWidth(_size.x);
+		shape_renderer->SetSize(Maths::Vector2f(_size.x, _size.y));
 	}
 	else
 	{
@@ -205,8 +217,8 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 		animated_sprite->state = AnimatedSpriteComponent::PlayerSpriteState::Idle;
 
 		// Calcule l'echelle en fonction de la taille du gameObject et du sprite (_size *taille du gameObject* / _sprite *taille du sprite*)
-		float scaleX = (_size.x / 30.0f);
-		float scaleY = (_size.y / 30.0f);
+		float scaleX = (_size.x / (animated_sprite->GetSprite()->getTextureRect().width / animated_sprite->GetFrameCount()));
+		float scaleY = (_size.y / (animated_sprite->GetSprite()->getTextureRect().height));
 
 		// Definis l'echelle du sprite
 		animated_sprite->GetSprite()->setScale(scaleX, scaleY);
@@ -240,8 +252,8 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 		animated_sprite->state = AnimatedSpriteComponent::PlayerSpriteState::Idle;
 
 		// Calcule l'echelle en fonction de la taille du gameObject et du sprite (_size *taille du gameObject* / _sprite *taille du sprite*)
-		float scaleX = (_size.x / 30.0f);
-		float scaleY = (_size.y / 30.0f);
+		float scaleX = (_size.x / (animated_sprite->GetSprite()->getTextureRect().width / animated_sprite->GetFrameCount()));
+		float scaleY = (_size.y / (animated_sprite->GetSprite()->getTextureRect().height));
 
 		// Definis l'echelle du sprite
 		animated_sprite->GetSprite()->setScale(scaleX, scaleY);
@@ -291,6 +303,37 @@ GameObject* Scene::CreateProjectile(const std::string& _name, const std::string&
 	square_collider->SetHeight(_size.y);
 	square_collider->SetWidth(_size.x);
 	shape_renderer->SetSize(_size);
+
+	AnimatedSpriteComponent* animated_sprite = game_object->CreateComponent<AnimatedSpriteComponent>();
+	animated_sprite->SetFrameTime(0.1f);
+	// Definir le chemin du fichier pour l'etat Idle
+	animated_sprite->SetStateFilePath(AnimatedSpriteComponent::PlayerSpriteState::Idle, "Assets/WaterBall.png");
+	// Charger la texture a partir du chemin du fichier pour l'etat Idle
+	animated_sprite->LoadTexture(animated_sprite->GetStateFilePath(AnimatedSpriteComponent::PlayerSpriteState::Idle));
+
+	// Definir le nombre de frames pour l'etat Idle
+	animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::PlayerSpriteState::Idle, 17);
+
+	// Definir l'etat actuel a Idle
+	animated_sprite->state = AnimatedSpriteComponent::PlayerSpriteState::Idle;
+
+	// Calcule l'echelle en fonction de la taille du gameObject et du sprite (_size *taille du gameObject* / _sprite *taille du sprite*)
+	float scaleX = (_size.x / (animated_sprite->GetSprite()->getTextureRect().width / animated_sprite->GetFrameCount()));
+	float scaleY = (_size.y / (animated_sprite->GetSprite()->getTextureRect().height));
+
+	// Definis l'echelle du sprite
+	animated_sprite->GetSprite()->setScale(scaleX, scaleY);
+	animated_sprite->SetDefaultScale(scaleX, scaleY);
+
+	if (_speed < 0)
+	{
+		animated_sprite->SetDirection(AnimatedSpriteComponent::MovementDirection::Left);
+	}
+	else
+	{
+		animated_sprite->SetDirection(AnimatedSpriteComponent::MovementDirection::Right);
+	}
+
 
 	// Cree un Projectile pour le GameObject.
 	Projectile* projectile = game_object->CreateComponent<Projectile>();

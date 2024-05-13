@@ -126,9 +126,13 @@ void GameObject::Update(const float _delta_time) const
 {
 	for (Component* const& component : components)
 	{
-		component->Update(_delta_time);
+		if (component != nullptr)
+		{
+			component->Update(_delta_time);
+		}
 	}
 }
+
 
 void GameObject::Render(sf::RenderWindow* _window) const
 {
