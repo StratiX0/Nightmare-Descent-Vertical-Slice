@@ -186,8 +186,8 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 
 	if (game_object->GetType() == "Player" || game_object->GetType() == "Enemy")
 	{
-		square_collider->SetWidth(_size.x / 2);
-		shape_renderer->SetSize(Maths::Vector2f(_size.x / 2, _size.y));
+		square_collider->SetWidth(_size.x);
+		shape_renderer->SetSize(Maths::Vector2f(_size.x, _size.y));
 	}
 	else
 	{
@@ -324,6 +324,16 @@ GameObject* Scene::CreateProjectile(const std::string& _name, const std::string&
 	// Definis l'echelle du sprite
 	animated_sprite->GetSprite()->setScale(scaleX, scaleY);
 	animated_sprite->SetDefaultScale(scaleX, scaleY);
+
+	if (_speed < 0)
+	{
+		animated_sprite->SetDirection(AnimatedSpriteComponent::MovementDirection::Left);
+	}
+	else
+	{
+		animated_sprite->SetDirection(AnimatedSpriteComponent::MovementDirection::Right);
+	}
+
 
 	// Cree un Projectile pour le GameObject.
 	Projectile* projectile = game_object->CreateComponent<Projectile>();

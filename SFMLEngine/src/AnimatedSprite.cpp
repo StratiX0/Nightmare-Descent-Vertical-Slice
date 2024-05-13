@@ -46,7 +46,10 @@ void AnimatedSpriteComponent::LoadTexture(const std::string& texturePath)
 // Definit le rectangle de texture du sprite.
 void AnimatedSpriteComponent::SetTextureRect(int _left, int _top, int _width, int _height)
 {
-    sprite->setTextureRect(sf::IntRect(_left, _top, _width, _height));
+    // Mettre a jour l'origine apres avoir defini le rectangle de texture
+    defaultOriginX = static_cast<float>(sprite->getTextureRect().width / 2.0f);
+    defaultOriginY = static_cast<float>(0);
+    sprite->setOrigin(defaultOriginX, defaultOriginY);
 }
 
 // Definit la direction du mouvement du sprite.
@@ -61,8 +64,8 @@ void AnimatedSpriteComponent::SetDirection(MovementDirection _direction)
     else if (direction == MovementDirection::Left)
     {
         sprite->setScale(-defaultScaleX, defaultScaleY);
-        sf::IntRect rect = sprite->getTextureRect();
-        sprite->setOrigin(static_cast<float>(rect.width / 2), defaultOriginY);
+        float originX = texture->getSize().x / frameCount;
+        sprite->setOrigin(originX, defaultOriginY);
     }
 }
 
@@ -112,10 +115,17 @@ void AnimatedSpriteComponent::Update(float deltaTime)
         currentTime -= frameTime;
     }
     GameObject* owner = GetOwner();
-    if (owner != nullptr) {
-        // Met a jour la position du sprite pour qu'il soit centre sur le gameObject
-        Maths::Vector2f gameObjectSize = owner->GetComponent<RectangleShapeRenderer>()->GetSize();
-        sprite->setPosition(owner->GetPosition().x, owner->GetPosition().y);
+    if (owner != nullptr) 
+    {
+        RectangleShapeRenderer* renderer = owner->GetComponent<RectangleShapeRenderer>();
+        if (renderer != nullptr) 
+        {
+            Maths::Vector2f gameObjectSize = renderer->GetSize();
+            if (sprite != nullptr) 
+            {
+                sprite->setPosition(owner->GetPosition().x, owner->GetPosition().y);
+            }
+        }
     }
 }
 
