@@ -9,6 +9,7 @@ AnimatedSpriteComponent::AnimatedSpriteComponent()
     texture = new sf::Texture();
     stateFilePaths[PlayerSpriteState::Idle] = "Assets/Idle.png";
     stateFilePaths[PlayerSpriteState::Running] = "Assets/Run.png";
+    stateFilePaths[PlayerSpriteState::Jump] = "Assets/Jump.png";
 }
 
 // Destructeur de la classe AnimatedSpriteComponent.

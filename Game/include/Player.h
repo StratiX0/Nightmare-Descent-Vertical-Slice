@@ -45,7 +45,7 @@ public:
         }
 
         // Si ni la touche D ni la touche Q ne sont enfoncees, met le sprite du joueur en etat d'inactivite.
-        if (!InputModule::GetKey(sf::Keyboard::D) && !InputModule::GetKey(sf::Keyboard::Q))
+        if (!InputModule::GetKey(sf::Keyboard::D) && !InputModule::GetKey(sf::Keyboard::Q) && !InputModule::GetKey(sf::Keyboard::Z))
         {
             owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::PlayerSpriteState::Idle);
         }
@@ -56,6 +56,7 @@ public:
             velocity.y = -jumpForce;
             owner->GetComponent<Physics>()->SetJumping(true);
             owner->GetComponent<AnimatedSpriteComponent>()->SetDirection(AnimatedSpriteComponent::MovementDirection::Up);
+            owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::PlayerSpriteState::Jump);
         }
 
         // Si le joueur est en train de sauter, ajoute la gravite a la vitesse verticale.

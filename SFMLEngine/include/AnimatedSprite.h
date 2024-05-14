@@ -20,7 +20,8 @@ public:
     enum class PlayerSpriteState
     {
         Idle,
-        Running
+        Running,
+        Jump
     };
 
     // Constructeur et destructeur.
