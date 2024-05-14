@@ -107,7 +107,7 @@ private:
 
 	// Variables de deplacement du joueur.
     float jumpForce = 800.0f;
-    float speed = 600.0f;
+    float speed = 700.0f;
     Maths::Vector2<float> gravity;
 };
 

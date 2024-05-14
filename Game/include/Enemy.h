@@ -80,7 +80,7 @@ private:
     std::string name;
 
     // Variables de deplacement de l'ennemi.
-    float speed = 100.0f;
+    float speed = 200.0f;
     int direction = 1; // 1 pour la droite, -1 pour la gauche.
 
     // Variables qui stockent les limites de la plateforme de l'ennemi.

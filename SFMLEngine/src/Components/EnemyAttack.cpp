@@ -68,11 +68,11 @@ void EnemyAttack::SendProjectile()
         float speed;
         if (player->GetPosition().x < GetOwner()->GetPosition().x)
         {
-            speed = -500.0f;
+            speed = -700.0f;
         }
         else
         {
-            speed = 500.0f;
+            speed = 700.0f;
         }
 
         // Dzfinit la taille du projectile.
