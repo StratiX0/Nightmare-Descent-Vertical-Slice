@@ -74,6 +74,8 @@ public:
     void SetStateFilePath(PlayerSpriteState state, const std::string& filePath) { stateFilePaths[state] = filePath; }
     std::string GetStateFilePath(PlayerSpriteState state) const;
 
+    void Blink(float blinkTime, float deltaTime);
+
 private:
 
     // Maps pour stocker le nombre de frames et le chemin du fichier pour chaque etat.

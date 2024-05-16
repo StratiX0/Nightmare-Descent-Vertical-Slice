@@ -93,6 +93,22 @@ int AnimatedSpriteComponent::GetStateFrameCount(PlayerSpriteState state) const
     }
 }
 
+// Fait clignoter le sprite en alternant son opacité.
+void AnimatedSpriteComponent::Blink(float blinkTime, float deltaTime)
+{
+    static float currentTime = 0.0f;
+    currentTime += deltaTime;
+
+    if (currentTime >= blinkTime)
+    {
+        sf::Color color = sprite->getColor();
+        color.a = (color.a == 255) ? 0 : 255; // Alterne entre complètement transparent (0) et complètement opaque (255)
+        sprite->setColor(color);
+        currentTime = 0.0f;
+    }
+}
+
+
 // Met a jour le sprite anime.
 void AnimatedSpriteComponent::Update(float deltaTime)
 {
