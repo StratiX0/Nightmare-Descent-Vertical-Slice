@@ -349,6 +349,33 @@ GameObject* Scene::CreateProjectile(const std::string& _name, const std::string&
 	return game_object;
 }
 
+// Methode pour creer un objet de l'environnement.
+GameObject* Scene::CreateEnvironment(const std::string& _name, const std::string& _type, const std::string& _path, Maths::Vector2f _position, Maths::Vector2f _size)
+{
+	// Cree le GameObject et le configure.
+	GameObject* game_object = CreateGameObject(_name, _type, id);
+	game_object->SetPosition(Maths::Vector2f(_position));
+
+	SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
+	sprite_renderer->LoadTexture(_path);
+
+	// Calcule l'echelle en fonction de la taille du gameObject et du sprite (_size *taille du gameObject* / _sprite *taille du sprite*)
+	float scaleX = (_size.x / (sprite_renderer->GetSprite()->getTextureRect().width));
+	float scaleY = (_size.y / (sprite_renderer->GetSprite()->getTextureRect().height));
+
+	// Definis l'echelle du sprite
+	sprite_renderer->GetSprite()->setScale(scaleX, scaleY);
+	sprite_renderer->SetDefaultScale(scaleX, scaleY);
+
+	// Configure le GameObject pour qu'il appartienne a cette scene et ait les memes arriere-plans que cette scene.
+	game_object->SetScene(this);
+	game_object->SetBackgrounds(backgrounds);
+
+	id++;
+
+	return game_object;
+}
+
 // Methode pour creer les arriere-plans de la scene.
 void Scene::CreateBackgrounds(const std::string& _path)
 {

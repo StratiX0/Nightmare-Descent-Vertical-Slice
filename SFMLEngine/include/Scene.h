@@ -12,6 +12,7 @@
 #include "Components/PlayerAttack.h"
 #include "Components/EnemyAttack.h"
 #include "Components/Projectile.h"
+#include "Components/SpriteRenderer.h"
 
 // La classe Scene represente une scene dans votre jeu. Une scene contient un ensemble de GameObjects.
 class Scene
@@ -45,6 +46,7 @@ public:
     GameObject* CreateInGameObject(const std::string& _name, const std::string& _type, Maths::Vector2f _position, Maths::Vector2f _size, float _mass, const sf::Color _color);
     GameObject* CreateGameObject(const std::string& _name, const std::string& _type, const int id);
     GameObject* CreateProjectile(const std::string& _name, const std::string& _type, Maths::Vector2f _position, Maths::Vector2f _size, const float _damage, const float _speed, const sf::Color _color);
+	GameObject* CreateEnvironment(const std::string& _name, const std::string& _type, const std::string& _path, Maths::Vector2f _position, Maths::Vector2f _size);
     void CreateBackgrounds(const std::string& _path);
     std::vector<Background*> GetBackgrounds() const { return backgrounds; }
     void SetBackgroundSize(Background* background, float _width, float _height);

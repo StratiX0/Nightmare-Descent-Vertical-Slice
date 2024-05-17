@@ -31,6 +31,7 @@ bool Projectile::IsColliding()
             if (SquareCollider::IsColliding(*projectileCollider, *playerCollider))
             {
                 gameObject->GetComponent<Health>()->TakeDamage(damage);
+                gameObject->GetComponent<Health>()->SetInvincibilityTime(2.0f);
                 return true; // Return after destroying the projectile to avoid accessing it later in the loop.
             }
         }
