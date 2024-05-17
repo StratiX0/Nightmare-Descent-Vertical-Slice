@@ -20,7 +20,7 @@ public:
         /////////////////////////////////
 		//    Creer un objet au sol    //
 		/////////////////////////////////
-        CreateObject("Ground", "Object", "Assets/Ground.png", Maths::Vector2f(400.0f, 0.0f), Maths::Vector2f(100.f, 900.0f), sf::Color::Transparent, true);
+        CreateObject("Ground", "Object", "Assets/Ground.png", Maths::Vector2f(-500.0f, 0.0f), Maths::Vector2f(1000.f, 900.0f), sf::Color::Transparent, true);
         CreateObject("Ground", "Object", "Assets/Ground.png", Maths::Vector2f(500.0f, 800.0f), Maths::Vector2f(1600.f, 100.0f), sf::Color::Transparent, true);
         CreateObject("Ground", "Object", "Assets/Ground.png", Maths::Vector2f(2350.0f, 800.0f), Maths::Vector2f(1600.f, 100.0f), sf::Color::Transparent, true);
         CreateObject("Ground", "Object", "Assets/Ground.png", Maths::Vector2f(3950.0f, 500.0f), Maths::Vector2f(400.f, 900.0f), sf::Color::Transparent, true);
@@ -47,9 +47,11 @@ public:
 		// Creer un objet de decoration //
 		//////////////////////////////////
 
-		CreateEnvironment("Tree", "Environment", "Assets/Tree.png", Maths::Vector2f(700.0f, 600.0f), Maths::Vector2f(100.0f, 200.0f));
-        CreateEnvironment("Rock", "Environment", "Assets/Rock.png", Maths::Vector2f(1000.0f, 750.0f), Maths::Vector2f(50.0f, 50.0f));
-        CreateEnvironment("Tree", "Environment", "Assets/Empty_Tree.png", Maths::Vector2f(1700.0f, 600.0f), Maths::Vector2f(100.0f, 200.0f));
+		CreateEnvironment("Tree", "Environment", "Assets/DarkTree.png", Maths::Vector2f(700.0f, 600.0f), Maths::Vector2f(100.0f, 200.0f));
+        CreateEnvironment("Rock", "Environment", "Assets/Bush.png", Maths::Vector2f(1000.0f, 750.0f), Maths::Vector2f(50.0f, 50.0f));
+        CreateEnvironment("Tree", "Environment", "Assets/DeadTree.png", Maths::Vector2f(1700.0f, 600.0f), Maths::Vector2f(100.0f, 200.0f));
+        CreateEnvironment("Tombstone", "Environment", "Assets/Tombstone.png", Maths::Vector2f(1400.0f, 550.0f), Maths::Vector2f(50.0f, 50.0f));
+        CreateEnvironment("Tombstone", "Environment", "Assets/Tombstone3.png", Maths::Vector2f(2450.0f, 600.0f), Maths::Vector2f(100.0f, 200.0f));
 
         /////////////////////////////////
         //    Creer l'entite joueur    //

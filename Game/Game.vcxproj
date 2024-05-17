@@ -182,6 +182,22 @@
   <ItemGroup>
     <CopyFileToFolders Include="..\Assets\WaterBall.png" />
   </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="..\Assets\Bush.png" />
+    <CopyFileToFolders Include="..\Assets\DarkTree.png" />
+    <CopyFileToFolders Include="..\Assets\DarkTree2.png" />
+    <CopyFileToFolders Include="..\Assets\DarkTree3.png" />
+    <CopyFileToFolders Include="..\Assets\DeadTree.png" />
+    <CopyFileToFolders Include="..\Assets\DeadTree2.png" />
+    <CopyFileToFolders Include="..\Assets\DeadTree3.png" />
+    <Image Include="..\Assets\Empty_Tree.png" />
+    <Image Include="..\Assets\Ground.png" />
+    <Image Include="..\Assets\Platform.png" />
+    <Image Include="..\Assets\Rock.png" />
+    <CopyFileToFolders Include="..\Assets\Tombstone.png" />
+    <CopyFileToFolders Include="..\Assets\Tombstone2.png" />
+    <CopyFileToFolders Include="..\Assets\Tombstone3.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

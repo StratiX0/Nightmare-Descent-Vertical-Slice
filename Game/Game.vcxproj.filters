@@ -46,5 +46,49 @@
     <CopyFileToFolders Include="..\Assets\WaterBall.png">
       <Filter>Assets</Filter>
     </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Tombstone.png">
+      <Filter>Assets</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Tombstone2.png">
+      <Filter>Assets</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Tombstone3.png">
+      <Filter>Assets</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Bush.png">
+      <Filter>Assets</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\DarkTree.png">
+      <Filter>Assets</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\DarkTree2.png">
+      <Filter>Assets</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\DarkTree3.png">
+      <Filter>Assets</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\DeadTree.png">
+      <Filter>Assets</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\DeadTree2.png">
+      <Filter>Assets</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\DeadTree3.png">
+      <Filter>Assets</Filter>
+    </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Assets\Empty_Tree.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="..\Assets\Ground.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="..\Assets\Platform.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="..\Assets\Rock.png">
+      <Filter>Assets</Filter>
+    </Image>
   </ItemGroup>
 </Project>
