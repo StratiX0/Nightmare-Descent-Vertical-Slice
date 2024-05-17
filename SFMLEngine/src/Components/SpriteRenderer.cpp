@@ -29,6 +29,19 @@ void SpriteRenderer::LoadTexture(const std::string& _texturePath)
     {
         sprite->setTexture(*texture);
     }
+	if (texture->loadFromFile(_texturePath) && tilingState)
+    {
+        texture->setRepeated(true);
+
+        sprite->setTexture(*texture);
+        sprite->setTextureRect(sf::IntRect(0, 0, texture->getSize().x * tilingX, texture->getSize().y * tilingY));
+    }
+}
+
+void SpriteRenderer::SetTiling(float _tilingX, float _tilingY)
+{
+    tilingX = _tilingX;
+    tilingY = _tilingY;
 }
 
 void SpriteRenderer::Update(float _delta_time)

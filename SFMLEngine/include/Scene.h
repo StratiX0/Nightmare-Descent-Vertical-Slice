@@ -46,6 +46,7 @@ public:
     GameObject* CreateInGameObject(const std::string& _name, const std::string& _type, Maths::Vector2f _position, Maths::Vector2f _size, float _mass, const sf::Color _color);
     GameObject* CreateGameObject(const std::string& _name, const std::string& _type, const int id);
     GameObject* CreateProjectile(const std::string& _name, const std::string& _type, Maths::Vector2f _position, Maths::Vector2f _size, const float _damage, const float _speed, const sf::Color _color);
+	GameObject* CreateObject(const std::string& _name, const std::string& _type, const std::string& _path, Maths::Vector2f _position, Maths::Vector2f _size, const sf::Color _color, bool _tiling);
 	GameObject* CreateEnvironment(const std::string& _name, const std::string& _type, const std::string& _path, Maths::Vector2f _position, Maths::Vector2f _size);
     void CreateBackgrounds(const std::string& _path);
     std::vector<Background*> GetBackgrounds() const { return backgrounds; }

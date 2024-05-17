@@ -20,34 +20,36 @@ public:
         /////////////////////////////////
 		//    Creer un objet au sol    //
 		/////////////////////////////////
-        CreateInGameObject("Ground", "Object", Maths::Vector2f(400.0f, 0.0f), Maths::Vector2f(100.f, 900.0f), 1.0f, sf::Color::Black);
-        CreateInGameObject("Ground", "Object", Maths::Vector2f(500.0f, 800.0f), Maths::Vector2f(1600.f, 100.0f), 1.0f, sf::Color::Black);
-        CreateInGameObject("Ground", "Object", Maths::Vector2f(2350.0f, 800.0f), Maths::Vector2f(1600.f, 100.0f), 1.0f, sf::Color::Black);
-        CreateInGameObject("Ground", "Object", Maths::Vector2f(3950.0f, 500.0f), Maths::Vector2f(400.f, 900.0f), 1.0f, sf::Color::Black);
-        CreateInGameObject("Ground", "Object", Maths::Vector2f(4700.0f, 500.0f), Maths::Vector2f(400.f, 900.0f), 1.0f, sf::Color::Black);
-        CreateInGameObject("Ground", "Object", Maths::Vector2f(5100.0f, 600.0f), Maths::Vector2f(200.f, 900.0f), 1.0f, sf::Color::Black);
-        CreateInGameObject("Ground", "Object", Maths::Vector2f(5300.0f, 700.0f), Maths::Vector2f(800.f, 900.0f), 1.0f, sf::Color::Black);
-        CreateInGameObject("Ground", "Object", Maths::Vector2f(6700.0f, 700.0f), Maths::Vector2f(600.f, 900.0f), 1.0f, sf::Color::Black);
-        CreateInGameObject("Ground", "Object", Maths::Vector2f(7950.0f, 700.0f), Maths::Vector2f(600.f, 900.0f), 1.0f, sf::Color::Black);
-        CreateInGameObject("Ground", "Object", Maths::Vector2f(8550.0f, 600.0f), Maths::Vector2f(400.f, 900.0f), 1.0f, sf::Color::Black);
-        CreateInGameObject("Ground", "Object", Maths::Vector2f(9300.0f, 600.0f), Maths::Vector2f(400.f, 900.0f), 1.0f, sf::Color::Black);
+        CreateObject("Ground", "Object", "Assets/Ground.png", Maths::Vector2f(400.0f, 0.0f), Maths::Vector2f(100.f, 900.0f), sf::Color::Transparent, true);
+        CreateObject("Ground", "Object", "Assets/Ground.png", Maths::Vector2f(500.0f, 800.0f), Maths::Vector2f(1600.f, 100.0f), sf::Color::Transparent, true);
+        CreateObject("Ground", "Object", "Assets/Ground.png", Maths::Vector2f(2350.0f, 800.0f), Maths::Vector2f(1600.f, 100.0f), sf::Color::Transparent, true);
+        CreateObject("Ground", "Object", "Assets/Ground.png", Maths::Vector2f(3950.0f, 500.0f), Maths::Vector2f(400.f, 900.0f), sf::Color::Transparent, true);
+        CreateObject("Ground", "Object", "Assets/Ground.png", Maths::Vector2f(4700.0f, 500.0f), Maths::Vector2f(400.f, 900.0f), sf::Color::Transparent, true);
+        CreateObject("Ground", "Object", "Assets/Ground.png", Maths::Vector2f(5100.0f, 600.0f), Maths::Vector2f(200.f, 900.0f), sf::Color::Transparent, true);
+        CreateObject("Ground", "Object", "Assets/Ground.png", Maths::Vector2f(5300.0f, 700.0f), Maths::Vector2f(800.f, 900.0f), sf::Color::Transparent, true);
+        CreateObject("Ground", "Object", "Assets/Ground.png", Maths::Vector2f(6700.0f, 700.0f), Maths::Vector2f(600.f, 900.0f), sf::Color::Transparent, true);
+        CreateObject("Ground", "Object", "Assets/Ground.png", Maths::Vector2f(7950.0f, 700.0f), Maths::Vector2f(600.f, 900.0f), sf::Color::Transparent, true);
+        CreateObject("Ground", "Object", "Assets/Ground.png", Maths::Vector2f(8550.0f, 600.0f), Maths::Vector2f(400.f, 900.0f), sf::Color::Transparent, true);
+        CreateObject("Ground", "Object", "Assets/Ground.png", Maths::Vector2f(9300.0f, 600.0f), Maths::Vector2f(400.f, 900.0f), sf::Color::Transparent, true);
 
         //////////////////////////////////
 		// Creer un objet de plateforme //
 		//////////////////////////////////
-        CreateInGameObject("Platform", "Object", Maths::Vector2f(1250.f, 600.0f), Maths::Vector2f(300.f, 40.0f), 1.0f, sf::Color::Green);
-        CreateInGameObject("Platform", "Object", Maths::Vector2f(2600.f, 600.0f), Maths::Vector2f(400.f, 40.0f), 1.0f, sf::Color::Green);
-        CreateInGameObject("Platform", "Object", Maths::Vector2f(3300.f, 600.0f), Maths::Vector2f(400.f, 40.0f), 1.0f, sf::Color::Green);
-        CreateInGameObject("Platform", "Object", Maths::Vector2f(5300.f, 350.0f), Maths::Vector2f(250.f, 40.0f), 1.0f, sf::Color::Green);
-        CreateInGameObject("Platform", "Object", Maths::Vector2f(5900.f, 350.0f), Maths::Vector2f(300.f, 40.0f), 1.0f, sf::Color::Green);
-        CreateInGameObject("Platform", "Object", Maths::Vector2f(6550.f, 350.0f), Maths::Vector2f(250.f, 40.0f), 1.0f, sf::Color::Green);
-        CreateInGameObject("Platform", "Object", Maths::Vector2f(7500.f, 525.0f), Maths::Vector2f(250.f, 40.0f), 1.0f, sf::Color::Green);
+        CreateObject("Platform", "Object", "Assets/Platform.png", Maths::Vector2f(1250.f, 600.0f), Maths::Vector2f(300.f, 40.0f), sf::Color::Transparent, true);
+        CreateObject("Platform", "Object", "Assets/Platform.png", Maths::Vector2f(2600.f, 600.0f), Maths::Vector2f(400.f, 40.0f), sf::Color::Transparent, true);
+        CreateObject("Platform", "Object", "Assets/Platform.png", Maths::Vector2f(3300.f, 600.0f), Maths::Vector2f(400.f, 40.0f), sf::Color::Transparent, true);
+        CreateObject("Platform", "Object", "Assets/Platform.png", Maths::Vector2f(5300.f, 350.0f), Maths::Vector2f(250.f, 40.0f), sf::Color::Transparent, true);
+        CreateObject("Platform", "Object", "Assets/Platform.png", Maths::Vector2f(5900.f, 350.0f), Maths::Vector2f(300.f, 40.0f), sf::Color::Transparent, true);
+        CreateObject("Platform", "Object", "Assets/Platform.png", Maths::Vector2f(6550.f, 350.0f), Maths::Vector2f(250.f, 40.0f), sf::Color::Transparent, true);
+        CreateObject("Platform", "Object", "Assets/Platform.png", Maths::Vector2f(7500.f, 525.0f), Maths::Vector2f(250.f, 40.0f), sf::Color::Transparent, true);
 
 		//////////////////////////////////
 		// Creer un objet de decoration //
 		//////////////////////////////////
 
-		CreateEnvironment("Tree", "Environment", "Assets/Tree.png", Maths::Vector2f(700.0f, 650.0f), Maths::Vector2f(75.0f, 150.0f));
+		CreateEnvironment("Tree", "Environment", "Assets/Tree.png", Maths::Vector2f(700.0f, 600.0f), Maths::Vector2f(100.0f, 200.0f));
+        CreateEnvironment("Rock", "Environment", "Assets/Rock.png", Maths::Vector2f(1000.0f, 750.0f), Maths::Vector2f(50.0f, 50.0f));
+        CreateEnvironment("Tree", "Environment", "Assets/Empty_Tree.png", Maths::Vector2f(1700.0f, 600.0f), Maths::Vector2f(100.0f, 200.0f));
 
         /////////////////////////////////
         //    Creer l'entite joueur    //
