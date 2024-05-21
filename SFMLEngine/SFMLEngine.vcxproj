@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Boss.cpp" />
     <ClCompile Include="src\AnimatedSprite.cpp" />
     <ClCompile Include="src\Background.cpp" />
     <ClCompile Include="src\Components\EnemyAttack.cpp" />
@@ -79,6 +80,7 @@
     <ClCompile Include="src\Modules\SceneModule.cpp" />
     <ClCompile Include="src\Modules\TimeModule.cpp" />
     <ClCompile Include="src\Modules\WindowModule.cpp" />
+    <ClInclude Include="Boss.h" />
     <ClInclude Include="include\AnimatedSprite.h" />
     <ClInclude Include="include\Background.h" />
     <ClInclude Include="include\Components\EnemyAttack.h" />
@@ -107,6 +109,7 @@
     <ClInclude Include="include\Modules\SceneModule.h" />
     <ClInclude Include="include\Modules\WindowModule.h" />
     <ClInclude Include="include\Modules\InputModule.h" />
+    <ClInclude Include="Player.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Physics.cpp" />

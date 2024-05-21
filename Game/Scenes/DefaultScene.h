@@ -1,5 +1,6 @@
 #pragma once
-
+#include "Scene.h"
+#include "Boss.h"
 #include "GameObject.h"
 #include "Player.h"
 #include "Enemy.h"
@@ -45,5 +46,9 @@ public:
 		// Creer un objet de plateforme //
 		//////////////////////////////////
         CreateInGameObject("Platform", "Object", Maths::Vector2f(350.f, 650.0f), Maths::Vector2f(300.f, 50.0f), 1.0f, sf::Color::Green);
+        
+        // Créer l'entité Boss
+        GameObject* boss = CreateInGameObject("Boss", "Boss", Maths::Vector2f(1600.0f / 2 - 40.0f / 2, -500.0f), Maths::Vector2f(80.f, 80.0f), 1.0f, sf::Color::Red);
+        boss->CreateComponent<Boss>();
     }
 };

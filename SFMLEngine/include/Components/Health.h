@@ -36,6 +36,8 @@ public:
     // Methode pour mettre a jour le composant Health.
     void Update(float _delta_time) override;
 
+    // Méthode pour obtenir la santé actuelle.
+    float GetCurrentHealth() const { return currentHealth; }
 private:
 
     // Variables pour stocker la sante actuelle et maximale de l'entite.

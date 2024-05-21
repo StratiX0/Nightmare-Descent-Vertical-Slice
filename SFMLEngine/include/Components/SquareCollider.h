@@ -16,6 +16,6 @@ public:
 
 	void SetWidth(const float _width) { width = _width; }
 	void SetHeight(const float _height) { height = _height; }
-
+	bool CheckCollision(const SquareCollider& other) const;
 	static bool IsColliding(const SquareCollider& _collider_a, const SquareCollider& _collider_b);
 };
