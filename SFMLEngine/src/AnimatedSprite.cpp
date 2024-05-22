@@ -99,7 +99,7 @@ void AnimatedSpriteComponent::Blink(float blinkTime, float deltaTime)
     currentTime += deltaTime;
     sf::Color color = sprite->getColor();
 
-    if (currentTime >= blinkTime)
+    if (currentTime > blinkTime)
     {
         if (isRed) {
             sprite->setColor(sf::Color::White); // Reset to original color

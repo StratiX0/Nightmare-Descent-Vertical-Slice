@@ -15,7 +15,7 @@ public:
     DefaultScene() : Scene("DefaultScene")
     {
         // Cree les arriere-plans de la scene.
-        CreateBackgrounds("Assets/Background2.png");
+        CreateBackgrounds("Assets/Background.png");
 
         /////////////////////////////////
 		//    Creer un objet au sol    //

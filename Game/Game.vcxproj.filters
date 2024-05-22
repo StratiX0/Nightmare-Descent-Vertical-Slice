@@ -58,9 +58,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="..\Assets\Background.png">
-      <Filter>Assets\Backgrounds</Filter>
-    </CopyFileToFolders>
     <CopyFileToFolders Include="..\Assets\DarkTree.png">
       <Filter>Assets\Environment\Trees</Filter>
     </CopyFileToFolders>
@@ -135,6 +132,9 @@
     </CopyFileToFolders>
     <CopyFileToFolders Include="..\Assets\Bridge.png">
       <Filter>Assets\Ground</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Background.png">
+      <Filter>Assets\Backgrounds</Filter>
     </CopyFileToFolders>
   </ItemGroup>
 </Project>
