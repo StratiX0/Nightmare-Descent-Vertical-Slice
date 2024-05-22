@@ -79,9 +79,9 @@ void Health::Update(float _delta_time)
 		}
         sf::Color color = GetOwner()->GetComponent<AnimatedSpriteComponent>()->GetSprite()->getColor();
 
-		if (color.a == 0 && invincibilityTime <= 0.0f)
+		if ((color.a == 0 || color.g == 0 || color.b == 0) && invincibilityTime <= 0.0f)
         {
-            color.a = 255; // Alterne entre complètement transparent (0) et complètement opaque (255)
+            color = sf::Color::White; // Alterne entre complètement transparent (0) et complètement opaque (255)
 			GetOwner()->GetComponent<AnimatedSpriteComponent>()->GetSprite()->setColor(color);
 		}
 	}

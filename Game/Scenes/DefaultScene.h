@@ -47,11 +47,21 @@ public:
 		// Creer un objet de decoration //
 		//////////////////////////////////
 
-		CreateEnvironment("Tree", "Environment", "Assets/DarkTree.png", Maths::Vector2f(700.0f, 600.0f), Maths::Vector2f(100.0f, 200.0f));
-        CreateEnvironment("Rock", "Environment", "Assets/Bush.png", Maths::Vector2f(1000.0f, 750.0f), Maths::Vector2f(50.0f, 50.0f));
-        CreateEnvironment("Tree", "Environment", "Assets/DeadTree.png", Maths::Vector2f(1700.0f, 600.0f), Maths::Vector2f(100.0f, 200.0f));
+		CreateEnvironment("Tree", "Environment", "Assets/DarkTree.png", Maths::Vector2f(700.0f, 550.0f), Maths::Vector2f(150.0f, 250.0f));
+        CreateEnvironment("Bush", "Environment", "Assets/Bush.png", Maths::Vector2f(1000.0f, 750.0f), Maths::Vector2f(50.0f, 50.0f));
+        CreateEnvironment("Rock", "Environment", "Assets/Bush.png", Maths::Vector2f(1400.0f, 750.0f), Maths::Vector2f(50.0f, 50.0f));
+        CreateEnvironment("Tree", "Environment", "Assets/DeadTree.png", Maths::Vector2f(1750.0f, 600.0f), Maths::Vector2f(150.0f, 200.0f));
         CreateEnvironment("Tombstone", "Environment", "Assets/Tombstone.png", Maths::Vector2f(1400.0f, 550.0f), Maths::Vector2f(50.0f, 50.0f));
-        CreateEnvironment("Tombstone", "Environment", "Assets/Tombstone3.png", Maths::Vector2f(2700.0f, 600.0f), Maths::Vector2f(100.0f, 200.0f));
+        CreateEnvironment("Tombstone", "Environment", "Assets/Tombstone.png", Maths::Vector2f(2400.0f, 750.0f), Maths::Vector2f(50.0f, 50.0f));
+        CreateEnvironment("Tombstone", "Environment", "Assets/Tombstone2.png", Maths::Vector2f(2475.0f, 750.0f), Maths::Vector2f(50.0f, 50.0f));
+        CreateEnvironment("Tombstone", "Environment", "Assets/Tombstone4.png", Maths::Vector2f(2550.0f, 725.0f), Maths::Vector2f(50.0f, 75.0f));
+        CreateEnvironment("Tombstone", "Environment", "Assets/Tombstone2.png", Maths::Vector2f(2625.0f, 750.0f), Maths::Vector2f(50.0f, 50.0f));
+        CreateEnvironment("Tombstone", "Environment", "Assets/Tombstone3.png", Maths::Vector2f(2725.0f, 600.0f), Maths::Vector2f(100.0f, 200.0f));
+        CreateEnvironment("Tombstone", "Environment", "Assets/Tombstone.png", Maths::Vector2f(2875.0f, 750.0f), Maths::Vector2f(50.0f, 50.0f));
+        CreateEnvironment("Tombstone", "Environment", "Assets/Tombstone4.png", Maths::Vector2f(2950.0f, 725.0f), Maths::Vector2f(50.0f, 75.0f));
+        CreateEnvironment("Tombstone", "Environment", "Assets/Tombstone.png", Maths::Vector2f(3025.0f, 750.0f), Maths::Vector2f(50.0f, 50.0f));
+        CreateEnvironment("Tombstone", "Environment", "Assets/Tombstone2.png", Maths::Vector2f(3100.0f, 750.0f), Maths::Vector2f(50.0f, 50.0f));
+        CreateEnvironment("Tree", "Environment", "Assets/DeadTree2.png", Maths::Vector2f(3750.0f, 600.0f), Maths::Vector2f(150.0f, 200.0f));
 
         /////////////////////////////////
         //    Creer l'entite joueur    //

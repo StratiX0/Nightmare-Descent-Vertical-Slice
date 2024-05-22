@@ -95,13 +95,23 @@ int AnimatedSpriteComponent::GetStateFrameCount(SpriteState state) const
 void AnimatedSpriteComponent::Blink(float blinkTime, float deltaTime)
 {
     static float currentTime = 0.0f;
+    static bool isRed = false;
     currentTime += deltaTime;
+    sf::Color color = sprite->getColor();
 
     if (currentTime >= blinkTime)
     {
-        sf::Color color = sprite->getColor();
-        color.a = (color.a == 255) ? 0 : 255; // Alterne entre complètement transparent (0) et complètement opaque (255)
-        sprite->setColor(color);
+        if (isRed) {
+            sprite->setColor(sf::Color::White); // Reset to original color
+            isRed = false;
+        }
+        else {
+            color.r = 255; // Set red color
+            color.g = 0; // Remove green color
+            color.b = 0; // Remove blue color
+            sprite->setColor(color);
+            isRed = true;
+        }
         currentTime = 0.0f;
     }
 }

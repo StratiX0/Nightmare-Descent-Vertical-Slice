@@ -190,13 +190,20 @@
     <CopyFileToFolders Include="..\Assets\DeadTree.png" />
     <CopyFileToFolders Include="..\Assets\DeadTree2.png" />
     <CopyFileToFolders Include="..\Assets\DeadTree3.png" />
-    <Image Include="..\Assets\Empty_Tree.png" />
-    <Image Include="..\Assets\Ground.png" />
-    <Image Include="..\Assets\Platform.png" />
-    <Image Include="..\Assets\Rock.png" />
+    <CopyFileToFolders Include="..\Assets\Cloud.png" />
+    <CopyFileToFolders Include="..\Assets\Fence.png" />
+    <CopyFileToFolders Include="..\Assets\Ground.png" />
+    <CopyFileToFolders Include="..\Assets\Platform.png" />
+    <CopyFileToFolders Include="..\Assets\Rock.png" />
     <CopyFileToFolders Include="..\Assets\Tombstone.png" />
     <CopyFileToFolders Include="..\Assets\Tombstone2.png" />
     <CopyFileToFolders Include="..\Assets\Tombstone3.png" />
+    <CopyFileToFolders Include="..\Assets\Rock2.png" />
+    <CopyFileToFolders Include="..\Assets\Rock3.png" />
+    <CopyFileToFolders Include="..\Assets\Tombstone4.png" />
+    <CopyFileToFolders Include="..\Assets\Tombstone5.png" />
+    <CopyFileToFolders Include="..\Assets\Tombstone6.png" />
+    <CopyFileToFolders Include="..\Assets\Wall.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
