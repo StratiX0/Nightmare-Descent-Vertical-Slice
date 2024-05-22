@@ -213,6 +213,10 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 		// Definir le nombre de frames pour l'etat Idle
 		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::PlayerSpriteState::Idle, 15);
 
+		// Definir le nombre de frames pour l'etat Running
+		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::PlayerSpriteState::Jump, 8);
+
+
 		// Definir l'etat actuel a Idle
 		animated_sprite->state = AnimatedSpriteComponent::PlayerSpriteState::Idle;
 
