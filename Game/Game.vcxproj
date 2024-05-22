@@ -205,6 +205,9 @@
     <CopyFileToFolders Include="..\Assets\Tombstone6.png" />
     <CopyFileToFolders Include="..\Assets\Wall.png" />
   </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="..\Assets\Bridge.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -371,9 +371,8 @@ GameObject* Scene::CreateObject(const std::string& _name, const std::string& _ty
 		float tilingX = _size.x / 100;
 		float tilingY = _size.y / 100;
 		sprite_renderer->SetTiling(tilingX, tilingY);
-		sprite_renderer->LoadTexture(_path);
 	}
-
+	sprite_renderer->LoadTexture(_path);
 
 	// Calcule l'echelle en fonction de la taille du gameObject et du sprite (_size *taille du gameObject* / _sprite *taille du sprite*)
 	float scaleX = (_size.x / (sprite_renderer->GetSprite()->getTextureRect().width));

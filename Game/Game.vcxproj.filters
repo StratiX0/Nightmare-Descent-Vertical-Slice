@@ -133,5 +133,8 @@
     <CopyFileToFolders Include="..\Assets\Rock3.png">
       <Filter>Assets\Environment\Rocks</Filter>
     </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Bridge.png">
+      <Filter>Assets\Ground</Filter>
+    </CopyFileToFolders>
   </ItemGroup>
 </Project>
