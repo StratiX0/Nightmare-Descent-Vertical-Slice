@@ -195,18 +195,21 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 	{
 		animated_sprite->SetFrameTime(0.1f);
 		// Definir le chemin du fichier pour l'etat Idle
-		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::PlayerSpriteState::Idle, "Assets/Idle.png");
+		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::SpriteState::Idle, "Assets/Idle.png");
 		// Charger la texture a partir du chemin du fichier pour l'etat Idle
-		animated_sprite->LoadTexture(animated_sprite->GetStateFilePath(AnimatedSpriteComponent::PlayerSpriteState::Idle));
+		animated_sprite->LoadTexture(animated_sprite->GetStateFilePath(AnimatedSpriteComponent::SpriteState::Idle));
 
 		// Definir le nombre de frames pour l'etat Running
-		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::PlayerSpriteState::Running, 8);
+		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Running, 8);
 
 		// Definir le nombre de frames pour l'etat Idle
-		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::PlayerSpriteState::Idle, 15);
+		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Idle, 15);
 
 		// Definir l'etat actuel a Idle
-		animated_sprite->state = AnimatedSpriteComponent::PlayerSpriteState::Idle;
+		animated_sprite->state = AnimatedSpriteComponent::SpriteState::Idle;
+
+		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::SpriteState::Idle, "Assets/Idle.png");
+		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::SpriteState::Running, "Assets/Run.png");
 
 		// Calcule l'echelle en fonction de la taille du gameObject et du sprite (_size *taille du gameObject* / _sprite *taille du sprite*)
 		float scaleX = (_size.x / (animated_sprite->GetSprite()->getTextureRect().width / animated_sprite->GetFrameCount()));
@@ -228,18 +231,21 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 	{
 		animated_sprite->SetFrameTime(0.1f);
 		// Definir le chemin du fichier pour l'etat Idle
-		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::PlayerSpriteState::Idle, "Assets/Idle.png");
+		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::SpriteState::Idle, "Assets/Idle.png");
 		// Charger la texture a partir du chemin du fichier pour l'etat Idle
-		animated_sprite->LoadTexture(animated_sprite->GetStateFilePath(AnimatedSpriteComponent::PlayerSpriteState::Idle));
+		animated_sprite->LoadTexture(animated_sprite->GetStateFilePath(AnimatedSpriteComponent::SpriteState::Idle));
 
 		// Definir le nombre de frames pour l'etat Running
-		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::PlayerSpriteState::Running, 8);
+		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Running, 8);
 
 		// Definir le nombre de frames pour l'etat Idle
-		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::PlayerSpriteState::Idle, 15);
+		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Idle, 15);
 
 		// Definir l'etat actuel a Idle
-		animated_sprite->state = AnimatedSpriteComponent::PlayerSpriteState::Idle;
+		animated_sprite->state = AnimatedSpriteComponent::SpriteState::Idle;
+
+		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::SpriteState::Idle, "Assets/Idle.png");
+		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::SpriteState::Running, "Assets/Run.png");
 
 		// Calcule l'echelle en fonction de la taille du gameObject et du sprite (_size *taille du gameObject* / _sprite *taille du sprite*)
 		float scaleX = (_size.x / (animated_sprite->GetSprite()->getTextureRect().width / animated_sprite->GetFrameCount()));
@@ -295,24 +301,26 @@ GameObject* Scene::CreateProjectile(const std::string& _name, const std::string&
 
 	AnimatedSpriteComponent* animated_sprite = game_object->CreateComponent<AnimatedSpriteComponent>();
 	animated_sprite->SetFrameTime(0.1f);
-	// Definir le chemin du fichier pour l'etat Idle
-	animated_sprite->SetStateFilePath(AnimatedSpriteComponent::PlayerSpriteState::Idle, "Assets/WaterBall.png");
-	// Charger la texture a partir du chemin du fichier pour l'etat Idle
-	animated_sprite->LoadTexture(animated_sprite->GetStateFilePath(AnimatedSpriteComponent::PlayerSpriteState::Idle));
 
-	// Definir le nombre de frames pour l'etat Idle
-	animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::PlayerSpriteState::Idle, 17);
+	// Definir le chemin du fichier pour l'etat Moving
+	animated_sprite->SetStateFilePath(AnimatedSpriteComponent::SpriteState::Moving, "Assets/WaterBall.png");
 
-	// Definir l'etat actuel a Idle
-	animated_sprite->state = AnimatedSpriteComponent::PlayerSpriteState::Idle;
+	// Charger la texture a partir du chemin du fichier pour l'etat Moving
+	animated_sprite->LoadTexture(animated_sprite->GetStateFilePath(AnimatedSpriteComponent::SpriteState::Moving));
+
+	// Definir le nombre de frames pour l'etat Moving
+	animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Moving, 17);
+
+	// Definir l'etat actuel a Moving
+	animated_sprite->state = AnimatedSpriteComponent::SpriteState::Moving;
 
 	// Calcule l'echelle en fonction de la taille du gameObject et du sprite (_size *taille du gameObject* / _sprite *taille du sprite*)
 	float scaleX = (_size.x / (animated_sprite->GetSprite()->getTextureRect().width / animated_sprite->GetFrameCount()));
 	float scaleY = (_size.y / (animated_sprite->GetSprite()->getTextureRect().height));
 
 	// Definis l'echelle du sprite
-	animated_sprite->GetSprite()->setScale(scaleX, scaleY);
 	animated_sprite->SetDefaultScale(scaleX, scaleY);
+	animated_sprite->GetSprite()->setScale(scaleX, scaleY);
 
 	if (_speed < 0)
 	{
@@ -322,6 +330,9 @@ GameObject* Scene::CreateProjectile(const std::string& _name, const std::string&
 	{
 		animated_sprite->SetDirection(AnimatedSpriteComponent::MovementDirection::Right);
 	}
+
+	sf::IntRect rectSourceSprite(0, 0, animated_sprite->GetTexture()->getSize().x / animated_sprite->GetFrameCount(), animated_sprite->GetTexture()->getSize().y);
+	animated_sprite->GetSprite()->setTextureRect(rectSourceSprite);
 
 
 	// Cree un Projectile pour le GameObject.
@@ -360,9 +371,8 @@ GameObject* Scene::CreateObject(const std::string& _name, const std::string& _ty
 		float tilingX = _size.x / 100;
 		float tilingY = _size.y / 100;
 		sprite_renderer->SetTiling(tilingX, tilingY);
-		sprite_renderer->LoadTexture(_path);
 	}
-
+	sprite_renderer->LoadTexture(_path);
 
 	// Calcule l'echelle en fonction de la taille du gameObject et du sprite (_size *taille du gameObject* / _sprite *taille du sprite*)
 	float scaleX = (_size.x / (sprite_renderer->GetSprite()->getTextureRect().width));

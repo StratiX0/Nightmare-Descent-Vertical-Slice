@@ -32,7 +32,7 @@ public:
         {
             direction = -1;
             owner->GetComponent<AnimatedSpriteComponent>()->SetDirection(AnimatedSpriteComponent::MovementDirection::Left);
-            owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::PlayerSpriteState::Running);
+            owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::SpriteState::Running);
         }
 
         // Si l'ennemi atteint le bord gauche de sa plateforme, il se deplace vers la droite.
@@ -40,7 +40,7 @@ public:
         {
             direction = 1;
             owner->GetComponent<AnimatedSpriteComponent>()->SetDirection(AnimatedSpriteComponent::MovementDirection::Right);
-            owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::PlayerSpriteState::Running);
+            owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::SpriteState::Running);
         }
 
         // Si l'ennemie est mort, change la couleur du RectangleShapeRenderer en rouge.

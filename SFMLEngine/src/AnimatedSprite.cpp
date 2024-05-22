@@ -3,16 +3,13 @@
 
 // Constructeur de la classe AnimatedSpriteComponent. Initialise les variables membres et cree les sprites et textures.
 AnimatedSpriteComponent::AnimatedSpriteComponent()
-    : frameCount(0), frameTime(0.0f), currentFrame(1), currentTime(0.0f), lastState(PlayerSpriteState::Idle)
+    : frameCount(0), frameTime(0.0f), currentFrame(0), currentTime(0.0f)
 {
     sprite = new sf::Sprite();
     texture = new sf::Texture();
-    stateFilePaths[PlayerSpriteState::Idle] = "Assets/Idle.png";
-    stateFilePaths[PlayerSpriteState::Running] = "Assets/Run.png";
 }
 
-// Destructeur de la classe AnimatedSpriteComponent.
-// Supprime les sprites et textures.
+// Destructeur de la classe AnimatedSpriteComponent. Supprime les sprites et textures.
 AnimatedSpriteComponent::~AnimatedSpriteComponent()
 {
     delete sprite;
@@ -25,12 +22,13 @@ AnimatedSpriteComponent::~AnimatedSpriteComponent()
 void AnimatedSpriteComponent::SetTexture(sf::Texture* _texture)
 {
     texture = _texture;
-    sprite->setTexture(*texture);
 
-    // Definir l'origine du sprite a son centre
-    defaultOriginX = static_cast<float>(texture->getSize().x / 2.0f);
-    defaultOriginY = static_cast<float>(texture->getSize().y / 2.0f);
-    sprite->setOrigin(defaultOriginX, defaultOriginY);
+    // Calculez la largeur et la hauteur de chaque frame en fonction de la taille de la texture et du nombre de frames.
+    frameWidth = texture->getSize().x / frameCount;
+    frameHeight = texture->getSize().y;
+
+    sprite->setTexture(*texture);
+    sprite->setTextureRect(sf::IntRect(0, 0, frameWidth, frameHeight));
 }
 
 // Charge une texture a partir d'un fichier.
@@ -64,13 +62,13 @@ void AnimatedSpriteComponent::SetDirection(MovementDirection _direction)
     else if (direction == MovementDirection::Left)
     {
         sprite->setScale(-defaultScaleX, defaultScaleY);
-        float originX = texture->getSize().x / frameCount;
+        float originX = static_cast<float>(texture->getSize().x / frameCount);
         sprite->setOrigin(originX, defaultOriginY);
     }
 }
 
 // Recupere le chemin du fichier de texture pour un etat donne.
-std::string AnimatedSpriteComponent::GetStateFilePath(PlayerSpriteState state) const
+std::string AnimatedSpriteComponent::GetStateFilePath(SpriteState state) const
 {
     if (stateFilePaths.count(state) > 0) {
         return stateFilePaths.at(state);
@@ -82,7 +80,7 @@ std::string AnimatedSpriteComponent::GetStateFilePath(PlayerSpriteState state) c
 }
 
 // Recupere le nombre de frames pour un etat donne.
-int AnimatedSpriteComponent::GetStateFrameCount(PlayerSpriteState state) const
+int AnimatedSpriteComponent::GetStateFrameCount(SpriteState state) const
 {
     if (stateFrameCounts.count(state) > 0) {
         return stateFrameCounts.at(state);
@@ -97,13 +95,23 @@ int AnimatedSpriteComponent::GetStateFrameCount(PlayerSpriteState state) const
 void AnimatedSpriteComponent::Blink(float blinkTime, float deltaTime)
 {
     static float currentTime = 0.0f;
+    static bool isRed = false;
     currentTime += deltaTime;
+    sf::Color color = sprite->getColor();
 
     if (currentTime >= blinkTime)
     {
-        sf::Color color = sprite->getColor();
-        color.a = (color.a == 255) ? 0 : 255; // Alterne entre complètement transparent (0) et complètement opaque (255)
-        sprite->setColor(color);
+        if (isRed) {
+            sprite->setColor(sf::Color::White); // Reset to original color
+            isRed = false;
+        }
+        else {
+            color.r = 255; // Set red color
+            color.g = 0; // Remove green color
+            color.b = 0; // Remove blue color
+            sprite->setColor(color);
+            isRed = true;
+        }
         currentTime = 0.0f;
     }
 }
