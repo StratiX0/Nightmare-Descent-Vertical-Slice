@@ -425,7 +425,7 @@ void Scene::CreateBackgrounds(const std::string& _path)
 	{
 		Background* const background = new Background();
 		background->SetPath(_path, i);
-		SetBackgroundSize(background, 1600.0f, 900.0f);
+		SetBackgroundSize(background, 1920.0f, 1080.0f);
 
 		if (i == 0)
 		{
@@ -433,7 +433,7 @@ void Scene::CreateBackgrounds(const std::string& _path)
 		}
 		else
 		{
-			background->SetPosition(1600.0f, 0);
+			background->SetPosition(1920.0f, 0);
 		}
 
 		backgrounds.push_back(background);

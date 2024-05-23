@@ -3,7 +3,6 @@
 
 #include "GameObject.h"
 #include "Components/RectangleShapeRenderer.h"
-#include "Scene.h"
 #include "Components/SquareCollider.h"
 #include "AnimatedSprite.h"
 #include "Physics.h"

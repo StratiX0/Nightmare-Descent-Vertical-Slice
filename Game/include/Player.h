@@ -91,13 +91,13 @@ public:
             background->SetPosition(background->GetPosition().x + delta, background->GetPosition().y);
 
             // Si un Background sort de l'ecran, le replace de l'autre côte.
-            if (background->GetPosition().x <= 0.0f - 1600.0f)
+            if (background->GetPosition().x <= 0.0f - 1920.0f)
             {
-                background->SetPosition(1600.0f, background->GetPosition().y);
+                background->SetPosition(1920.0f, background->GetPosition().y);
             }
-            else if (background->GetPosition().x >= 1600.0f)
+            else if (background->GetPosition().x >= 1920.0f)
             {
-                background->SetPosition(-1600.0f, background->GetPosition().y);
+                background->SetPosition(-1920.0f, background->GetPosition().y);
             }
         }
     }
