@@ -5,6 +5,39 @@
 #include "Enemy.h"
 #include "Background.h"
 
+class DefaultScene;
+class MainMenuScene : public Scene
+{
+public:
+    MainMenuScene() : Scene("MainMenuScene")
+    {
+        // Créez ici les éléments de votre menu principal.
+        // Par exemple, vous pouvez créer des boutons "Jouer", "Options" et "Quitter".
+
+        // Créer le bouton "Jouer"
+        GameObject* playButton = CreateObject("Play", "Button", "Assets/Play.png", Maths::Vector2f(900.0f, 200.0f), Maths::Vector2f(200.0f, 200.0f), sf::Color::Transparent, true);
+        playButton->CreateComponent<RectangleShapeRenderer>()->SetOnClick([]() {
+            // Lorsque l'utilisateur clique sur "Jouer", changez la scène en DefaultScene.
+            Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<DefaultScene>();
+            });
+
+        // Créer le bouton "Options"
+        GameObject* optionsButton = CreateObject("Options", "Button", "Assets/Options.png", Maths::Vector2f(900.0f, 400.0f), Maths::Vector2f(200.0f, 200.0f), sf::Color::Transparent, true);
+        optionsButton->CreateComponent<RectangleShapeRenderer>()->SetOnClick([]() {
+            // Lorsque l'utilisateur clique sur "Options", ouvrez le menu des options.
+            // Vous devrez implémenter cette fonctionnalité.
+            });
+
+        // Créer le bouton "Quitter"
+        GameObject* quitButton = CreateObject("Quit", "Button", "Assets/Quit.png", Maths::Vector2f(900.0f, 600.0f), Maths::Vector2f(200.0f, 200.0f), sf::Color::Transparent, true);
+        quitButton->CreateComponent<RectangleShapeRenderer>()->SetOnClick([]() {
+            // Lorsque l'utilisateur clique sur "Quitter", quittez le jeu.
+            Engine::GetInstance()->Quit();
+            });
+    }
+};
+
+
 // La classe DefaultScene herite de la classe Scene
 // et represente la scene par defaut de votre jeu.
 class DefaultScene final : public Scene
@@ -89,7 +122,7 @@ public:
 
         Maths::Vector2f playerSize = Maths::Vector2f(65.0f, 65.0f);
 
-        GameObject* player = CreateInGameObject("Player", "Player", Maths::Vector2f(1920.0f / 2 - playerSize.x / 2, 0.0f), playerSize, 1.0f, sf::Color::Transparent);
+        GameObject* player = CreateInGameObject("Player", "Player", Maths::Vector2f(2000.0f / 2 - playerSize.x / 2, 0.0f), playerSize, 1.0f, sf::Color::Transparent);
         player->CreateComponent<Player>();
 
         //////////////////////////////////
@@ -99,29 +132,33 @@ public:
         Maths::Vector2f wandererSize = Maths::Vector2f(50.0f, 50.0f);
 		Maths::Vector2f throwerSize = Maths::Vector2f(65.0f, 65.0f);
 
-        GameObject* enemy = CreateInGameObject("Wanderer", "Enemy", Maths::Vector2f(2000.0f, 0.0f), wandererSize, 1.0f, sf::Color::White);
+        GameObject* enemy = CreateInGameObject("Wanderer", "Enemy", Maths::Vector2f(2000.0f, 0.0f), wandererSize, 1.0f, sf::Color::Transparent);
         enemy->CreateComponent<Enemy>();
 
-        GameObject* enemy2 = CreateInGameObject("Thrower", "Enemy", Maths::Vector2f(1500.0f, 0.0f), throwerSize, 1.0f, sf::Color::White);
+        GameObject* enemy2 = CreateInGameObject("Thrower", "Enemy", Maths::Vector2f(1500.0f, 0.0f), throwerSize, 1.0f, sf::Color::Transparent);
         enemy2->CreateComponent<Enemy>();
 
-        GameObject* enemy3 = CreateInGameObject("Thrower", "Enemy", Maths::Vector2f(3200.0f, 0.0f), throwerSize, 1.0f, sf::Color::White);
+        GameObject* enemy3 = CreateInGameObject("Thrower", "Enemy", Maths::Vector2f(3200.0f, 0.0f), throwerSize, 1.0f, sf::Color::Transparent);
         enemy3->CreateComponent<Enemy>();
 
-        GameObject* enemy4 = CreateInGameObject("Wanderer", "Enemy", Maths::Vector2f(3500.0f, 0.0f), wandererSize, 1.0f, sf::Color::White);
+        GameObject* enemy4 = CreateInGameObject("Wanderer", "Enemy", Maths::Vector2f(3500.0f, 0.0f), wandererSize, 1.0f, sf::Color::Transparent);
         enemy4->CreateComponent<Enemy>();
 
-        GameObject* enemy5 = CreateInGameObject("Wanderer", "Enemy", Maths::Vector2f(5800.0f, 0.0f), wandererSize, 1.0f, sf::Color::White);
+        GameObject* enemy5 = CreateInGameObject("Wanderer", "Enemy", Maths::Vector2f(5800.0f, 0.0f), wandererSize, 1.0f, sf::Color::Transparent);
         enemy5->CreateComponent<Enemy>();
 
-        GameObject* enemy6 = CreateInGameObject("Wanderer", "Enemy", Maths::Vector2f(6100.0f, 0.0f), wandererSize, 1.0f, sf::Color::White);
+        GameObject* enemy6 = CreateInGameObject("Wanderer", "Enemy", Maths::Vector2f(6100.0f, 0.0f), wandererSize, 1.0f, sf::Color::Transparent);
         enemy6->CreateComponent<Enemy>();
 
-        GameObject* enemy7 = CreateInGameObject("Wanderer", "Enemy", Maths::Vector2f(7100.0f, 0.0f), wandererSize, 1.0f, sf::Color::White);
+        GameObject* enemy7 = CreateInGameObject("Wanderer", "Enemy", Maths::Vector2f(7100.0f, 0.0f), wandererSize, 1.0f, sf::Color::Transparent);
         enemy7->CreateComponent<Enemy>();
 
-        GameObject* enemy8 = CreateInGameObject("Wanderer", "Enemy", Maths::Vector2f(8200.0f, 0.0f), throwerSize, 1.0f, sf::Color::White);
+        GameObject* enemy8 = CreateInGameObject("Wanderer", "Enemy", Maths::Vector2f(8200.0f, 0.0f), throwerSize, 1.0f, sf::Color::Transparent);
         enemy8->CreateComponent<Enemy>();
+
+        // cree le boss.
+		GameObject* boss = CreateInGameObject("Boss", "Enemy", Maths::Vector2f(10000.0f, 0.0f), Maths::Vector2f(100.0f, 100.0f), 1.0f, sf::Color::Transparent);
+		boss->CreateComponent<Enemy>();
 
     }
 };

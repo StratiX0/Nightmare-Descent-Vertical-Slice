@@ -16,6 +16,10 @@ RectangleShapeRenderer::~RectangleShapeRenderer()
 	shape = nullptr;
 }
 
+void RectangleShapeRenderer::SetOnClick(std::function<void()> onClickFunc)
+{
+	onClick = onClickFunc;
+}
 void RectangleShapeRenderer::Render(sf::RenderWindow* _window)
 {
 	ARendererComponent::Render(_window);
