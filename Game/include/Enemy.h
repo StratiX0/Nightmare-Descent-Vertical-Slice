@@ -50,9 +50,25 @@ public:
 			owner->~GameObject();
         }
 
-        // Met a jour la position de l'ennemi.
-        position.x += direction * speed * _delta_time;
-        owner->SetPosition(position);
+		if (owner->GetName() == "Thrower")
+        {
+            if (owner->GetComponent<EnemyAttack>()->GetStopToShoot())
+            {
+                owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::SpriteState::Idle);
+            }
+            else
+            {
+                // Met a jour la position de l'ennemi.
+                position.x += direction * speed * _delta_time;
+                owner->SetPosition(position);
+            }
+		}
+        else
+        {
+            // Met a jour la position de l'ennemi.
+            position.x += direction * speed * _delta_time;
+            owner->SetPosition(position);
+        }
     }
 
     // Methodes pour definir et obtenir les limites de la plateforme de l'ennemi.

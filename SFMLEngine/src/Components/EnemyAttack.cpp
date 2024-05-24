@@ -3,6 +3,7 @@
 // Constructeur par defaut de la classe PlayerAttack.
 EnemyAttack::EnemyAttack()
 {
+	stopToShoot = false;
 }
 
 // Destructeur de la classe PlayerAttack.
@@ -85,7 +86,7 @@ void EnemyAttack::SendProjectile()
         ownerPosition.y = ownerPosition.y + (GetOwner()->GetComponent<SquareCollider>()->GetHeight() / 2.0f) - (size.y / 2.0f);
 
         // Cree le projectile et l'ajoute à la scène.
-        GameObject* projectile = GetOwner()->GetScene()->CreateProjectile("Projectile", "Projectile", ownerPosition, size, 10.0f, speed, sf::Color::Magenta);
+        GameObject* projectile = GetOwner()->GetScene()->CreateProjectile("Projectile", "Projectile", ownerPosition, size, 10.0f, speed, sf::Color::Transparent);
     }
 }
 
@@ -98,11 +99,20 @@ void EnemyAttack::Update(float _delta_time)
 
     if (GetOwner()->GetName() == "Thrower")
     {
-		if (projectileTimer <= 0.0f)
+        if (projectileTimer < 0.5f && projectileTimer > 0.0f)
         {
-			SendProjectile();
-			projectileTimer = 2.0f;
-		}
+            stopToShoot = true;
+        }
+        else if (projectileTimer <= 2.5f && projectileTimer > 0.5f)
+        {
+            stopToShoot = false;
+        }
+
+        if (projectileTimer <= 0.0f)
+        {
+            SendProjectile();
+            projectileTimer = 3.0f;
+        }
         projectileTimer -= _delta_time;
     }
     

@@ -10,6 +10,7 @@ void WindowModule::Awake()
 	Module::Awake();
 
 	window = new sf::RenderWindow(sf::VideoMode::getDesktopMode(), "Nightmare Descent", sf::Style::Fullscreen);
+	window->setMouseCursorVisible(false);
 }
 
 void WindowModule::PreRender()

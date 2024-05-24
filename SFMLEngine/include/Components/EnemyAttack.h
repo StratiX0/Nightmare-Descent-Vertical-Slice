@@ -22,6 +22,8 @@ public:
 
 	void SendProjectile();
 
+	bool GetStopToShoot() { return stopToShoot; }
+
 	// Methode pour mettre a jour le composant Attack.
 	void Update(float _delta_time) override;
 
@@ -33,4 +35,6 @@ private:
 	float projectileTimer;
 
 	std::string name;
+
+	bool stopToShoot = false;
 };

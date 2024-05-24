@@ -65,7 +65,7 @@ public:
         }
 
         // Si le joueur est mort, change la couleur du RectangleShapeRenderer en rouge.
-        if (owner->GetComponent<Health>()->IsDead())
+        if (owner->GetComponent<Health>()->IsDead() || owner->GetPosition().y > 1080)
         {
             owner->GetComponent<RectangleShapeRenderer>()->SetColor(sf::Color::Red);
 			owner->~GameObject();
