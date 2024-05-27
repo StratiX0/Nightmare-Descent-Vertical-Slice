@@ -32,7 +32,10 @@ public:
         if (InputModule::GetKey(sf::Keyboard::D) && !owner->GetComponent<Physics>()->collidingRight)
         {
             owner->GetComponent<AnimatedSpriteComponent>()->SetDirection(AnimatedSpriteComponent::MovementDirection::Right);
-            owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::SpriteState::Running);
+            if (!owner->GetComponent<Physics>()->IsJumping())
+            {
+                owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::SpriteState::Running);
+            }
             MoveWorld(-speed * _delta_time);
         }
 
@@ -40,12 +43,15 @@ public:
         if (InputModule::GetKey(sf::Keyboard::Q) && !owner->GetComponent<Physics>()->collidingLeft)
         {
             owner->GetComponent<AnimatedSpriteComponent>()->SetDirection(AnimatedSpriteComponent::MovementDirection::Left);
-            owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::SpriteState::Running);
+            if (!owner->GetComponent<Physics>()->IsJumping())
+            {
+                owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::SpriteState::Running);
+            }
             MoveWorld(speed * _delta_time);
         }
 
         // Si ni la touche D ni la touche Q ne sont enfoncees, met le sprite du joueur en etat d'inactivite.
-        if (!InputModule::GetKey(sf::Keyboard::D) && !InputModule::GetKey(sf::Keyboard::Q))
+        if (!InputModule::GetKey(sf::Keyboard::D) && !InputModule::GetKey(sf::Keyboard::Q) && !InputModule::GetKey(sf::Keyboard::Z))
         {
             owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::SpriteState::Idle);
         }
@@ -58,6 +64,12 @@ public:
             owner->GetComponent<AnimatedSpriteComponent>()->SetDirection(AnimatedSpriteComponent::MovementDirection::Up);
         }
 
+        //Si le joueur est en train de sauter, activer l'état de saut.
+        if (owner->GetComponent<Physics>()->IsJumping())
+        {
+            owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::SpriteState::Jump);
+        }
+       
         // Si le joueur est en train de sauter, ajoute la gravite a la vitesse verticale.
         if (owner->GetComponent<Physics>()->IsJumping())
         {
