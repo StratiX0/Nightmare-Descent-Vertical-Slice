@@ -129,11 +129,12 @@ public:
         CreateEnvironment("Tombstone", "Environment", "Assets/Tombstone2.png", Maths::Vector2f(5800.0f, 750.0f), Maths::Vector2f(50.0f, 50.0f));
         CreateEnvironment("Tombstone", "Environment", "Assets/Tombstone2.png", Maths::Vector2f(5900.0f, 750.0f), Maths::Vector2f(50.0f, 50.0f));
         CreateEnvironment("Tombstone", "Environment", "Assets/Door.png", Maths::Vector2f(10600.0f, 475.0f), Maths::Vector2f(150.0f, 150.0f));
+        
         /////////////////////////////////
         //    Creer l'entite joueur    //
         /////////////////////////////////
 
-        Maths::Vector2f playerSize = Maths::Vector2f(65.0f, 65.0f);
+        Maths::Vector2f playerSize = Maths::Vector2f(75.0f, 75.0f);
 
         GameObject* player = CreateInGameObject("Player", "Player", Maths::Vector2f(2000.0f / 2 - playerSize.x / 2, 0.0f), playerSize, 1.0f, sf::Color::Transparent);
         player->CreateComponent<Player>();
