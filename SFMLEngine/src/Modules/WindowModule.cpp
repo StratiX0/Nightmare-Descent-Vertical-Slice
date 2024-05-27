@@ -11,6 +11,16 @@ void WindowModule::Awake()
 
 	window = new sf::RenderWindow(sf::VideoMode::getDesktopMode(), "Nightmare Descent", sf::Style::Fullscreen);
 	window->setMouseCursorVisible(false);
+
+	// Chargement du logo
+	sf::Image icon;
+	if (!icon.loadFromFile("Assets/logo-nightmare-descent.png"))
+	{
+		//Erreur
+	}
+
+	// Mettre l'icone
+	window->setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 }
 
 void WindowModule::PreRender()

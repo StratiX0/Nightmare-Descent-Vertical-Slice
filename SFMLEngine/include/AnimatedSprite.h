@@ -21,7 +21,8 @@ public:
     {
         Idle,
         Running,
-        Moving
+        Moving,
+        Jump
     };
 
     // Constructeur et destructeur.

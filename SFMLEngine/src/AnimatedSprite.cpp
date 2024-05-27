@@ -7,6 +7,7 @@ AnimatedSpriteComponent::AnimatedSpriteComponent()
 {
     sprite = new sf::Sprite();
     texture = new sf::Texture();
+
 }
 
 // Destructeur de la classe AnimatedSpriteComponent. Supprime les sprites et textures.
