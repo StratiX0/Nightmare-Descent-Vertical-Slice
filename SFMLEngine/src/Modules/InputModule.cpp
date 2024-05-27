@@ -49,6 +49,10 @@ void InputModule::Update()
 		{
 			mouseUp.set(event.mouseButton.button);
 		}
+		if (GetKeyDown(sf::Keyboard::Key::Escape))
+		{
+			Engine::GetInstance()->Quit();
+		}
 	}
 
 	const sf::Vector2i previous_mouse_position = sf::Vector2i(mousePosition);

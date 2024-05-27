@@ -16,6 +16,30 @@
     <Filter Include="Assets">
       <UniqueIdentifier>{2c66c6c5-0635-4053-93fb-841121864ef1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets\Backgrounds">
+      <UniqueIdentifier>{ac24f889-b3da-45ff-b47f-e43a2891c675}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Projectiles">
+      <UniqueIdentifier>{6fdfc452-decc-4fa0-8958-2a80ee28d019}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Player">
+      <UniqueIdentifier>{6ea27934-8381-4afa-9322-f4a41b3012b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Ground">
+      <UniqueIdentifier>{5bf7d50d-dd8b-40d4-9ada-30fb9975be29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Environment">
+      <UniqueIdentifier>{e26a4634-a649-45ff-a58b-f9a52512f875}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Environment\Tombstones">
+      <UniqueIdentifier>{9ca9eedd-4da3-40e6-a4dd-86d4ec0390e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Environment\Trees">
+      <UniqueIdentifier>{81c51955-926a-4fba-be00-82457a60a221}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Environment\Rocks">
+      <UniqueIdentifier>{406db8cc-1427-4b1f-9ae8-9f6c46f5cdbc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -34,17 +58,89 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="..\Assets\Background.png">
-      <Filter>Assets</Filter>
+    <CopyFileToFolders Include="..\Assets\DarkTree.png">
+      <Filter>Assets\Environment\Trees</Filter>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="..\Assets\Run.png">
-      <Filter>Assets</Filter>
+    <CopyFileToFolders Include="..\Assets\DarkTree2.png">
+      <Filter>Assets\Environment\Trees</Filter>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="..\Assets\Idle.png">
-      <Filter>Assets</Filter>
+    <CopyFileToFolders Include="..\Assets\DarkTree3.png">
+      <Filter>Assets\Environment\Trees</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\DeadTree.png">
+      <Filter>Assets\Environment\Trees</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\DeadTree2.png">
+      <Filter>Assets\Environment\Trees</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\DeadTree3.png">
+      <Filter>Assets\Environment\Trees</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Tombstone.png">
+      <Filter>Assets\Environment\Tombstones</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Tombstone2.png">
+      <Filter>Assets\Environment\Tombstones</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Tombstone3.png">
+      <Filter>Assets\Environment\Tombstones</Filter>
     </CopyFileToFolders>
     <CopyFileToFolders Include="..\Assets\WaterBall.png">
-      <Filter>Assets</Filter>
+      <Filter>Assets\Projectiles</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Idle.png">
+      <Filter>Assets\Player</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Run.png">
+      <Filter>Assets\Player</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Bush.png">
+      <Filter>Assets\Environment</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Platform.png">
+      <Filter>Assets\Ground</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Ground.png">
+      <Filter>Assets\Ground</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Cloud.png">
+      <Filter>Assets\Environment</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Fence.png">
+      <Filter>Assets\Environment</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Wall.png">
+      <Filter>Assets\Environment</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Tombstone4.png">
+      <Filter>Assets\Environment\Tombstones</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Tombstone5.png">
+      <Filter>Assets\Environment\Tombstones</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Tombstone6.png">
+      <Filter>Assets\Environment\Tombstones</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Rock.png">
+      <Filter>Assets\Environment\Rocks</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Rock2.png">
+      <Filter>Assets\Environment\Rocks</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Rock3.png">
+      <Filter>Assets\Environment\Rocks</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Bridge.png">
+      <Filter>Assets\Ground</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Background.png">
+      <Filter>Assets\Backgrounds</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Background2.png">
+      <Filter>Assets\Backgrounds</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\DeadTree4.png">
+      <Filter>Assets\Environment\Trees</Filter>
     </CopyFileToFolders>
   </ItemGroup>
 </Project>

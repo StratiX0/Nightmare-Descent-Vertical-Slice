@@ -31,6 +31,7 @@ bool Projectile::IsColliding()
             if (SquareCollider::IsColliding(*projectileCollider, *playerCollider))
             {
                 gameObject->GetComponent<Health>()->TakeDamage(damage);
+                gameObject->GetComponent<Health>()->SetInvincibilityTime(2.0f);
                 return true; // Return after destroying the projectile to avoid accessing it later in the loop.
             }
         }
@@ -55,14 +56,17 @@ void Projectile::Update(float _delta_time)
     // Recupere le GameObject proprietaire de ce composant (le projectile).
     GameObject* projectile = GetOwner();
 
-    GameObject* player = GetOwner()->GetScene()->FindGameObjectType("Player");
-
-    bool outOfBounds = player->GetPosition().x - projectile->GetPosition().x <= -800 - projectile->GetComponent<SquareCollider>()->GetWidth() || projectile->GetPosition().x - player->GetPosition().x <= -800 - projectile->GetComponent<SquareCollider>()->GetWidth();
-
-    if (outOfBounds || IsColliding())
+    if (GetOwner()->GetScene()->FindGameObjectType("Player") != nullptr)
     {
-        projectile->MarkForDeletion();
-        return;
+        GameObject* player = GetOwner()->GetScene()->FindGameObjectType("Player");
+
+        bool outOfBounds = player->GetPosition().x - projectile->GetPosition().x <= -800 - projectile->GetComponent<SquareCollider>()->GetWidth() || projectile->GetPosition().x - player->GetPosition().x <= -800 - projectile->GetComponent<SquareCollider>()->GetWidth();
+
+        if (outOfBounds || IsColliding())
+        {
+            projectile->MarkForDeletion();
+            return;
+        }
     }
 
     // Met a jour la position du projectile en fonction de sa vitesse et de sa direction.

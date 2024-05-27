@@ -86,10 +86,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(ProjectDir)include;$(IncludePath)</IncludePath>
     <ExternalIncludePath>$(SolutionDir)include;$(ExternalIncludePath)</ExternalIncludePath>
+    <TargetName>Nightmare Descent</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(ProjectDir)include;$(IncludePath)</IncludePath>
     <ExternalIncludePath>$(SolutionDir)include;$(ExternalIncludePath)</ExternalIncludePath>
+    <TargetName>Nightmare Descent</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -139,6 +141,7 @@
       <AdditionalLibraryDirectories>$(SolutionDir)lib\Debug;$(SolutionDir)lib;$(ProjectDir)lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <CopyFileToFolders />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -158,6 +161,7 @@
       <AdditionalLibraryDirectories>$(SolutionDir)lib\Debug;$(SolutionDir)lib;$(ProjectDir)lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics-s.lib;sfml-window-s.lib;sfml-system-s.lib;opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <CopyFileToFolders />
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -173,14 +177,132 @@
     <ClInclude Include="Scenes\DefaultScene.h" />
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="..\Assets\Background.png" />
-    <CopyFileToFolders Include="..\Assets\Run.png" />
+    <CopyFileToFolders Include="..\Assets\Run.png">
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+    </CopyFileToFolders>
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="..\Assets\Idle.png" />
+    <CopyFileToFolders Include="..\Assets\Idle.png">
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+    </CopyFileToFolders>
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="..\Assets\WaterBall.png" />
+    <CopyFileToFolders Include="..\Assets\WaterBall.png">
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+    </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="..\Assets\Bush.png">
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\DarkTree.png">
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\DarkTree2.png">
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\DarkTree3.png">
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\DeadTree.png">
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\DeadTree2.png">
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\DeadTree3.png">
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Cloud.png">
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Fence.png">
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Ground.png">
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Platform.png">
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Rock.png">
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Tombstone.png">
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Tombstone2.png">
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Tombstone3.png">
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Rock2.png">
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Rock3.png">
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Tombstone4.png">
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Tombstone5.png">
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Tombstone6.png">
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Wall.png">
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+    </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="..\Assets\Bridge.png">
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+    </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="..\Assets\Background.png">
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+    </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="..\Assets\Background2.png">
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+    </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="..\Assets\DeadTree4.png">
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+    </CopyFileToFolders>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -17,10 +17,11 @@ public:
     };
 
     // Enumeration representant les etats possibles du sprite du joueur.
-    enum class PlayerSpriteState
+    enum class SpriteState
     {
         Idle,
         Running,
+        Moving,
         Jump
     };
 
@@ -65,21 +66,23 @@ public:
 
     // Variables representant la direction et l'etat actuels du sprite.
     MovementDirection direction;
-    PlayerSpriteState state;
-    PlayerSpriteState lastState;
+    SpriteState state;
+    SpriteState lastState;
 
     // Methodes pour gerer l'etat du sprite.
-    void SetState(PlayerSpriteState _state) { state = _state; }
-    void SetStateFrameCount(PlayerSpriteState state, int frameCount) { stateFrameCounts[state] = frameCount; SetFrameCount(frameCount); }
-    int GetStateFrameCount(PlayerSpriteState state) const;
-    void SetStateFilePath(PlayerSpriteState state, const std::string& filePath) { stateFilePaths[state] = filePath; }
-    std::string GetStateFilePath(PlayerSpriteState state) const;
+    void SetState(SpriteState _state) { state = _state; }
+    void SetStateFrameCount(SpriteState state, int frameCount) { stateFrameCounts[state] = frameCount; SetFrameCount(frameCount); }
+    int GetStateFrameCount(SpriteState state) const;
+    void SetStateFilePath(SpriteState state, const std::string& filePath) { stateFilePaths[state] = filePath; }
+    std::string GetStateFilePath(SpriteState state) const;
+
+    void Blink(float blinkTime, float deltaTime);
 
 private:
 
     // Maps pour stocker le nombre de frames et le chemin du fichier pour chaque etat.
-    std::map<PlayerSpriteState, int> stateFrameCounts;
-    std::map<PlayerSpriteState, std::string> stateFilePaths;
+    std::map<SpriteState, int> stateFrameCounts;
+    std::map<SpriteState, std::string> stateFilePaths;
 
     // Pointeur vers le sprite et la texture.
     sf::Sprite* sprite;
@@ -94,4 +97,8 @@ private:
     // Variables pour stocker l'origine et l'echelle par defaut du sprite.
     float defaultOriginX, defaultOriginY;
     float defaultScaleX, defaultScaleY;
+
+	// Variables pour stocker la largeur et la hauteur du sprite.
+    int frameWidth;
+    int frameHeight;
 };

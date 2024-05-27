@@ -68,14 +68,25 @@ void Health::Update(float _delta_time)
 {
 	if (GetOwner()->GetType() == "Player")
     {
-        if (invincibilityTime >= 0.0f)
+        if (invincibilityTime > 0.0f)
         {
 			invincibilityTime -= _delta_time;
+			GetOwner()->GetComponent<AnimatedSpriteComponent>()->Blink(0.1f, _delta_time);
         }
 		if (invincibilityTime < 0.0f)
 		{
 			invincibilityTime = 0.0f;
 		}
+        if (GetOwner()->GetComponent<AnimatedSpriteComponent>() != nullptr)
+        {
+            sf::Color color = GetOwner()->GetComponent<AnimatedSpriteComponent>()->GetSprite()->getColor();
+
+            if ((color != sf::Color::White) && invincibilityTime <= 0.0f)
+            {
+                color = sf::Color::White; // Alterne entre complètement transparent (0) et complètement opaque (255)
+                GetOwner()->GetComponent<AnimatedSpriteComponent>()->GetSprite()->setColor(color);
+            }
+        }
 	}
 }
 

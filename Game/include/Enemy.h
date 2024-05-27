@@ -32,7 +32,7 @@ public:
         {
             direction = -1;
             owner->GetComponent<AnimatedSpriteComponent>()->SetDirection(AnimatedSpriteComponent::MovementDirection::Left);
-            owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::PlayerSpriteState::Running);
+            owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::SpriteState::Running);
         }
 
         // Si l'ennemi atteint le bord gauche de sa plateforme, il se deplace vers la droite.
@@ -40,7 +40,7 @@ public:
         {
             direction = 1;
             owner->GetComponent<AnimatedSpriteComponent>()->SetDirection(AnimatedSpriteComponent::MovementDirection::Right);
-            owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::PlayerSpriteState::Running);
+            owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::SpriteState::Running);
         }
 
         // Si l'ennemie est mort, change la couleur du RectangleShapeRenderer en rouge.
@@ -50,9 +50,25 @@ public:
 			owner->~GameObject();
         }
 
-        // Met a jour la position de l'ennemi.
-        position.x += direction * speed * _delta_time;
-        owner->SetPosition(position);
+		if (owner->GetName() == "Thrower")
+        {
+            if (owner->GetComponent<EnemyAttack>()->GetStopToShoot())
+            {
+                owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::SpriteState::Idle);
+            }
+            else
+            {
+                // Met a jour la position de l'ennemi.
+                position.x += direction * speed * _delta_time;
+                owner->SetPosition(position);
+            }
+		}
+        else
+        {
+            // Met a jour la position de l'ennemi.
+            position.x += direction * speed * _delta_time;
+            owner->SetPosition(position);
+        }
     }
 
     // Methodes pour definir et obtenir les limites de la plateforme de l'ennemi.
@@ -80,7 +96,7 @@ private:
     std::string name;
 
     // Variables de deplacement de l'ennemi.
-    float speed = 100.0f;
+    float speed = 200.0f;
     int direction = 1; // 1 pour la droite, -1 pour la gauche.
 
     // Variables qui stockent les limites de la plateforme de l'ennemi.

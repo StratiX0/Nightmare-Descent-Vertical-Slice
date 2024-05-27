@@ -11,6 +11,7 @@ Physics::Physics()
 // Destructeur de la classe Physics.
 Physics::~Physics()
 {
+
 }
 
 // Methode pour verifier si l'objet est au sol. Renvoie vrai si l'objet est en collision avec un autre objet par le bas.

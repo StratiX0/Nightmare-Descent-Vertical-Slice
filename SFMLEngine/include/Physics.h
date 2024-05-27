@@ -30,8 +30,16 @@ public:
     float GetMass() { return mass; }
     void SetMass(float _mass) { mass = _mass; }
 
+	// Methode pour effectuer un saut.
+	void Jump();
+
+
     // Methode pour mettre a jour le composant Physics.
     void Update(float _delta_time) override;
+
+	// Methode pour appliquer une force a l'objet.
+	void ApplyForce(const Maths::Vector2f& _force);
+
 
     // Variable pour stocker la gravite appliquee a l'objet.
     Maths::Vector2f gravity = Maths::Vector2f(0.0f, 1500.0f);

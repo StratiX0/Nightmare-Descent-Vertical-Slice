@@ -9,7 +9,8 @@ void WindowModule::Awake()
 {
 	Module::Awake();
 
-	window = new sf::RenderWindow(sf::VideoMode(1600, 900), "Nightmare Descent");
+	window = new sf::RenderWindow(sf::VideoMode::getDesktopMode(), "Nightmare Descent", sf::Style::Fullscreen);
+	window->setMouseCursorVisible(false);
 
 	// Chargement du logo
 	sf::Image icon;

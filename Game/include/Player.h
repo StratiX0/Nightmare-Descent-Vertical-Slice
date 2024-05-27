@@ -32,7 +32,7 @@ public:
         if (InputModule::GetKey(sf::Keyboard::D) && !owner->GetComponent<Physics>()->collidingRight)
         {
             owner->GetComponent<AnimatedSpriteComponent>()->SetDirection(AnimatedSpriteComponent::MovementDirection::Right);
-            owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::PlayerSpriteState::Running);
+            owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::SpriteState::Running);
             MoveWorld(-speed * _delta_time);
         }
 
@@ -40,14 +40,14 @@ public:
         if (InputModule::GetKey(sf::Keyboard::Q) && !owner->GetComponent<Physics>()->collidingLeft)
         {
             owner->GetComponent<AnimatedSpriteComponent>()->SetDirection(AnimatedSpriteComponent::MovementDirection::Left);
-            owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::PlayerSpriteState::Running);
+            owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::SpriteState::Running);
             MoveWorld(speed * _delta_time);
         }
 
         // Si ni la touche D ni la touche Q ne sont enfoncees, met le sprite du joueur en etat d'inactivite.
         if (!InputModule::GetKey(sf::Keyboard::D) && !InputModule::GetKey(sf::Keyboard::Q) && !InputModule::GetKey(sf::Keyboard::Z))
         {
-            owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::PlayerSpriteState::Idle);
+            owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::SpriteState::Idle);
         }
 
         // Si la touche Z est enfoncee et que le joueur n'est pas deja en train de sauter, fait sauter le joueur.
@@ -66,7 +66,7 @@ public:
         }
 
         // Si le joueur est mort, change la couleur du RectangleShapeRenderer en rouge.
-        if (owner->GetComponent<Health>()->IsDead())
+        if (owner->GetComponent<Health>()->IsDead() || owner->GetPosition().y > 1080)
         {
             owner->GetComponent<RectangleShapeRenderer>()->SetColor(sf::Color::Red);
 			owner->~GameObject();
@@ -92,13 +92,13 @@ public:
             background->SetPosition(background->GetPosition().x + delta, background->GetPosition().y);
 
             // Si un Background sort de l'ecran, le replace de l'autre côte.
-            if (background->GetPosition().x <= 0.0f - 1600.0f)
+            if (background->GetPosition().x <= 0.0f - 1920.0f)
             {
-                background->SetPosition(1600.0f, background->GetPosition().y);
+                background->SetPosition(1920.0f, background->GetPosition().y);
             }
-            else if (background->GetPosition().x >= 1600.0f)
+            else if (background->GetPosition().x >= 1920.0f)
             {
-                background->SetPosition(-1600.0f, background->GetPosition().y);
+                background->SetPosition(-1920.0f, background->GetPosition().y);
             }
         }
     }
@@ -108,7 +108,7 @@ private:
 
 	// Variables de deplacement du joueur.
     float jumpForce = 800.0f;
-    float speed = 600.0f;
+    float speed = 700.0f;
     Maths::Vector2<float> gravity;
 };
 

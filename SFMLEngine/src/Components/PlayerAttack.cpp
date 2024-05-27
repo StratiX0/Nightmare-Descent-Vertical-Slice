@@ -50,7 +50,7 @@ void PlayerAttack::IsColliding()
             SquareCollider* enemyCollider = gameObject->GetComponent<SquareCollider>();
 
             // Si le joueur est en collision avec l'ennemi, inflige des degâts de collision.
-            if (SquareCollider::IsColliding(*playerCollider, *enemyCollider))
+            if (SquareCollider::IsColliding(*playerCollider, *enemyCollider) && player->GetComponent<Health>()->GetInvincibilityTime() == 0)
             {
                 InflictCollisionDamage(playerCollider, enemyCollider);
             }

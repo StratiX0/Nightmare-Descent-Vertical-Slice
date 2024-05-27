@@ -164,16 +164,16 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 	GameObject* game_object = CreateGameObject(_name, _type, id);
 	game_object->SetPosition(Maths::Vector2f(_position));
 
+	Physics* physics = game_object->CreateComponent<Physics>();
+
 	// Si le GameObject est un joueur, cree un composant Physics pour lui.
 	if (game_object->GetType() == "Player")
 	{
-		Physics* physics = game_object->CreateComponent<Physics>();
 		physics->SetMass(1.0f);
 	}
 
 	if (game_object->GetType() == "Enemy")
 	{
-		Physics* physics = game_object->CreateComponent<Physics>();
 		physics->SetMass(1.0f);
 	}
 
@@ -184,41 +184,36 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 	SquareCollider* square_collider = game_object->CreateComponent<SquareCollider>();
 	square_collider->SetHeight(_size.y);
 
-	if (game_object->GetType() == "Player" || game_object->GetType() == "Enemy")
-	{
-		square_collider->SetWidth(_size.x);
-		shape_renderer->SetSize(Maths::Vector2f(_size.x, _size.y));
-	}
-	else
-	{
-		square_collider->SetWidth(_size.x);
-		shape_renderer->SetSize(_size);
-	}
+	square_collider->SetWidth(_size.x);
+	shape_renderer->SetSize(Maths::Vector2f(_size.x, _size.y));
 
-
+	AnimatedSpriteComponent* animated_sprite = game_object->CreateComponent<AnimatedSpriteComponent>();
+	Health* health = game_object->CreateComponent<Health>();
 
 	// Si le GameObject est le joueur, cree un AnimatedSpriteComponent et un Health pour lui.
 	if (game_object->GetType() == "Player")
 	{
-		AnimatedSpriteComponent* animated_sprite = game_object->CreateComponent<AnimatedSpriteComponent>();
 		animated_sprite->SetFrameTime(0.1f);
 		// Definir le chemin du fichier pour l'etat Idle
-		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::PlayerSpriteState::Idle, "Assets/Idle.png");
+		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::SpriteState::Idle, "Assets/Idle.png");
 		// Charger la texture a partir du chemin du fichier pour l'etat Idle
-		animated_sprite->LoadTexture(animated_sprite->GetStateFilePath(AnimatedSpriteComponent::PlayerSpriteState::Idle));
+		animated_sprite->LoadTexture(animated_sprite->GetStateFilePath(AnimatedSpriteComponent::SpriteState::Idle));
 
 		// Definir le nombre de frames pour l'etat Running
-		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::PlayerSpriteState::Running, 8);
+		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Running, 8);
 
 		// Definir le nombre de frames pour l'etat Idle
-		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::PlayerSpriteState::Idle, 15);
+		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Idle, 15);
 
 		// Definir le nombre de frames pour l'etat Running
 		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::PlayerSpriteState::Jump, 8);
 
 
 		// Definir l'etat actuel a Idle
-		animated_sprite->state = AnimatedSpriteComponent::PlayerSpriteState::Idle;
+		animated_sprite->state = AnimatedSpriteComponent::SpriteState::Idle;
+
+		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::SpriteState::Idle, "Assets/Idle.png");
+		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::SpriteState::Running, "Assets/Run.png");
 
 		// Calcule l'echelle en fonction de la taille du gameObject et du sprite (_size *taille du gameObject* / _sprite *taille du sprite*)
 		float scaleX = (_size.x / (animated_sprite->GetSprite()->getTextureRect().width / animated_sprite->GetFrameCount()));
@@ -228,7 +223,6 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 		animated_sprite->GetSprite()->setScale(scaleX, scaleY);
 		animated_sprite->SetDefaultScale(scaleX, scaleY);
 
-		Health* health = game_object->CreateComponent<Health>();
 		health->SetMaxHealth(100);
 		health->SetHealth(100);
 
@@ -239,24 +233,26 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 	// Si le GameObject est le joueur, cree un AnimatedSpriteComponent et un Health pour lui.
 	if (game_object->GetType() == "Enemy")
 	{
-		AnimatedSpriteComponent* animated_sprite = game_object->CreateComponent<AnimatedSpriteComponent>();
 		animated_sprite->SetFrameTime(0.1f);
 		// Definir le chemin du fichier pour l'etat Idle
-		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::PlayerSpriteState::Idle, "Assets/Idle.png");
+		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::SpriteState::Idle, "Assets/Idle.png");
 		// Charger la texture a partir du chemin du fichier pour l'etat Idle
-		animated_sprite->LoadTexture(animated_sprite->GetStateFilePath(AnimatedSpriteComponent::PlayerSpriteState::Idle));
+		animated_sprite->LoadTexture(animated_sprite->GetStateFilePath(AnimatedSpriteComponent::SpriteState::Idle));
 
 		// Definir le nombre de frames pour l'etat Running
-		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::PlayerSpriteState::Running, 8);
+		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Running, 8);
 
 		// Definir le nombre de frames pour l'etat Idle
-		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::PlayerSpriteState::Idle, 15);
+		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Idle, 15);
 
 		// Definir le nombre de frames pour l'etat Jump
 		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::PlayerSpriteState::Jump, 8);
 
 		// Definir l'etat actuel a Idle
-		animated_sprite->state = AnimatedSpriteComponent::PlayerSpriteState::Idle;
+		animated_sprite->state = AnimatedSpriteComponent::SpriteState::Idle;
+
+		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::SpriteState::Idle, "Assets/Idle.png");
+		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::SpriteState::Running, "Assets/Run.png");
 
 		// Calcule l'echelle en fonction de la taille du gameObject et du sprite (_size *taille du gameObject* / _sprite *taille du sprite*)
 		float scaleX = (_size.x / (animated_sprite->GetSprite()->getTextureRect().width / animated_sprite->GetFrameCount()));
@@ -266,7 +262,6 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 		animated_sprite->GetSprite()->setScale(scaleX, scaleY);
 		animated_sprite->SetDefaultScale(scaleX, scaleY);
 
-		Health* health = game_object->CreateComponent<Health>();
 		health->SetMaxHealth(50);
 		health->SetHealth(50);
 
@@ -313,24 +308,26 @@ GameObject* Scene::CreateProjectile(const std::string& _name, const std::string&
 
 	AnimatedSpriteComponent* animated_sprite = game_object->CreateComponent<AnimatedSpriteComponent>();
 	animated_sprite->SetFrameTime(0.1f);
-	// Definir le chemin du fichier pour l'etat Idle
-	animated_sprite->SetStateFilePath(AnimatedSpriteComponent::PlayerSpriteState::Idle, "Assets/WaterBall.png");
-	// Charger la texture a partir du chemin du fichier pour l'etat Idle
-	animated_sprite->LoadTexture(animated_sprite->GetStateFilePath(AnimatedSpriteComponent::PlayerSpriteState::Idle));
 
-	// Definir le nombre de frames pour l'etat Idle
-	animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::PlayerSpriteState::Idle, 17);
+	// Definir le chemin du fichier pour l'etat Moving
+	animated_sprite->SetStateFilePath(AnimatedSpriteComponent::SpriteState::Moving, "Assets/WaterBall.png");
 
-	// Definir l'etat actuel a Idle
-	animated_sprite->state = AnimatedSpriteComponent::PlayerSpriteState::Idle;
+	// Charger la texture a partir du chemin du fichier pour l'etat Moving
+	animated_sprite->LoadTexture(animated_sprite->GetStateFilePath(AnimatedSpriteComponent::SpriteState::Moving));
+
+	// Definir le nombre de frames pour l'etat Moving
+	animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Moving, 17);
+
+	// Definir l'etat actuel a Moving
+	animated_sprite->state = AnimatedSpriteComponent::SpriteState::Moving;
 
 	// Calcule l'echelle en fonction de la taille du gameObject et du sprite (_size *taille du gameObject* / _sprite *taille du sprite*)
 	float scaleX = (_size.x / (animated_sprite->GetSprite()->getTextureRect().width / animated_sprite->GetFrameCount()));
 	float scaleY = (_size.y / (animated_sprite->GetSprite()->getTextureRect().height));
 
 	// Definis l'echelle du sprite
-	animated_sprite->GetSprite()->setScale(scaleX, scaleY);
 	animated_sprite->SetDefaultScale(scaleX, scaleY);
+	animated_sprite->GetSprite()->setScale(scaleX, scaleY);
 
 	if (_speed < 0)
 	{
@@ -341,11 +338,84 @@ GameObject* Scene::CreateProjectile(const std::string& _name, const std::string&
 		animated_sprite->SetDirection(AnimatedSpriteComponent::MovementDirection::Right);
 	}
 
+	sf::IntRect rectSourceSprite(0, 0, animated_sprite->GetTexture()->getSize().x / animated_sprite->GetFrameCount(), animated_sprite->GetTexture()->getSize().y);
+	animated_sprite->GetSprite()->setTextureRect(rectSourceSprite);
+
 
 	// Cree un Projectile pour le GameObject.
 	Projectile* projectile = game_object->CreateComponent<Projectile>();
 	projectile->SetSpeed(_speed);
 	projectile->SetDamage(_damage);
+
+	// Configure le GameObject pour qu'il appartienne a cette scene et ait les memes arriere-plans que cette scene.
+	game_object->SetScene(this);
+	game_object->SetBackgrounds(backgrounds);
+
+	id++;
+
+	return game_object;
+}
+
+// Methode pour creer un objet de l'environnement.
+GameObject* Scene::CreateObject(const std::string& _name, const std::string& _type, const std::string& _path, Maths::Vector2f _position, Maths::Vector2f _size, const sf::Color _color, bool _tiling)
+{
+	// Cree le GameObject et le configure.
+	GameObject* game_object = CreateGameObject(_name, _type, id);
+	game_object->SetPosition(Maths::Vector2f(_position));
+
+	RectangleShapeRenderer* shape_renderer = game_object->CreateComponent<RectangleShapeRenderer>();
+	shape_renderer->SetColor(_color);
+	shape_renderer->SetSize(_size);
+
+	SquareCollider* square_collider = game_object->CreateComponent<SquareCollider>();
+	square_collider->SetHeight(_size.y);
+	square_collider->SetWidth(_size.x);
+
+	SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
+	sprite_renderer->SetTilingState(_tiling);
+	if (_tiling)
+	{
+		float tilingX = _size.x / 100;
+		float tilingY = _size.y / 100;
+		sprite_renderer->SetTiling(tilingX, tilingY);
+	}
+	sprite_renderer->LoadTexture(_path);
+	//sprite_renderer->LoadTopTexture("Assets/Platform.png");
+
+	// Calcule l'echelle en fonction de la taille du gameObject et du sprite (_size *taille du gameObject* / _sprite *taille du sprite*)
+	float scaleX = (_size.x / (sprite_renderer->GetSprite()->getTextureRect().width));
+	float scaleY = (_size.y / (sprite_renderer->GetSprite()->getTextureRect().height));
+
+	// Definis l'echelle du sprite
+	sprite_renderer->GetSprite()->setScale(scaleX, scaleY);
+	sprite_renderer->SetDefaultScale(scaleX, scaleY);
+
+	// Configure le GameObject pour qu'il appartienne a cette scene et ait les memes arriere-plans que cette scene.
+	game_object->SetScene(this);
+	game_object->SetBackgrounds(backgrounds);
+
+	id++;
+
+	return game_object;
+}
+
+// Methode pour creer un objet de l'environnement.
+GameObject* Scene::CreateEnvironment(const std::string& _name, const std::string& _type, const std::string& _path, Maths::Vector2f _position, Maths::Vector2f _size)
+{
+	// Cree le GameObject et le configure.
+	GameObject* game_object = CreateGameObject(_name, _type, id);
+	game_object->SetPosition(Maths::Vector2f(_position));
+
+	SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
+	sprite_renderer->LoadTexture(_path);
+
+	// Calcule l'echelle en fonction de la taille du gameObject et du sprite (_size *taille du gameObject* / _sprite *taille du sprite*)
+	float scaleX = (_size.x / (sprite_renderer->GetSprite()->getTextureRect().width));
+	float scaleY = (_size.y / (sprite_renderer->GetSprite()->getTextureRect().height));
+
+	// Definis l'echelle du sprite
+	sprite_renderer->GetSprite()->setScale(scaleX, scaleY);
+	sprite_renderer->SetDefaultScale(scaleX, scaleY);
 
 	// Configure le GameObject pour qu'il appartienne a cette scene et ait les memes arriere-plans que cette scene.
 	game_object->SetScene(this);
@@ -363,7 +433,7 @@ void Scene::CreateBackgrounds(const std::string& _path)
 	{
 		Background* const background = new Background();
 		background->SetPath(_path, i);
-		SetBackgroundSize(background, 1600.0f, 900.0f);
+		SetBackgroundSize(background, 1920.0f, 1080.0f);
 
 		if (i == 0)
 		{
@@ -371,7 +441,7 @@ void Scene::CreateBackgrounds(const std::string& _path)
 		}
 		else
 		{
-			background->SetPosition(1600.0f, 0);
+			background->SetPosition(1920.0f, 0);
 		}
 
 		backgrounds.push_back(background);
