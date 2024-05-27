@@ -199,14 +199,14 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 		// Charger la texture a partir du chemin du fichier pour l'etat Idle
 		animated_sprite->LoadTexture(animated_sprite->GetStateFilePath(AnimatedSpriteComponent::SpriteState::Idle));
 
-		// Definir le nombre de frames pour l'etat Running
-		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Running, 8);
-
 		// Definir le nombre de frames pour l'etat Idle
 		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Idle, 15);
 
+		// Definir le nombre de frames pour l'etat Running
+		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Running, 8);
+
 		// Definir le nombre de frames pour l'etat Jump
-		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Jump, 8);
+		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Jump, 5);
 
 		// Definir l'etat actuel a Idle
 		animated_sprite->state = AnimatedSpriteComponent::SpriteState::Idle;
@@ -216,7 +216,7 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::SpriteState::Jump, "Assets/Jump.png");
 
 		// Calcule l'echelle en fonction de la taille du gameObject et du sprite (_size *taille du gameObject* / _sprite *taille du sprite*)
-		float scaleX = (_size.x / (animated_sprite->GetSprite()->getTextureRect().width / animated_sprite->GetFrameCount()));
+		float scaleX = (_size.x / (animated_sprite->GetSprite()->getTextureRect().width / 15));
 		float scaleY = (_size.y / (animated_sprite->GetSprite()->getTextureRect().height));
 
 		// Definis l'echelle du sprite
