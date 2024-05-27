@@ -35,7 +35,7 @@ public:
 
 	template<typename T>
 	T* CreateComponent();
-
+	
 	template<typename T>
 	T* GetComponent();
 

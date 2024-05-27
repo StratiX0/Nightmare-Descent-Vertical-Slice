@@ -3,37 +3,49 @@
 #include "GameObject.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "Scene.h"
 #include "Background.h"
+#include <SFML/Graphics/Text.hpp>
+#include <SFML/Graphics/Font.hpp>
 
-class DefaultScene;
+
 class MainMenuScene : public Scene
 {
 public:
     MainMenuScene() : Scene("MainMenuScene")
     {
-        // Créez ici les éléments de votre menu principal.
-        // Par exemple, vous pouvez créer des boutons "Jouer", "Options" et "Quitter".
+        CreateBackgrounds("Assets/Background2.png");
+        // Chargez une police à partir d'un fichier
+        sf::Font font;
+        if (!font.loadFromFile("Assets/arial.ttf")) {
+            // Gérez l'erreur de chargement de la police ici
+        }
 
-        // Créer le bouton "Jouer"
-        GameObject* playButton = CreateObject("Play", "Button", "Assets/Play.png", Maths::Vector2f(900.0f, 200.0f), Maths::Vector2f(200.0f, 200.0f), sf::Color::Transparent, true);
-        playButton->CreateComponent<RectangleShapeRenderer>()->SetOnClick([]() {
-            // Lorsque l'utilisateur clique sur "Jouer", changez la scène en DefaultScene.
-            Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<DefaultScene>();
-            });
+        // Créez le texte "Jouer"
+        sf::Text playText;
+        playText.setFont(font);
+        playText.setString("Jouer");
+        playText.setCharacterSize(24); // en pixels
+        playText.setFillColor(sf::Color::White);
+        playText.setPosition(900.0f, 200.0f);
 
-        // Créer le bouton "Options"
-        GameObject* optionsButton = CreateObject("Options", "Button", "Assets/Options.png", Maths::Vector2f(900.0f, 400.0f), Maths::Vector2f(200.0f, 200.0f), sf::Color::Transparent, true);
-        optionsButton->CreateComponent<RectangleShapeRenderer>()->SetOnClick([]() {
-            // Lorsque l'utilisateur clique sur "Options", ouvrez le menu des options.
-            // Vous devrez implémenter cette fonctionnalité.
-            });
+        // Créez le texte "Options"
+        sf::Text optionsText;
+        optionsText.setFont(font);
+        optionsText.setString("Options");
+        optionsText.setCharacterSize(24); // en pixels
+        optionsText.setFillColor(sf::Color::White);
+        optionsText.setPosition(900.0f, 400.0f);
 
-        // Créer le bouton "Quitter"
-        GameObject* quitButton = CreateObject("Quit", "Button", "Assets/Quit.png", Maths::Vector2f(900.0f, 600.0f), Maths::Vector2f(200.0f, 200.0f), sf::Color::Transparent, true);
-        quitButton->CreateComponent<RectangleShapeRenderer>()->SetOnClick([]() {
-            // Lorsque l'utilisateur clique sur "Quitter", quittez le jeu.
-            Engine::GetInstance()->Quit();
-            });
+        // Créez le texte "Quitter"
+        sf::Text quitText;
+        quitText.setFont(font);
+        quitText.setString("Quitter");
+        quitText.setCharacterSize(24); // en pixels
+        quitText.setFillColor(sf::Color::White);
+        quitText.setPosition(900.0f, 600.0f);
+
+		// Afficher le texte à l'écran
     }
 };
 
@@ -157,8 +169,9 @@ public:
         enemy8->CreateComponent<Enemy>();
 
         // cree le boss.
-		GameObject* boss = CreateInGameObject("Boss", "Enemy", Maths::Vector2f(10000.0f, 0.0f), Maths::Vector2f(100.0f, 100.0f), 1.0f, sf::Color::Transparent);
+		GameObject* boss = CreateInGameObject("Boss", "Enemy", Maths::Vector2f(10000.0f, 0.0f), Maths::Vector2f(200.0f, 200.0f), 1.0f, sf::Color::Transparent);
 		boss->CreateComponent<Enemy>();
+        
 
     }
 };

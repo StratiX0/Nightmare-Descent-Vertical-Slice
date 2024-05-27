@@ -38,6 +38,7 @@ public:
     void Destroy() const;
     void Finalize() const;
 
+
     // Methode pour obtenir le nom de la scene.
     const std::string& GetName() const;
 
