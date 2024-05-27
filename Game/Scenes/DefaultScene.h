@@ -77,6 +77,7 @@ public:
         CreateObject("Ground", "Object", "Assets/Ground.png", Maths::Vector2f(8550.0f, 675.0f), Maths::Vector2f(400.f, 900.0f), sf::Color::Transparent, true);
         CreateObject("Ground", "Object", "Assets/Ground.png", Maths::Vector2f(9300.0f, 675.0f), Maths::Vector2f(400.f, 900.0f), sf::Color::Transparent, true);
         CreateObject("Ground", "Object", "Assets/Bridge.png", Maths::Vector2f(9700.0f, 675.0f), Maths::Vector2f(700.f, 500.0f), sf::Color::Transparent, false);
+        CreateObject("Ground", "Object", "Assets/Bridge.png", Maths::Vector2f(10500.0f, 600.0f), Maths::Vector2f(300.f, 600.0f), sf::Color::Transparent, false);
 
         //////////////////////////////////
 		// Creer un objet de plateforme //
@@ -127,7 +128,7 @@ public:
         CreateEnvironment("Tombstone", "Environment", "Assets/Tombstone6.png", Maths::Vector2f(5650.0f, 600.0f), Maths::Vector2f(100.0f, 200.0f));
         CreateEnvironment("Tombstone", "Environment", "Assets/Tombstone2.png", Maths::Vector2f(5800.0f, 750.0f), Maths::Vector2f(50.0f, 50.0f));
         CreateEnvironment("Tombstone", "Environment", "Assets/Tombstone2.png", Maths::Vector2f(5900.0f, 750.0f), Maths::Vector2f(50.0f, 50.0f));
-
+        CreateEnvironment("Tombstone", "Environment", "Assets/Door.png", Maths::Vector2f(10600.0f, 475.0f), Maths::Vector2f(150.0f, 150.0f));
         /////////////////////////////////
         //    Creer l'entite joueur    //
         /////////////////////////////////
