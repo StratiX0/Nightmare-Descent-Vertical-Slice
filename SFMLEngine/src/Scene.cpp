@@ -185,7 +185,7 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 	square_collider->SetHeight(_size.y);
 
 	square_collider->SetWidth(_size.x);
-	shape_renderer->SetSize(Maths::Vector2f(_size.x, _size.y));
+	shape_renderer->SetSize(_size);
 
 	AnimatedSpriteComponent* animated_sprite = game_object->CreateComponent<AnimatedSpriteComponent>();
 	Health* health = game_object->CreateComponent<Health>();
@@ -199,14 +199,14 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 		// Charger la texture a partir du chemin du fichier pour l'etat Idle
 		animated_sprite->LoadTexture(animated_sprite->GetStateFilePath(AnimatedSpriteComponent::SpriteState::Idle));
 
-		// Definir le nombre de frames pour l'etat Idle
-		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Idle, 15);
-
 		// Definir le nombre de frames pour l'etat Running
 		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Running, 8);
 
 		// Definir le nombre de frames pour l'etat Jump
 		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Jump, 5);
+
+		// Definir le nombre de frames pour l'etat Idle
+		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Idle, 15);
 
 		// Definir l'etat actuel a Idle
 		animated_sprite->state = AnimatedSpriteComponent::SpriteState::Idle;
@@ -216,7 +216,7 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::SpriteState::Jump, "Assets/Jump.png");
 
 		// Calcule l'echelle en fonction de la taille du gameObject et du sprite (_size *taille du gameObject* / _sprite *taille du sprite*)
-		float scaleX = (_size.x / (animated_sprite->GetSprite()->getTextureRect().width / 15));
+		float scaleX = (_size.x / (animated_sprite->GetSprite()->getTextureRect().width / animated_sprite->GetFrameCount()));
 		float scaleY = (_size.y / (animated_sprite->GetSprite()->getTextureRect().height));
 
 		// Definis l'echelle du sprite
@@ -230,8 +230,43 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 		attack->SetCollisionDamage(100.0f);
 	}
 
+	if (game_object->GetName() == "Wizard")
+	{
+		animated_sprite->SetFrameTime(0.1f);
+		// Definir le chemin du fichier pour l'etat Idle
+		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::SpriteState::Idle, "Assets/Wizard_Idle.png");
+		// Charger la texture a partir du chemin du fichier pour l'etat Idle
+		animated_sprite->LoadTexture(animated_sprite->GetStateFilePath(AnimatedSpriteComponent::SpriteState::Idle));
+
+		// Definir le nombre de frames pour l'etat Running
+		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Running, 4);
+
+		// Definir le nombre de frames pour l'etat Idle
+		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Idle, 4);
+
+		// Definir l'etat actuel a Idle
+		animated_sprite->state = AnimatedSpriteComponent::SpriteState::Idle;
+
+		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::SpriteState::Idle, "Assets/Wizard_Idle.png");
+		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::SpriteState::Running, "Assets/Wizard_Idle.png");
+
+		// Calcule l'echelle en fonction de la taille du gameObject et du sprite (_size *taille du gameObject* / _sprite *taille du sprite*)
+		float scaleX = (_size.x / (animated_sprite->GetSprite()->getTextureRect().width / animated_sprite->GetFrameCount()));
+		float scaleY = (_size.y / (animated_sprite->GetSprite()->getTextureRect().height));
+
+		// Definis l'echelle du sprite
+		animated_sprite->GetSprite()->setScale(scaleX, scaleY);
+		animated_sprite->SetDefaultScale(scaleX, scaleY);
+
+		health->SetMaxHealth(50);
+		health->SetHealth(50);
+
+		EnemyAttack* attack = game_object->CreateComponent<EnemyAttack>();
+		attack->SetCollisionDamage(25.0f);
+	}
+
 	// Si le GameObject est le joueur, cree un AnimatedSpriteComponent et un Health pour lui.
-	if (game_object->GetType() == "Enemy")
+	if (game_object->GetType() == "Enemy" && game_object->GetName() != "Wizard")
 	{
 		animated_sprite->SetFrameTime(0.1f);
 		// Definir le chemin du fichier pour l'etat Idle

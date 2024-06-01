@@ -149,10 +149,10 @@ public:
         GameObject* enemy = CreateInGameObject("Wanderer", "Enemy", Maths::Vector2f(2000.0f, 0.0f), wandererSize, 1.0f, sf::Color::Transparent);
         enemy->CreateComponent<Enemy>();
 
-        GameObject* enemy2 = CreateInGameObject("Thrower", "Enemy", Maths::Vector2f(1500.0f, 0.0f), throwerSize, 1.0f, sf::Color::Transparent);
+        GameObject* enemy2 = CreateInGameObject("Wizard", "Enemy", Maths::Vector2f(1500.0f, 0.0f), throwerSize, 1.0f, sf::Color::Transparent);
         enemy2->CreateComponent<Enemy>();
 
-        GameObject* enemy3 = CreateInGameObject("Thrower", "Enemy", Maths::Vector2f(3200.0f, 0.0f), throwerSize, 1.0f, sf::Color::Transparent);
+        GameObject* enemy3 = CreateInGameObject("Wizard", "Enemy", Maths::Vector2f(3200.0f, 0.0f), throwerSize, 1.0f, sf::Color::Transparent);
         enemy3->CreateComponent<Enemy>();
 
         GameObject* enemy4 = CreateInGameObject("Wanderer", "Enemy", Maths::Vector2f(3500.0f, 0.0f), wandererSize, 1.0f, sf::Color::Transparent);

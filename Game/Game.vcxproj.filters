@@ -40,6 +40,12 @@
     <Filter Include="Assets\Environment\Rocks">
       <UniqueIdentifier>{406db8cc-1427-4b1f-9ae8-9f6c46f5cdbc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets\Enemies">
+      <UniqueIdentifier>{7bc67e61-0b4f-423c-baf1-88e2e91a1a37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Enemies\Wizard">
+      <UniqueIdentifier>{2d3aa91b-705e-490c-a02f-80208477a034}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -141,6 +147,9 @@
     </CopyFileToFolders>
     <CopyFileToFolders Include="..\Assets\DeadTree4.png">
       <Filter>Assets\Environment\Trees</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Wizard_Idle.png">
+      <Filter>Assets\Enemies\Wizard</Filter>
     </CopyFileToFolders>
   </ItemGroup>
 </Project>

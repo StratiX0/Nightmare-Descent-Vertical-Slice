@@ -97,7 +97,7 @@ void EnemyAttack::Update(float _delta_time)
     // Verifie si le joueur est en collision avec un ennemi.
     IsColliding();
 
-    if (GetOwner()->GetName() == "Thrower")
+    if (GetOwner()->GetName() == "Wizard")
     {
         if (projectileTimer < 0.5f && projectileTimer > 0.0f)
         {
