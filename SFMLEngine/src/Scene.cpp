@@ -265,26 +265,19 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 		attack->SetCollisionDamage(25.0f);
 	}
 
-	// Si le GameObject est le joueur, cree un AnimatedSpriteComponent et un Health pour lui.
-	if (game_object->GetType() == "Enemy" && game_object->GetName() != "Wizard")
+	if ( game_object->GetName() == "Wanderer")
 	{
 		animated_sprite->SetFrameTime(0.1f);
 		// Definir le chemin du fichier pour l'etat Idle
-		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::SpriteState::Idle, "Assets/Idle.png");
+		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::SpriteState::Running, "Assets/Wanderer_Walk.png");
 		// Charger la texture a partir du chemin du fichier pour l'etat Idle
-		animated_sprite->LoadTexture(animated_sprite->GetStateFilePath(AnimatedSpriteComponent::SpriteState::Idle));
+		animated_sprite->LoadTexture(animated_sprite->GetStateFilePath(AnimatedSpriteComponent::SpriteState::Running));
 
 		// Definir le nombre de frames pour l'etat Running
 		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Running, 8);
 
-		// Definir le nombre de frames pour l'etat Idle
-		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Idle, 15);
-
 		// Definir l'etat actuel a Idle
-		animated_sprite->state = AnimatedSpriteComponent::SpriteState::Idle;
-
-		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::SpriteState::Idle, "Assets/Idle.png");
-		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::SpriteState::Running, "Assets/Run.png");
+		animated_sprite->state = AnimatedSpriteComponent::SpriteState::Running;
 
 		// Calcule l'echelle en fonction de la taille du gameObject et du sprite (_size *taille du gameObject* / _sprite *taille du sprite*)
 		float scaleX = (_size.x / (animated_sprite->GetSprite()->getTextureRect().width / animated_sprite->GetFrameCount()));

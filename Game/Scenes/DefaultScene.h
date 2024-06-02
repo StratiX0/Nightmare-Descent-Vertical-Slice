@@ -171,8 +171,8 @@ public:
         enemy8->CreateComponent<Enemy>();
 
         // cree le boss.
-		GameObject* boss = CreateInGameObject("Boss", "Enemy", Maths::Vector2f(10000.0f, 0.0f), Maths::Vector2f(200.0f, 200.0f), 1.0f, sf::Color::Transparent);
-		boss->CreateComponent<Enemy>();
+		//GameObject* boss = CreateInGameObject("Boss", "Enemy", Maths::Vector2f(10000.0f, 0.0f), Maths::Vector2f(200.0f, 200.0f), 1.0f, sf::Color::Transparent);
+		//boss->CreateComponent<Enemy>();
         
 
     }

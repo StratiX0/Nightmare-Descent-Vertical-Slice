@@ -46,6 +46,9 @@
     <Filter Include="Assets\Enemies\Wizard">
       <UniqueIdentifier>{2d3aa91b-705e-490c-a02f-80208477a034}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets\Enemies\Wanderer">
+      <UniqueIdentifier>{06c9955c-8595-4377-8ad4-52f638469a86}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -150,6 +153,9 @@
     </CopyFileToFolders>
     <CopyFileToFolders Include="..\Assets\Wizard_Idle.png">
       <Filter>Assets\Enemies\Wizard</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Wanderer_Walk.png">
+      <Filter>Assets\Enemies\Wanderer</Filter>
     </CopyFileToFolders>
   </ItemGroup>
 </Project>
