@@ -41,9 +41,9 @@ void RectangleShapeRenderer::OnDebug()
 {
 	ARendererComponent::OnDebug();
 
-	const sf::Vector2f min = shape->getPosition();
-	const sf::Vector2f max = min + shape->getSize();
-	const ImU32 col = ImGui::GetColorU32(IM_COL32(255, 0, 0, 255));
+	//const sf::Vector2f min = shape->getPosition();
+	//const sf::Vector2f max = min + shape->getSize();
+	//const ImU32 col = ImGui::GetColorU32(IM_COL32(255, 0, 0, 255));
 
-	ImGui::GetBackgroundDrawList()->AddRect(min, max, col);
+	//ImGui::GetBackgroundDrawList()->AddRect(min, max, col);
 }

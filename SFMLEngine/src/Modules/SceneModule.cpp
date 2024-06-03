@@ -1,6 +1,7 @@
 #include "Modules/SceneModule.h"
 
 #include "ModuleManager.h"
+#include <iostream>
 
 
 SceneModule::SceneModule(): Module()
@@ -35,6 +36,12 @@ void SceneModule::Render()
 void SceneModule::Update()
 {
 	Module::Update();
+
+	if (timeModule == nullptr)
+	{
+		std::cout << "TimeModule is null." << std::endl;
+		return;
+	}
 
 	for (Scene* scene : scenes)
 	{

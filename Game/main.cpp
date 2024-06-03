@@ -3,6 +3,7 @@
 #include "Scenes/DefaultScene.h"
 #include "Scenes/MenuScene.h"
 
+
 int main()
 {
 	const Engine* engine = Engine::GetInstance();
