@@ -77,12 +77,11 @@ public:
             velocity.y += gravity.y * _delta_time;
         }
 
-        // Si le joueur est mort, change la couleur du RectangleShapeRenderer en rouge.
+        // Si le joueur est mort, met l'animation de mort, attend 2 secondes et change la couleur du RectangleShapeRenderer en rouge. Puis affiche you lose sur la console.
         if (owner->GetComponent<Health>()->IsDead() || owner->GetPosition().y > 1080)
         {
-            owner->GetComponent<RectangleShapeRenderer>()->SetColor(sf::Color::Red);
-			owner->~GameObject();
-            engine->Quit();
+            owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::SpriteState::Death);
+            owner->~GameObject();
             printf(":::   :::  ::::::::  :::    :::      :::        ::::::::   ::::::::  :::::::::: ::: ::: ::: \n"
                    ":+:   :+: :+:    :+: :+:    :+:      :+:       :+:    :+: :+:    :+: :+:        :+: :+: :+: \n"
                    " +:+ +:+  +:+    +:+ +:+    +:+      +:+       +:+    +:+ +:+        +:+        +:+ +:+ +:+ \n"

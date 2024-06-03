@@ -208,12 +208,16 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 		// Definir le nombre de frames pour l'etat Idle
 		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Idle, 15);
 
+		// Definir le nombre de frames pour l'etat Death
+		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Death, 15);
+
 		// Definir l'etat actuel a Idle
 		animated_sprite->state = AnimatedSpriteComponent::SpriteState::Idle;
 
 		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::SpriteState::Idle, "Assets/Idle.png");
 		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::SpriteState::Running, "Assets/Run.png");
 		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::SpriteState::Jump, "Assets/Jump.png");
+		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::SpriteState::Death, "Assets/Death.png");
 
 		// Calcule l'echelle en fonction de la taille du gameObject et du sprite (_size *taille du gameObject* / _sprite *taille du sprite*)
 		float scaleX = (_size.x / (animated_sprite->GetSprite()->getTextureRect().width / animated_sprite->GetFrameCount()));

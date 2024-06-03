@@ -22,7 +22,8 @@ public:
         Idle,
         Running,
         Moving,
-        Jump
+        Jump,
+        Death
     };
 
     // Constructeur et destructeur.
