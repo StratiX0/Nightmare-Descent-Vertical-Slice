@@ -76,8 +76,9 @@ public:
         CreateObject("Ground", "Object", "Assets/Ground.png", Maths::Vector2f(7950.0f, 800.0f), Maths::Vector2f(600.f, 900.0f), sf::Color::Transparent, true);
         CreateObject("Ground", "Object", "Assets/Ground.png", Maths::Vector2f(8550.0f, 675.0f), Maths::Vector2f(400.f, 900.0f), sf::Color::Transparent, true);
         CreateObject("Ground", "Object", "Assets/Ground.png", Maths::Vector2f(9300.0f, 675.0f), Maths::Vector2f(400.f, 900.0f), sf::Color::Transparent, true);
-        CreateObject("Ground", "Object", "Assets/Bridge.png", Maths::Vector2f(9700.0f, 675.0f), Maths::Vector2f(700.f, 500.0f), sf::Color::Transparent, false);
-        CreateObject("Ground", "Object", "Assets/Bridge.png", Maths::Vector2f(10500.0f, 600.0f), Maths::Vector2f(300.f, 600.0f), sf::Color::Transparent, false);
+        CreateObject("Ground", "Object", "Assets/Ground.png", Maths::Vector2f(9700.0f, 675.0f), Maths::Vector2f(700.f, 500.0f), sf::Color::Transparent, true);
+        CreateObject("Ground", "Object", "Assets/Ground.png", Maths::Vector2f(10700.0f, 600.0f), Maths::Vector2f(500.f, 600.0f), sf::Color::Transparent, true);
+        CreateObject("Ground", "Object", "Assets/Ground.png", Maths::Vector2f(11200.0f, -1000.0f), Maths::Vector2f(1000.f, 3000.0f), sf::Color::Transparent, true);
 
         //////////////////////////////////
 		// Creer un objet de plateforme //
@@ -128,7 +129,27 @@ public:
         CreateEnvironment("Tombstone", "Environment", "Assets/Tombstone6.png", Maths::Vector2f(5650.0f, 600.0f), Maths::Vector2f(100.0f, 200.0f));
         CreateEnvironment("Tombstone", "Environment", "Assets/Tombstone2.png", Maths::Vector2f(5800.0f, 750.0f), Maths::Vector2f(50.0f, 50.0f));
         CreateEnvironment("Tombstone", "Environment", "Assets/Tombstone2.png", Maths::Vector2f(5900.0f, 750.0f), Maths::Vector2f(50.0f, 50.0f));
-        CreateEnvironment("Tombstone", "Environment", "Assets/Door.png", Maths::Vector2f(10600.0f, 475.0f), Maths::Vector2f(150.0f, 150.0f));
+
+        CreateEnvironment("Tree", "Environment", "Assets/DeadTree2.png", Maths::Vector2f(6800.0f, 555.0f), Maths::Vector2f(150.0f, 250.0f));
+        CreateEnvironment("Tombstone", "Environment", "Assets/Tombstone3.png", Maths::Vector2f(7000.0f, 700.0f), Maths::Vector2f(50.0f, 100.0f));
+        CreateEnvironment("Bush", "Environment", "Assets/Bush.png", Maths::Vector2f(7150.0f, 750.0f), Maths::Vector2f(75.0f, 50.0f));
+
+        CreateEnvironment("Tree", "Environment", "Assets/DarkTree.png", Maths::Vector2f(8050.0f, 555.0f), Maths::Vector2f(150.0f, 250.0f));
+        CreateEnvironment("Bush", "Environment", "Assets/Bush.png", Maths::Vector2f(8250.0f, 750.0f), Maths::Vector2f(75.0f, 50.0f));
+        CreateEnvironment("Bush", "Environment", "Assets/Bush.png", Maths::Vector2f(8350.0f, 750.0f), Maths::Vector2f(75.0f, 50.0f));
+        CreateEnvironment("Bush", "Environment", "Assets/Bush.png", Maths::Vector2f(8450.0f, 750.0f), Maths::Vector2f(75.0f, 50.0f));
+
+        CreateEnvironment("Tree", "Environment", "Assets/DarkTree2.png", Maths::Vector2f(9350.0f, 425.0f), Maths::Vector2f(150.0f, 250.0f));
+        CreateEnvironment("Tombstone", "Environment", "Assets/Tombstone2.png", Maths::Vector2f(9550.0f, 625.0f), Maths::Vector2f(50.0f, 50.0f));
+        CreateEnvironment("Tombstone", "Environment", "Assets/Tombstone2.png", Maths::Vector2f(9650.0f, 625.0f), Maths::Vector2f(50.0f, 50.0f));
+        CreateEnvironment("Bush", "Environment", "Assets/Bush.png", Maths::Vector2f(9750.0f, 625.0f), Maths::Vector2f(50.0f, 50.0f));
+        CreateEnvironment("Tombstone", "Environment", "Assets/Tombstone.png", Maths::Vector2f(9850.0f, 625.0f), Maths::Vector2f(50.0f, 50.0f));
+        CreateEnvironment("Rock", "Environment", "Assets/Rock.png", Maths::Vector2f(9950.0f, 625.0f), Maths::Vector2f(50.0f, 50.0f));
+        CreateEnvironment("Bush", "Environment", "Assets/Bush.png", Maths::Vector2f(10050.0f, 625.0f), Maths::Vector2f(50.0f, 50.0f));
+
+		CreateEnvironment("Tree", "Environment", "Assets/DeadTree2.png", Maths::Vector2f(10150.0f, 425.0f), Maths::Vector2f(150.0f, 250.0f));
+
+        CreateEnvironment("Tombstone", "Environment", "Assets/Door.png", Maths::Vector2f(11000.0f, 470.0f), Maths::Vector2f(150.0f, 150.0f));
         
         /////////////////////////////////
         //    Creer l'entite joueur    //
@@ -169,6 +190,12 @@ public:
 
         GameObject* enemy8 = CreateInGameObject("Wanderer", "Enemy", Maths::Vector2f(8200.0f, 0.0f), throwerSize, 1.0f, sf::Color::Transparent);
         enemy8->CreateComponent<Enemy>();
+
+        GameObject* enemy9 = CreateInGameObject("Wizard", "Enemy", Maths::Vector2f(10000.0f, 0.0f), throwerSize, 1.0f, sf::Color::Transparent);
+        enemy9->CreateComponent<Enemy>();
+
+        GameObject* enemy10 = CreateInGameObject("Wizard", "Enemy", Maths::Vector2f(10500.0f, 0.0f), throwerSize, 1.0f, sf::Color::Transparent);
+        enemy10->CreateComponent<Enemy>();
 
         // cree le boss.
 		//GameObject* boss = CreateInGameObject("Boss", "Enemy", Maths::Vector2f(10000.0f, 0.0f), Maths::Vector2f(200.0f, 200.0f), 1.0f, sf::Color::Transparent);
