@@ -3,11 +3,8 @@
 #include "GameObject.h"
 #include "Player.h"
 #include "Enemy.h"
-<<<<<<< Updated upstream
-=======
 #include "Scene.h"
 #include "Game.h"
->>>>>>> Stashed changes
 #include "Background.h"
 
 
