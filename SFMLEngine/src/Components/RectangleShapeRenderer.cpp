@@ -2,6 +2,7 @@
 
 #include <imgui-SFML.h>
 #include <imgui.h>
+#include <SFML/Graphics.hpp>
 
 #include "SFML/Graphics/Shape.hpp"
 
@@ -18,8 +19,9 @@ RectangleShapeRenderer::~RectangleShapeRenderer()
 
 void RectangleShapeRenderer::SetOnClick(std::function<void()> onClickFunc)
 {
-	onClick = onClickFunc;
+
 }
+
 void RectangleShapeRenderer::Render(sf::RenderWindow* _window)
 {
 	ARendererComponent::Render(_window);

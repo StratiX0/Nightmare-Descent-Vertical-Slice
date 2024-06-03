@@ -37,6 +37,7 @@ public:
 private:
 	std::vector<Scene*> scenes;
 	Scene* mainScene = nullptr;
+	Scene* menuScene = nullptr;
 
 	WindowModule* windowModule = nullptr;
 	TimeModule* timeModule = nullptr;

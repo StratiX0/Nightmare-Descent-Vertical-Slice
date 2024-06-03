@@ -1,6 +1,7 @@
 #include "Engine.h"
 
 #include <imgui.h>
+#include <SFML/Graphics.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 
 Engine* Engine::instance = nullptr;
