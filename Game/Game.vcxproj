@@ -173,8 +173,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Enemy.h" />
+    <ClInclude Include="include\Menu.h" />
     <ClInclude Include="include\Player.h" />
     <ClInclude Include="Scenes\DefaultScene.h" />
+    <ClInclude Include="Scenes\MenuScene.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="..\Assets\Run.png">

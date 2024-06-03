@@ -1,6 +1,7 @@
 #include "Engine.h"
 #include "SceneModule.h"
 #include "Scenes/DefaultScene.h"
+#include "Scenes/MenuScene.h"
 
 
 int main()

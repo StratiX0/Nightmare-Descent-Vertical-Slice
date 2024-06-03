@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "Component.h"
 #include "InputModule.h"
 
@@ -17,6 +17,7 @@ public:
     {
         // Recupere le GameObject proprietaire de ce composant.
         GameObject* owner = GetOwner();
+        Engine* engine = Engine::GetInstance();
 
         // Recupere la position et la vitesse actuelles du GameObject.
         Maths::Vector2<float> position = owner->GetPosition();
@@ -64,7 +65,7 @@ public:
             owner->GetComponent<AnimatedSpriteComponent>()->SetDirection(AnimatedSpriteComponent::MovementDirection::Up);
         }
 
-        //Si le joueur est en train de sauter, activer l'état de saut.
+        //Si le joueur est en train de sauter, activer l'Ã©tat de saut.
         if (owner->GetComponent<Physics>()->IsJumping())
         {
             owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::SpriteState::Jump);
@@ -81,6 +82,14 @@ public:
         {
             owner->GetComponent<RectangleShapeRenderer>()->SetColor(sf::Color::Red);
 			owner->~GameObject();
+            engine->Quit();
+            printf(":::   :::  ::::::::  :::    :::      :::        ::::::::   ::::::::  :::::::::: ::: ::: ::: \n"
+                   ":+:   :+: :+:    :+: :+:    :+:      :+:       :+:    :+: :+:    :+: :+:        :+: :+: :+: \n"
+                   " +:+ +:+  +:+    +:+ +:+    +:+      +:+       +:+    +:+ +:+        +:+        +:+ +:+ +:+ \n"
+                   "  +#++:   +#+    +:+ +#+    +:+      +#+       +#+    +:+ +#++:++#++ +#++:++#   +#+ +#+ +#+ \n"
+                   "   +#+    +#+    +#+ +#+    +#+      +#+       +#+    +#+        +#+ +#+        +#+ +#+ +#+ \n"
+                   "   #+#    #+#    #+# #+#    #+#      #+#       #+#    #+# #+#    #+# #+#        \n"
+                   "   ###     ########   ########       ########## ########   ########  ########## ### ### ###\n");
         }
 
         // Met a jour la position et la vitesse du GameObject.
@@ -102,7 +111,7 @@ public:
         {
             background->SetPosition(background->GetPosition().x + delta, background->GetPosition().y);
 
-            // Si un Background sort de l'ecran, le replace de l'autre côte.
+            // Si un Background sort de l'ecran, le replace de l'autre cÃ´te.
             if (background->GetPosition().x <= 0.0f - 1920.0f)
             {
                 background->SetPosition(1920.0f, background->GetPosition().y);

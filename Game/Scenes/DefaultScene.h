@@ -5,49 +5,6 @@
 #include "Enemy.h"
 #include "Scene.h"
 #include "Background.h"
-#include <SFML/Graphics/Text.hpp>
-#include <SFML/Graphics/Font.hpp>
-
-
-class MainMenuScene : public Scene
-{
-public:
-    MainMenuScene() : Scene("MainMenuScene")
-    {
-        CreateBackgrounds("Assets/Background2.png");
-        // Chargez une police à partir d'un fichier
-        sf::Font font;
-        if (!font.loadFromFile("Assets/arial.ttf")) {
-            // Gérez l'erreur de chargement de la police ici
-        }
-
-        // Créez le texte "Jouer"
-        sf::Text playText;
-        playText.setFont(font);
-        playText.setString("Jouer");
-        playText.setCharacterSize(24); // en pixels
-        playText.setFillColor(sf::Color::White);
-        playText.setPosition(900.0f, 200.0f);
-
-        // Créez le texte "Options"
-        sf::Text optionsText;
-        optionsText.setFont(font);
-        optionsText.setString("Options");
-        optionsText.setCharacterSize(24); // en pixels
-        optionsText.setFillColor(sf::Color::White);
-        optionsText.setPosition(900.0f, 400.0f);
-
-        // Créez le texte "Quitter"
-        sf::Text quitText;
-        quitText.setFont(font);
-        quitText.setString("Quitter");
-        quitText.setCharacterSize(24); // en pixels
-        quitText.setFillColor(sf::Color::White);
-        quitText.setPosition(900.0f, 600.0f);
-
-		// Afficher le texte à l'écran
-    }
-};
 
 
 // La classe DefaultScene herite de la classe Scene
@@ -173,7 +130,6 @@ public:
         // cree le boss.
 		//GameObject* boss = CreateInGameObject("Boss", "Enemy", Maths::Vector2f(10000.0f, 0.0f), Maths::Vector2f(200.0f, 200.0f), 1.0f, sf::Color::Transparent);
 		//boss->CreateComponent<Enemy>();
-        
 
     }
 };
