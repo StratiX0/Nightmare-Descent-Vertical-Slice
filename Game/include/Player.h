@@ -63,17 +63,12 @@ public:
             owner->GetComponent<Physics>()->SetJumping(true);
             owner->GetComponent<AnimatedSpriteComponent>()->SetDirection(AnimatedSpriteComponent::MovementDirection::Up);
         }
-
-        //Si le joueur est en train de sauter, activer l'état de saut.
-        if (owner->GetComponent<Physics>()->IsJumping())
-        {
-            owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::SpriteState::Jump);
-        }
        
-        // Si le joueur est en train de sauter, ajoute la gravite a la vitesse verticale.
+        // Si le joueur est en train de sauter, ajoute la gravite a la vitesse verticale, et active l'état de saut.
         if (owner->GetComponent<Physics>()->IsJumping())
         {
             velocity.y += gravity.y * _delta_time;
+            owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::SpriteState::Jump);
         }
 
         // Si le joueur est mort, change la couleur du RectangleShapeRenderer en rouge.

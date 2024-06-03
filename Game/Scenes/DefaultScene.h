@@ -9,10 +9,10 @@
 #include <SFML/Graphics/Font.hpp>
 
 
-class MainMenuScene : public Scene
+class DefaultScene : public Scene
 {
 public:
-    MainMenuScene() : Scene("MainMenuScene")
+    DefaultScene() : Scene("DefaultScene")
     {
         CreateBackgrounds("Assets/Background2.png");
         // Chargez une police à partir d'un fichier
