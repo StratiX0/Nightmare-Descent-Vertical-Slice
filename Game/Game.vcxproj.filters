@@ -49,6 +49,9 @@
     <Filter Include="Assets\Enemies\Wanderer">
       <UniqueIdentifier>{06c9955c-8595-4377-8ad4-52f638469a86}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets\Logos">
+      <UniqueIdentifier>{0de7faf2-1bd9-4689-bafd-190873f4bec4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -65,10 +68,7 @@
     <ClInclude Include="include\Enemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scenes\MenuScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Menu.h">
+    <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -163,5 +163,16 @@
     <CopyFileToFolders Include="..\Assets\Wanderer_Walk.png">
       <Filter>Assets\Enemies\Wanderer</Filter>
     </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\logo-nightmare-descent.ico">
+      <Filter>Assets\Logos</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\logo-nightmare-descent.png">
+      <Filter>Assets\Logos</Filter>
+    </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Game.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
