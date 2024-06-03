@@ -107,7 +107,6 @@
     <ClInclude Include="include\Modules\SceneModule.h" />
     <ClInclude Include="include\Modules\WindowModule.h" />
     <ClInclude Include="include\Modules\InputModule.h" />
-    <ClInclude Include="MainMenuScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Physics.cpp" />

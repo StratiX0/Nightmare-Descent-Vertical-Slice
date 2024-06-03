@@ -13,7 +13,7 @@ class DefaultScene final : public Scene
 public:
     // Constructeur de la classe DefaultScene.
     // Cree les objets de la scene.
-    MainScene() : Scene("MainScene")
+    DefaultScene() : Scene("MainScene")
     {
         // Cree les arriere-plans de la scene.
         CreateBackgrounds("Assets/Background2.png");

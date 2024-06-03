@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Background.h"
+#include "Menu.h"
 
 
 // La classe DefaultScene herite de la classe Scene
@@ -12,7 +13,7 @@
 class MenuScene : public Scene
 {
 public:
-    MenuScene() : Scene("MainMenuScene")
+    MenuScene() : Scene("MenuScene")
     {
         // Créez ici les éléments de votre menu principal.
         // Par exemple, vous pouvez créer des boutons "Jouer", "Options" et "Quitter".
@@ -32,8 +33,9 @@ public:
         // Lorsque l'utilisateur clique sur "Options", ouvrez le menu des options.
         // Vous devrez implémenter cette fonctionnalité.
 
-    // Créer le bouton "Quitter" //(818;922) ; 1124,1016
+        // Créer le bouton "Quitter" //(818;922) ; 1124,1016
         GameObject* quitButton = CreateEnvironment("Quit", "Button", "Assets/Quit1.png", Maths::Vector2f(760.0f, 870.0f), Maths::Vector2f(447.0f, 200.0f));
 
+        CreateGameObject("Menu", "Menu", 100)->CreateComponent<Menu>();
     }
 };
