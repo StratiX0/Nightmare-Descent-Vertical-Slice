@@ -36,6 +36,6 @@ public:
         // Créer le bouton "Quitter" //(818;922) ; 1124,1016
         GameObject* quitButton = CreateEnvironment("Quit", "Button", "Assets/Quit1.png", Maths::Vector2f(760.0f, 870.0f), Maths::Vector2f(447.0f, 200.0f));
 
-        CreateGameObject("Menu", "Menu", 100)->CreateComponent<Menu>();
+        CreateGameObject("Menu", "Menu", 1)->CreateComponent<Menu>();
     }
 };
