@@ -6,9 +6,12 @@
 
 SceneModule::SceneModule(): Module()
 {
-	Scene* main_scene = new Scene("MainScene");
+	Scene* main_scene = new Scene("DefaultScene");
+	Scene* menu_scene = new Scene("Menu_Scene");
+	scenes.push_back(menu_scene);
 	scenes.push_back(main_scene);
 	mainScene = main_scene;
+	menuScene = menu_scene;
 
 }
 

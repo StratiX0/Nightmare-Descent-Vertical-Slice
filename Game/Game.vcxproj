@@ -173,7 +173,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Enemy.h" />
+    <ClInclude Include="include\Menu.h" />
     <ClInclude Include="include\Player.h" />
+    <ClInclude Include="Scenes\MenuScene.h" />
     <ClInclude Include="Scenes\DefaultScene.h" />
   </ItemGroup>
   <ItemGroup>

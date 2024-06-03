@@ -9,47 +9,6 @@
 #include <SFML/Graphics/Font.hpp>
 
 
-class DefaultScene : public Scene
-{
-public:
-    DefaultScene() : Scene("DefaultScene")
-    {
-        CreateBackgrounds("Assets/Background2.png");
-        // Chargez une police à partir d'un fichier
-        sf::Font font;
-        if (!font.loadFromFile("Assets/arial.ttf")) {
-            // Gérez l'erreur de chargement de la police ici
-        }
-
-        // Créez le texte "Jouer"
-        sf::Text playText;
-        playText.setFont(font);
-        playText.setString("Jouer");
-        playText.setCharacterSize(24); // en pixels
-        playText.setFillColor(sf::Color::White);
-        playText.setPosition(900.0f, 200.0f);
-
-        // Créez le texte "Options"
-        sf::Text optionsText;
-        optionsText.setFont(font);
-        optionsText.setString("Options");
-        optionsText.setCharacterSize(24); // en pixels
-        optionsText.setFillColor(sf::Color::White);
-        optionsText.setPosition(900.0f, 400.0f);
-
-        // Créez le texte "Quitter"
-        sf::Text quitText;
-        quitText.setFont(font);
-        quitText.setString("Quitter");
-        quitText.setCharacterSize(24); // en pixels
-        quitText.setFillColor(sf::Color::White);
-        quitText.setPosition(900.0f, 600.0f);
-
-		// Afficher le texte à l'écran
-    }
-};
-
-
 // La classe DefaultScene herite de la classe Scene
 // et represente la scene par defaut de votre jeu.
 class DefaultScene final : public Scene
@@ -57,14 +16,14 @@ class DefaultScene final : public Scene
 public:
     // Constructeur de la classe DefaultScene.
     // Cree les objets de la scene.
-    DefaultScene() : Scene("DefaultScene")
+    DefaultScene() : Scene("MainScene")
     {
         // Cree les arriere-plans de la scene.
         CreateBackgrounds("Assets/Background2.png");
 
         /////////////////////////////////
-		//    Creer un objet au sol    //
-		/////////////////////////////////
+        //    Creer un objet au sol    //
+        /////////////////////////////////
         CreateObject("Ground", "Object", "Assets/Ground.png", Maths::Vector2f(-500.0f, -1000.0f), Maths::Vector2f(1000.f, 3000.0f), sf::Color::Transparent, true);
         CreateObject("Ground", "Object", "Assets/Ground.png", Maths::Vector2f(500.0f, 900.0f), Maths::Vector2f(1600.f, 500.0f), sf::Color::Transparent, true);
         CreateObject("Ground", "Object", "Assets/Ground.png", Maths::Vector2f(2350.0f, 900.0f), Maths::Vector2f(1600.f, 500.0f), sf::Color::Transparent, true);
@@ -80,8 +39,8 @@ public:
         CreateObject("Ground", "Object", "Assets/Bridge.png", Maths::Vector2f(10500.0f, 600.0f), Maths::Vector2f(300.f, 600.0f), sf::Color::Transparent, false);
 
         //////////////////////////////////
-		// Creer un objet de plateforme //
-		//////////////////////////////////
+        // Creer un objet de plateforme //
+        //////////////////////////////////
         CreateObject("Platform", "Object", "Assets/Platform.png", Maths::Vector2f(1250.f, 700.0f), Maths::Vector2f(300.f, 40.0f), sf::Color::Transparent, true);
         //CreateObject("Platform", "Object", "Assets/Platform.png", Maths::Vector2f(2600.f, 600.0f), Maths::Vector2f(400.f, 40.0f), sf::Color::Transparent, true);
         CreateObject("Platform", "Object", "Assets/Platform.png", Maths::Vector2f(3300.f, 700.0f), Maths::Vector2f(400.f, 40.0f), sf::Color::Transparent, true);
@@ -90,15 +49,15 @@ public:
         CreateObject("Platform", "Object", "Assets/Platform.png", Maths::Vector2f(6550.f, 425.0f), Maths::Vector2f(250.f, 40.0f), sf::Color::Transparent, true);
         CreateObject("Platform", "Object", "Assets/Platform.png", Maths::Vector2f(7500.f, 600.0f), Maths::Vector2f(250.f, 40.0f), sf::Color::Transparent, true);
 
-		//////////////////////////////////
-		// Creer un objet de decoration //
-		//////////////////////////////////
+        //////////////////////////////////
+        // Creer un objet de decoration //
+        //////////////////////////////////
 
         CreateEnvironment("Cloud", "Environment", "Assets/Cloud.png", Maths::Vector2f(700.0f, 100.0f), Maths::Vector2f(400.0f, 250.0f));
         CreateEnvironment("Bush", "Environment", "Assets/Bush.png", Maths::Vector2f(525.0f, 850.0f), Maths::Vector2f(50.0f, 50.0f));
         CreateEnvironment("Bush", "Environment", "Assets/Bush.png", Maths::Vector2f(575.0f, 850.0f), Maths::Vector2f(50.0f, 50.0f));
         CreateEnvironment("Bush", "Environment", "Assets/Bush.png", Maths::Vector2f(625.0f, 850.0f), Maths::Vector2f(50.0f, 50.0f));
-		CreateEnvironment("Tree", "Environment", "Assets/DarkTree.png", Maths::Vector2f(700.0f, 650.0f), Maths::Vector2f(150.0f, 250.0f));
+        CreateEnvironment("Tree", "Environment", "Assets/DarkTree.png", Maths::Vector2f(700.0f, 650.0f), Maths::Vector2f(150.0f, 250.0f));
         CreateEnvironment("Bush", "Environment", "Assets/Bush.png", Maths::Vector2f(1000.0f, 850.0f), Maths::Vector2f(50.0f, 50.0f));
         CreateEnvironment("Rock", "Environment", "Assets/Rock3.png", Maths::Vector2f(1400.0f, 850.0f), Maths::Vector2f(75.0f, 50.0f));
         CreateEnvironment("Tree", "Environment", "Assets/DeadTree.png", Maths::Vector2f(1750.0f, 700.0f), Maths::Vector2f(150.0f, 200.0f));
@@ -143,7 +102,7 @@ public:
         //////////////////////////////////
 
         Maths::Vector2f wandererSize = Maths::Vector2f(50.0f, 50.0f);
-		Maths::Vector2f throwerSize = Maths::Vector2f(65.0f, 65.0f);
+        Maths::Vector2f throwerSize = Maths::Vector2f(65.0f, 65.0f);
 
         GameObject* enemy = CreateInGameObject("Wanderer", "Enemy", Maths::Vector2f(2000.0f, 0.0f), wandererSize, 1.0f, sf::Color::Transparent);
         enemy->CreateComponent<Enemy>();
@@ -170,9 +129,8 @@ public:
         enemy8->CreateComponent<Enemy>();
 
         // cree le boss.
-		GameObject* boss = CreateInGameObject("Boss", "Enemy", Maths::Vector2f(10000.0f, 0.0f), Maths::Vector2f(200.0f, 200.0f), 1.0f, sf::Color::Transparent);
-		boss->CreateComponent<Enemy>();
-        
+        GameObject* boss = CreateInGameObject("Boss", "Enemy", Maths::Vector2f(10000.0f, 0.0f), Maths::Vector2f(100.0f, 100.0f), 1.0f, sf::Color::Transparent);
+        boss->CreateComponent<Enemy>();
 
     }
 };
