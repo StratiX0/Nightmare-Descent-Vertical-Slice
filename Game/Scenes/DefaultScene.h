@@ -3,6 +3,11 @@
 #include "GameObject.h"
 #include "Player.h"
 #include "Enemy.h"
+<<<<<<< Updated upstream
+=======
+#include "Scene.h"
+#include "Game.h"
+>>>>>>> Stashed changes
 #include "Background.h"
 
 
@@ -128,5 +133,6 @@ public:
         GameObject* boss = CreateInGameObject("Boss", "Enemy", Maths::Vector2f(10000.0f, 0.0f), Maths::Vector2f(100.0f, 100.0f), 1.0f, sf::Color::Transparent);
         boss->CreateComponent<Enemy>();
 
+        CreateGameObject("Game", "Win or Defeat", 1)->CreateComponent<Game>();
     }
 };
