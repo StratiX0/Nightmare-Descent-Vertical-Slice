@@ -63,4 +63,8 @@ private:
     std::vector<GameObject*> gameObjects;
     int id = 0;
     std::vector<Background*> backgrounds;
+
+    sf::Font font;
+    sf::Text text;
+
 };

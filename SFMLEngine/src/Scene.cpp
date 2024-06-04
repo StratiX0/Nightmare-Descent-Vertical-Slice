@@ -5,6 +5,20 @@
 Scene::Scene(const std::string& _name)
 {
 	name = _name;
+
+	if (name == "DefaultScene")
+	{
+		if (!font.loadFromFile("Assets/arial.ttf"))
+		{
+			// gestion des erreurs
+		}
+
+		text.setFont(font);
+		text.setString("Ui text");
+		text.setCharacterSize(96); // en pixels, pas en points !
+		text.setFillColor(sf::Color::Red);
+		text.setPosition(50, 50);
+	}
 }
 
 // Methode pour reveiller tous les GameObjects de la scene.
@@ -149,6 +163,8 @@ void Scene::Render(sf::RenderWindow* _window)
 	{
 		game_object->Render(_window);
 	}
+
+	_window->draw(text);
 }
 
 // Methode pour obtenir le nom de la scene.
