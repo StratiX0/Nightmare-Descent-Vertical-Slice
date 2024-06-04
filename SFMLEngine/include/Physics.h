@@ -26,6 +26,10 @@ public:
     bool IsJumping() { return isJumping; }
     void SetJumping(bool _isJumping) { isJumping = _isJumping; }
 
+    // Methodes pour obtenir et definir si l'objet est en train de sauter.
+    bool IsAttacking() { return isAttack; }
+    void SetAttack(bool _isAttacking) { isAttack = _isAttacking; }
+
     // Methodes pour obtenir et definir la masse de l'objet.
     float GetMass() { return mass; }
     void SetMass(float _mass) { mass = _mass; }
@@ -51,6 +55,7 @@ public:
 private:
     // Variable pour verifier si l'objet est en train de sauter.
     bool isJumping;
+    bool isAttack;
 
     // Variable pour stocker la masse de l'objet.
     float mass = 1.0f;

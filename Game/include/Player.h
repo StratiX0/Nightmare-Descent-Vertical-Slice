@@ -57,6 +57,24 @@ public:
             owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::SpriteState::Idle);
         }
 
+        //-------------------------------------------COMMANDE POUR L'ATTAQUE----------------------------------------------//
+        // Si le bouton de souris est enfoncee et que le joueur n'est pas deja en train d'attaquer, fait attaquer le joueur.
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !owner->GetComponent<Physics>()->IsAttacking())
+        {
+            owner->GetComponent<Physics>()->SetAttack(true);            
+        }
+        // Si le bouton de souris n'est pas enfoncee annule l'attaque du joueur.
+        if (!sf::Mouse::isButtonPressed(sf::Mouse::Left))
+        {
+            owner->GetComponent<Physics>()->SetAttack(false);
+        }
+        // Si le joueur est en train de sauter, ajoute la gravite a la vitesse verticale et active l'état de saut.
+        if (owner->GetComponent<Physics>()->IsAttacking())
+        {
+            owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::SpriteState::Attack);
+        }
+        //--------------------------------------------------------------------------------------------------------------//
+        
         // Si la touche Z est enfoncee et que le joueur n'est pas deja en train de sauter, fait sauter le joueur.
         if (InputModule::GetKey(sf::Keyboard::Z) && !owner->GetComponent<Physics>()->IsJumping())
         {
@@ -64,17 +82,12 @@ public:
             owner->GetComponent<Physics>()->SetJumping(true);
             owner->GetComponent<AnimatedSpriteComponent>()->SetDirection(AnimatedSpriteComponent::MovementDirection::Up);
         }
-
-        //Si le joueur est en train de sauter, activer l'état de saut.
-        if (owner->GetComponent<Physics>()->IsJumping())
-        {
-            owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::SpriteState::Jump);
-        }
        
-        // Si le joueur est en train de sauter, ajoute la gravite a la vitesse verticale.
+        // Si le joueur est en train de sauter, ajoute la gravite a la vitesse verticale et active l'état de saut.
         if (owner->GetComponent<Physics>()->IsJumping())
         {
             velocity.y += gravity.y * _delta_time;
+            owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::SpriteState::Jump);
         }
 
         // Si le joueur est mort, met l'animation de mort, attend 2 secondes et change la couleur du RectangleShapeRenderer en rouge. Puis affiche you lose sur la console.

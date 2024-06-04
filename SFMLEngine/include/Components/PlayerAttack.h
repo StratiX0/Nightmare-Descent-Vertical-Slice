@@ -14,7 +14,7 @@ public:
     ~PlayerAttack() override;
 
 	// Methode pour infliger des degâts en cas de collision.
-	void InflictCollisionDamage(SquareCollider* playerCollider, SquareCollider* enemyCollider);
+	void InflictAttackDamage(SquareCollider* playerCollider, SquareCollider* enemyCollider);
 
 	// Methode pour verifier si l'objet est en collision avec un autre objet.
 	void IsColliding();

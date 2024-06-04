@@ -10,22 +10,23 @@ PlayerAttack::~PlayerAttack()
 {
 }
 
+
 // Methode pour infliger des degâts de collision à un ennemi.
-void PlayerAttack::InflictCollisionDamage(SquareCollider* playerCollider, SquareCollider* enemyCollider)
+void PlayerAttack::InflictAttackDamage(SquareCollider* playerCollider, SquareCollider* enemyCollider)
 {
 
     // Recupere le GameObject proprietaire de ce composant (le joueur) et l'ennemi.
     GameObject* player = GetOwner();
     GameObject* enemy = enemyCollider->GetOwner();
 
-    // Verifie si le joueur est au-dessus de l'ennemi.
-    bool isPlayerAbove = player->GetPosition().y + playerCollider->GetHeight() - 0.5f < enemy->GetPosition().y;
-    if (isPlayerAbove)
+    // Verifie si le joueur attaque.
+    Health* playerHealth = player->GetComponent<Health>();
+    if (player->GetComponent<Physics>()->IsAttacking())
     {
-
         // Si le joueur est au-dessus de l'ennemi, inflige des degâts à l'ennemi.
         Health* enemyHealth = enemy->GetComponent<Health>();
         enemyHealth->TakeDamage(collisionDamage);
+        playerHealth->SetInvincibilityTime(1.0f);
     }
 }
 
@@ -52,7 +53,7 @@ void PlayerAttack::IsColliding()
             // Si le joueur est en collision avec l'ennemi, inflige des degâts de collision.
             if (SquareCollider::IsColliding(*playerCollider, *enemyCollider) && player->GetComponent<Health>()->GetInvincibilityTime() == 0)
             {
-                InflictCollisionDamage(playerCollider, enemyCollider);
+                InflictAttackDamage(playerCollider, enemyCollider);
             }
         }
     }

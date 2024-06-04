@@ -23,7 +23,8 @@ public:
         Running,
         Moving,
         Jump,
-        Death
+        Death,
+        Attack
     };
 
     // Constructeur et destructeur.
