@@ -122,7 +122,8 @@ public:
         //////////////////////////////////
 
         Maths::Vector2f wandererSize = Maths::Vector2f(50.0f, 50.0f);
-		Maths::Vector2f throwerSize = Maths::Vector2f(65.0f, 65.0f);
+        Maths::Vector2f throwerSize = Maths::Vector2f(65.0f, 65.0f);
+        Maths::Vector2f BossSize = Maths::Vector2f(150.0f, 150.0f);
 
         GameObject* enemy = CreateInGameObject("Wanderer", "Enemy", Maths::Vector2f(2000.0f, 0.0f), wandererSize, 1.0f, sf::Color::Transparent);
         enemy->CreateComponent<Enemy>();
@@ -148,10 +149,10 @@ public:
         GameObject* enemy8 = CreateInGameObject("Wanderer", "Enemy", Maths::Vector2f(8200.0f, 0.0f), throwerSize, 1.0f, sf::Color::Transparent);
         enemy8->CreateComponent<Enemy>();
 
-        GameObject* enemy9 = CreateInGameObject("Wizard", "Enemy", Maths::Vector2f(10000.0f, 0.0f), throwerSize, 1.0f, sf::Color::Transparent);
+        GameObject* enemy9 = CreateInGameObject("Wizard", "Enemy", Maths::Vector2f(10000.0f, 0.0f), BossSize, 1.0f, sf::Color::Transparent);
         enemy9->CreateComponent<Enemy>();
 
-        GameObject* enemy10 = CreateInGameObject("Wizard", "Enemy", Maths::Vector2f(10500.0f, 0.0f), throwerSize, 1.0f, sf::Color::Transparent);
+        GameObject* enemy10 = CreateInGameObject("Wizard", "Enemy", Maths::Vector2f(10500.0f, 0.0f), BossSize, 1.0f, sf::Color::Transparent);
         enemy10->CreateComponent<Enemy>();
 
         // cree le boss.
