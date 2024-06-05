@@ -23,7 +23,7 @@ void PlayerAttack::InflictAttackDamage(SquareCollider* playerCollider, SquareCol
     Health* playerHealth = player->GetComponent<Health>();
     if (player->GetComponent<Physics>()->IsAttacking())
     {
-        // Si le joueur est au-dessus de l'ennemi, inflige des degâts à l'ennemi.
+        // Si le joueur attaque et que l'ennemi et lui se touche, inflige des degâts à l'ennemi.
         Health* enemyHealth = enemy->GetComponent<Health>();
         enemyHealth->TakeDamage(collisionDamage);
         playerHealth->SetInvincibilityTime(1.0f);

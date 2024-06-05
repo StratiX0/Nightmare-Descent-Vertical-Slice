@@ -1,6 +1,9 @@
 ﻿#pragma once
 #include "Component.h"
 #include "InputModule.h"
+#include "../Scenes/DefeatScene.h"
+#include "Engine.h"
+#include "Modules/SceneModule.h"
 
 class Physics;
 class AnimatedSpriteComponent;
@@ -18,6 +21,7 @@ public:
         // Recupere le GameObject proprietaire de ce composant.
         GameObject* owner = GetOwner();
         Engine* engine = Engine::GetInstance();
+        SceneModule* scene_module = engine->GetModuleManager()->GetModule<SceneModule>();
 
         // Recupere la position et la vitesse actuelles du GameObject.
         Maths::Vector2<float> position = owner->GetPosition();
@@ -90,18 +94,21 @@ public:
             owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::SpriteState::Jump);
         }
 
-        // Si le joueur est mort, met l'animation de mort, attend 2 secondes et change la couleur du RectangleShapeRenderer en rouge. Puis affiche you lose sur la console.
+        // Si le joueur est mort, met l'animation de mort, attend 2 secondes et change la couleur du RectangleShapeRenderer en rouge. Puis affiche la scene de défaite.
         if (owner->GetComponent<Health>()->IsDead() || owner->GetPosition().y > 1080)
         {
             owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::SpriteState::Death);
-            owner->~GameObject();
-            printf(":::   :::  ::::::::  :::    :::      :::        ::::::::   ::::::::  :::::::::: ::: ::: ::: \n"
-                   ":+:   :+: :+:    :+: :+:    :+:      :+:       :+:    :+: :+:    :+: :+:        :+: :+: :+: \n"
-                   " +:+ +:+  +:+    +:+ +:+    +:+      +:+       +:+    +:+ +:+        +:+        +:+ +:+ +:+ \n"
-                   "  +#++:   +#+    +:+ +#+    +:+      +#+       +#+    +:+ +#++:++#++ +#++:++#   +#+ +#+ +#+ \n"
-                   "   +#+    +#+    +#+ +#+    +#+      +#+       +#+    +#+        +#+ +#+        +#+ +#+ +#+ \n"
-                   "   #+#    #+#    #+# #+#    #+#      #+#       #+#    #+# #+#    #+# #+#        \n"
-                   "   ###     ########   ########       ########## ########   ########  ########## ### ### ###\n");
+
+                // Change the color of the RectangleShapeRenderer to red
+                if (auto renderer = owner->GetComponent<RectangleShapeRenderer>())
+                {
+                    renderer->SetColor(sf::Color::Red); // Assuming SFML, adjust accordingly for your framework
+                }
+
+                // Destroy the game object (if necessary, otherwise handle accordingly)
+                owner->~GameObject();
+
+                scene_module->SetScene<DefeatScene>();
         }
 
         // Met a jour la position et la vitesse du GameObject.

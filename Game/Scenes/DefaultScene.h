@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Scene.h"
+#include "EndGame.h"
 #include "Background.h"
 
 
@@ -108,6 +109,12 @@ public:
 
         CreateEnvironment("Tombstone", "Environment", "Assets/Door.png", Maths::Vector2f(11000.0f, 470.0f), Maths::Vector2f(150.0f, 150.0f));
         
+        //////////////////////////////////
+        //         Creer de L'UI        //
+        //////////////////////////////////
+
+        CreateEnvironment("Touches", "Touches", "Assets/Touches.png", Maths::Vector2f(550.0f, 350.0f), Maths::Vector2f(654.0f, 336.0f));
+
         /////////////////////////////////
         //    Creer l'entite joueur    //
         /////////////////////////////////
@@ -158,6 +165,5 @@ public:
         // cree le boss.
 		//GameObject* boss = CreateInGameObject("Boss", "Enemy", Maths::Vector2f(10000.0f, 0.0f), Maths::Vector2f(200.0f, 200.0f), 1.0f, sf::Color::Transparent);
 		//boss->CreateComponent<Enemy>();
-
     }
 };

@@ -177,7 +177,9 @@
     <ClInclude Include="include\Player.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Scenes\DefaultScene.h" />
+    <ClInclude Include="Scenes\DefeatScene.h" />
     <ClInclude Include="Scenes\MenuScene.h" />
+    <ClInclude Include="Scenes\Victory.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="..\Assets\Run.png">
