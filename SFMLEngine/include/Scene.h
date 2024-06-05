@@ -66,6 +66,6 @@ private:
     std::vector<Background*> backgrounds;
 
     sf::Font font;
-    sf::Text healthText, scoreText;
-
+    sf::Text healthText, healthNumber, scoreText;
+    sf::RectangleShape healthBarBackground, healthBarForeground;
 };

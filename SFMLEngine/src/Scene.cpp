@@ -13,17 +13,40 @@ Scene::Scene(const std::string& _name)
 			// gestion des erreurs
 		}
 
-		healthText.setFont(font);
-		healthText.setString("");
-		healthText.setCharacterSize(24);
-		healthText.setFillColor(sf::Color::White);
-		healthText.setPosition(30, 5);
-
 		scoreText.setFont(font);
 		scoreText.setString("");
 		scoreText.setCharacterSize(24);
 		scoreText.setFillColor(sf::Color::White);
 		scoreText.setPosition(1750, 5);
+		scoreText.setOutlineThickness(2);
+		scoreText.setOutlineColor(sf::Color::Black);
+
+		healthBarBackground.setSize(sf::Vector2f(200, 24));
+		healthBarBackground.setFillColor(sf::Color(200, 0, 0));
+		healthBarBackground.setPosition(150, 10);
+
+		healthBarForeground.setSize(sf::Vector2f(200, 24));
+		healthBarForeground.setFillColor(sf::Color(0, 200, 0));
+		healthBarForeground.setPosition(150, 10);
+		healthBarForeground.setOutlineThickness(2);
+		healthBarForeground.setOutlineColor(sf::Color::Black);
+
+		healthText.setFont(font);
+		healthText.setString("Health:");
+		healthText.setCharacterSize(24);
+		healthText.setFillColor(sf::Color::White);
+		healthText.setPosition(25, 5);
+		healthText.setOutlineThickness(2);
+		healthText.setOutlineColor(sf::Color::Black);
+
+		healthNumber.setFont(font);
+		healthNumber.setString("");
+		healthNumber.setCharacterSize(24);
+		healthNumber.setFillColor(sf::Color::White);
+		healthNumber.setPosition(225, 5);
+		healthNumber.setOutlineThickness(2);
+		healthNumber.setOutlineColor(sf::Color::Black);
+
 	}
 }
 
@@ -157,7 +180,10 @@ void Scene::Update(const float _delta_time)
 	if (FindGameObjectType("Player") != nullptr)
 	{
 		int health = static_cast<int>(FindGameObjectType("Player")->GetComponent<Health>()->GetHealth());
-		healthText.setString("Health: " + std::to_string(health));
+		int maxHealth = static_cast<int>(FindGameObjectType("Player")->GetComponent<Health>()->GetMaxHealth());
+		float healthPercentage = static_cast<float>(health) / maxHealth;
+		healthNumber.setString(std::to_string(health));
+		healthBarForeground.setSize(sf::Vector2f(200 * healthPercentage, 24));
 
 		int score = (FindGameObjectType("Player")->GetComponent<Score>()->GetScore());
 		scoreText.setString("Score: " + std::to_string(score));
@@ -179,7 +205,10 @@ void Scene::Render(sf::RenderWindow* _window)
 		game_object->Render(_window);
 	}
 
+	_window->draw(healthBarBackground);
+	_window->draw(healthBarForeground);
 	_window->draw(healthText);
+	_window->draw(healthNumber);
 	_window->draw(scoreText);
 }
 
