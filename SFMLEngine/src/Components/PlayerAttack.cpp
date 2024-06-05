@@ -27,6 +27,18 @@ void PlayerAttack::InflictAttackDamage(SquareCollider* playerCollider, SquareCol
         Health* enemyHealth = enemy->GetComponent<Health>();
         enemyHealth->TakeDamage(collisionDamage);
         playerHealth->SetInvincibilityTime(1.0f);
+		if (enemy->GetName() == "Wanderer")
+        {
+			player->GetComponent<Score>()->IncrementScore(25);
+		}
+        if (enemy->GetName() == "Wizard")
+        {
+            player->GetComponent<Score>()->IncrementScore(50);
+        }
+        if (enemy->GetName() == "Boss")
+        {
+            player->GetComponent<Score>()->IncrementScore(100);
+        }
     }
 }
 

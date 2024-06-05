@@ -12,6 +12,7 @@
 #include "Components/EnemyAttack.h"
 #include "Components/Projectile.h"
 #include "Components/SpriteRenderer.h"
+#include "Components/Score.h"
 
 // La classe Scene represente une scene dans votre jeu. Une scene contient un ensemble de GameObjects.
 class Scene
@@ -65,6 +66,6 @@ private:
     std::vector<Background*> backgrounds;
 
     sf::Font font;
-    sf::Text text;
+    sf::Text healthText, scoreText;
 
 };

@@ -52,6 +52,12 @@
     <Filter Include="Assets\Logos">
       <UniqueIdentifier>{0de7faf2-1bd9-4689-bafd-190873f4bec4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets\Fonts">
+      <UniqueIdentifier>{60fc4066-b978-454b-996b-adbc1599c568}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Menu">
+      <UniqueIdentifier>{5f680d63-4c1e-4efb-bfba-5cc61c9b26c4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -69,6 +75,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Menu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\MenuScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -168,6 +180,30 @@
     </CopyFileToFolders>
     <CopyFileToFolders Include="..\Assets\logo-nightmare-descent.png">
       <Filter>Assets\Logos</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\arial.ttf">
+      <Filter>Assets\Fonts</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Silkscreen-Regular.ttf">
+      <Filter>Assets\Fonts</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Attack.png">
+      <Filter>Assets\Player</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Jump.png">
+      <Filter>Assets\Player</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\logo2.png">
+      <Filter>Assets\Menu</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\options1.png">
+      <Filter>Assets\Menu</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Play1.png">
+      <Filter>Assets\Menu</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Quit1.png">
+      <Filter>Assets\Menu</Filter>
     </CopyFileToFolders>
   </ItemGroup>
   <ItemGroup>
