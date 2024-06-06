@@ -5,6 +5,60 @@
 Scene::Scene(const std::string& _name)
 {
 	name = _name;
+
+	if (name == "DefaultScene")
+	{
+		if (!font.loadFromFile("Assets/Silkscreen-Regular.ttf"))
+		{
+			// gestion des erreurs
+		}
+		else
+		{
+			scoreText.setFont(font);
+			scoreText.setString("");
+			scoreText.setCharacterSize(fontSize);
+			scoreText.setFillColor(sf::Color::White);
+			scoreText.setPosition(1700, 5);
+			scoreText.setOutlineThickness(2);
+			scoreText.setOutlineColor(sf::Color::Black);
+
+			timeText.setFont(font);
+			timeText.setString("");
+			timeText.setCharacterSize(fontSize);
+			timeText.setFillColor(sf::Color::White);
+			timeText.setPosition(25, 5);
+			timeText.setOutlineThickness(2);
+			timeText.setOutlineColor(sf::Color::Black);
+
+			timeScore = 0.0f;
+
+			healthBarBackground.setSize(sf::Vector2f(350, 35));
+			healthBarBackground.setFillColor(sf::Color(200, 0, 0));
+			healthBarBackground.setPosition(100, 1000);
+
+			healthBarForeground.setSize(sf::Vector2f(200, 30));
+			healthBarForeground.setFillColor(sf::Color(0, 200, 0));
+			healthBarForeground.setPosition(100, 1000);
+			healthBarForeground.setOutlineThickness(2);
+			healthBarForeground.setOutlineColor(sf::Color::Black);
+
+			healthText.setFont(font);
+			healthText.setString("HP:");
+			healthText.setCharacterSize(fontSize);
+			healthText.setFillColor(sf::Color::White);
+			healthText.setPosition(25, 995);
+			healthText.setOutlineThickness(2);
+			healthText.setOutlineColor(sf::Color::Black);
+
+			healthNumber.setFont(font);
+			healthNumber.setString("");
+			healthNumber.setCharacterSize(fontSize);
+			healthNumber.setFillColor(sf::Color::White);
+			healthNumber.setPosition(235, 995);
+			healthNumber.setOutlineThickness(2);
+			healthNumber.setOutlineColor(sf::Color::Black);
+		}
+	}
 }
 
 // Methode pour reveiller tous les GameObjects de la scene.
@@ -133,6 +187,33 @@ void Scene::Update(const float _delta_time)
 			++it;
 		}
 	}
+
+	if (FindGameObjectType("Player") != nullptr)
+	{
+		int health = static_cast<int>(FindGameObjectType("Player")->GetComponent<Health>()->GetHealth());
+		int maxHealth = static_cast<int>(FindGameObjectType("Player")->GetComponent<Health>()->GetMaxHealth());
+		float healthPercentage = static_cast<float>(health) / maxHealth;
+		healthNumber.setString(std::to_string(health));
+		if (health < 100 && !moveHealthText)
+		{
+			moveHealthText = true;
+			sf::Vector2f healthPos = healthNumber.getPosition();
+			healthNumber.setPosition(healthPos + sf::Vector2f(10, 0));
+		}
+		healthBarForeground.setSize(sf::Vector2f(350 * healthPercentage, 35));
+
+		int score = (FindGameObjectType("Player")->GetComponent<Score>()->GetScore());
+		scoreText.setString("Score: " + std::to_string(score));
+
+		timeScore += _delta_time;
+		timeText.setString("Time: " + std::to_string(static_cast<int>(timeScore)));
+	}
+	else
+	{
+		healthNumber.setString("0");
+		healthBarForeground.setSize(sf::Vector2f(0, 35));
+		scoreText.setString("Score: 0");
+	}
 }
 
 
@@ -149,6 +230,13 @@ void Scene::Render(sf::RenderWindow* _window)
 	{
 		game_object->Render(_window);
 	}
+
+	_window->draw(healthBarBackground);
+	_window->draw(healthBarForeground);
+	_window->draw(healthText);
+	_window->draw(healthNumber);
+	_window->draw(scoreText);
+	_window->draw(timeText);
 }
 
 // Methode pour obtenir le nom de la scene.
@@ -205,14 +293,14 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 		// Definir le nombre de frames pour l'etat Jump
 		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Jump, 5);
 
-		// Definir le nombre de frames pour l'etat Idle
-		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Idle, 15);
-
 		// Definir le nombre de frames pour l'etat Death
 		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Death, 15);
 
 		// Definir le nombre de frames pour l'etat Death
 		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Attack, 4);
+
+		// Definir le nombre de frames pour l'etat Idle
+		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Idle, 15);
 
 		// Definir l'etat actuel a Idle
 		animated_sprite->state = AnimatedSpriteComponent::SpriteState::Idle;
@@ -224,7 +312,7 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::SpriteState::Attack, "Assets/Attack.png");
 
 		// Calcule l'echelle en fonction de la taille du gameObject et du sprite (_size *taille du gameObject* / _sprite *taille du sprite*)
-		float scaleX = (_size.x / (animated_sprite->GetSprite()->getTextureRect().width / 15));
+		float scaleX = (_size.x / (animated_sprite->GetSprite()->getTextureRect().width / animated_sprite->GetFrameCount()));
 		float scaleY = (_size.y / (animated_sprite->GetSprite()->getTextureRect().height));
 
 		// Definis l'echelle du sprite
@@ -236,6 +324,8 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 
 		PlayerAttack* attack = game_object->CreateComponent<PlayerAttack>();
 		attack->SetCollisionDamage(100.0f);
+
+		Score* score = game_object->CreateComponent<Score>();
 	}
 
 	if (game_object->GetName() == "Wizard")
