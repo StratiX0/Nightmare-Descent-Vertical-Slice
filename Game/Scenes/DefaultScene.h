@@ -4,7 +4,11 @@
 #include "GameObject.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "Scene.h"
+#include "DefeatScene.h"
+#include <SFML/Audio.hpp>
 #include "Background.h"
+#include <iostream>
 
 // La classe DefaultScene herite de la classe Scene
 // et represente la scene par defaut de votre jeu.
@@ -15,6 +19,17 @@ public:
     // Cree les objets de la scene.
     DefaultScene() : Scene("DefaultScene")
     {
+        sf::Music backgroundMusic;
+        // Charger la musique de fond
+        if (!backgroundMusic.openFromFile("Assets/musique.ogg"))
+        {
+            // Erreur de chargement de la musique
+            std::cout << "Erreur de chargement de la musique de fond" << std::endl;
+        }
+
+        // Jouer la musique de fond
+        backgroundMusic.setLoop(true); // Pour que la musique se rï¿½pï¿½te indï¿½finiment
+        backgroundMusic.play();
         // Cree les arriere-plans de la scene.
         CreateBackgrounds("Assets/Background2.png");
 
@@ -47,7 +62,7 @@ public:
 		//////////////////////////////////
         CreateInGameObject("Platform", "Object", Maths::Vector2f(350.f, 650.0f), Maths::Vector2f(300.f, 50.0f), 1.0f, sf::Color::Green);
         
-        // Créer l'entité Boss
+        // Crï¿½er l'entitï¿½ Boss
         GameObject* boss = CreateInGameObject("Boss", "Boss", Maths::Vector2f(1600.0f / 2 - 40.0f / 2, -500.0f), Maths::Vector2f(80.f, 80.0f), 1.0f, sf::Color::Red);
         boss->CreateComponent<Boss>();
     }
