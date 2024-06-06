@@ -5,11 +5,11 @@
 #include "Scene.h"
 #include "Background.h"
 
-class DefeatScene final : public Scene
+class VictoryScene final : public Scene
 {
 public:
     // Cree les objets de la scene.
-    DefeatScene() : Scene("DefeatScene")
+    VictoryScene() : Scene("VictoryScene")
     {
         // Cree les arriere-plans de la scene.
         CreateBackgrounds("Assets/Background2.png");
