@@ -4,6 +4,7 @@
 #include "../Scenes/DefeatScene.h"
 #include "Engine.h"
 #include "Modules/SceneModule.h"
+//#include <SFML/Audio.hpp>
 
 class Physics;
 class AnimatedSpriteComponent;
@@ -14,6 +15,32 @@ class SquareCollider;
 class Player : public Component
 {
 public:
+    //sf::SoundBuffer bufferJump;
+    //sf::SoundBuffer bufferStep;
+    //sf::SoundBuffer bufferAttack;
+    //sf::Sound soundJump;
+    //sf::Sound soundStep;
+    //sf::Sound soundAttack;
+    
+
+    //Player()
+    //{
+        // Chargez les sons à partir des fichiers
+        //if (!bufferJump.loadFromFile("Assets/jumping.ogg")) {
+            // Gérez l'erreur si le fichier ne peut pas être chargé
+        //}
+        //if (!bufferStep.loadFromFile("Assets/running.ogg")) {
+            // Gérez l'erreur si le fichier ne peut pas être chargé
+        //}
+        //if (!bufferAttack.loadFromFile("Assets/attack.ogg")) {
+        // Gérez l'erreur si le fichier ne peut pas être chargé
+    //}
+
+        // Créez les objets sf::Sound pour jouer les sons
+        //soundJump.setBuffer(bufferJump);
+        //soundStep.setBuffer(bufferStep);
+        //soundAttack.setBuffer(bufferAttack);
+    //}
 
     // Met a jour le joueur.
     void Update(const float _delta_time) override
@@ -42,6 +69,7 @@ public:
                 owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::SpriteState::Running);
             }
             MoveWorld(-speed * _delta_time);
+            //soundStep.play();
         }
 
         // Si la touche Q est enfoncee et que le joueur ne touche pas un obstacle a gauche, deplace le monde vers la droite et met le sprite du joueur en etat de course.
@@ -53,6 +81,7 @@ public:
                 owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::SpriteState::Running);
             }
             MoveWorld(speed * _delta_time);
+            //soundStep.play();
         }
 
         // Si ni la touche D ni la touche Q ne sont enfoncees, met le sprite du joueur en etat d'inactivite.
@@ -65,7 +94,8 @@ public:
         // Si le bouton de souris est enfoncee et que le joueur n'est pas deja en train d'attaquer, fait attaquer le joueur.
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !owner->GetComponent<Physics>()->IsAttacking())
         {
-            owner->GetComponent<Physics>()->SetAttack(true);            
+            owner->GetComponent<Physics>()->SetAttack(true);
+            //soundAttack.play();
         }
         // Si le bouton de souris n'est pas enfoncee annule l'attaque du joueur.
         if (!sf::Mouse::isButtonPressed(sf::Mouse::Left))
@@ -85,6 +115,7 @@ public:
             velocity.y = -jumpForce;
             owner->GetComponent<Physics>()->SetJumping(true);
             owner->GetComponent<AnimatedSpriteComponent>()->SetDirection(AnimatedSpriteComponent::MovementDirection::Up);
+            //soundJump.play();
         }
        
         // Si le joueur est en train de sauter, ajoute la gravite a la vitesse verticale et active l'état de saut.
