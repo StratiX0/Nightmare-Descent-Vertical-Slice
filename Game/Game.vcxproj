@@ -376,6 +376,12 @@
       <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
     </CopyFileToFolders>
   </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="..\Assets\Touches.png">
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+      <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
+    </CopyFileToFolders>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

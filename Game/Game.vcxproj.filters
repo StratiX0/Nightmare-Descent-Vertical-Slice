@@ -58,6 +58,9 @@
     <Filter Include="Assets\Menu">
       <UniqueIdentifier>{5f680d63-4c1e-4efb-bfba-5cc61c9b26c4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets\Touches">
+      <UniqueIdentifier>{0b874f17-e3f3-44b1-8c55-5a6b7f9c43e0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -210,6 +213,9 @@
     </CopyFileToFolders>
     <CopyFileToFolders Include="..\Assets\Quit1.png">
       <Filter>Assets\Menu</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\Assets\Touches.png">
+      <Filter>Assets\Touches</Filter>
     </CopyFileToFolders>
   </ItemGroup>
   <ItemGroup>
