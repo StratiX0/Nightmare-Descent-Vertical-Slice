@@ -66,6 +66,9 @@ private:
     std::vector<Background*> backgrounds;
 
     sf::Font font;
-    sf::Text healthText, healthNumber, scoreText;
+    int fontSize = 36;
+	float timeScore;
+    bool moveHealthText = false;
+    sf::Text healthText, healthNumber, scoreText, timeText;
     sf::RectangleShape healthBarBackground, healthBarForeground;
 };

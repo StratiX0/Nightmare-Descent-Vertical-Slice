@@ -12,41 +12,52 @@ Scene::Scene(const std::string& _name)
 		{
 			// gestion des erreurs
 		}
+		else
+		{
+			scoreText.setFont(font);
+			scoreText.setString("");
+			scoreText.setCharacterSize(fontSize);
+			scoreText.setFillColor(sf::Color::White);
+			scoreText.setPosition(1700, 5);
+			scoreText.setOutlineThickness(2);
+			scoreText.setOutlineColor(sf::Color::Black);
 
-		scoreText.setFont(font);
-		scoreText.setString("");
-		scoreText.setCharacterSize(24);
-		scoreText.setFillColor(sf::Color::White);
-		scoreText.setPosition(1750, 5);
-		scoreText.setOutlineThickness(2);
-		scoreText.setOutlineColor(sf::Color::Black);
+			timeText.setFont(font);
+			timeText.setString("");
+			timeText.setCharacterSize(fontSize);
+			timeText.setFillColor(sf::Color::White);
+			timeText.setPosition(25, 5);
+			timeText.setOutlineThickness(2);
+			timeText.setOutlineColor(sf::Color::Black);
 
-		healthBarBackground.setSize(sf::Vector2f(200, 24));
-		healthBarBackground.setFillColor(sf::Color(200, 0, 0));
-		healthBarBackground.setPosition(150, 10);
+			timeScore = 0.0f;
 
-		healthBarForeground.setSize(sf::Vector2f(200, 24));
-		healthBarForeground.setFillColor(sf::Color(0, 200, 0));
-		healthBarForeground.setPosition(150, 10);
-		healthBarForeground.setOutlineThickness(2);
-		healthBarForeground.setOutlineColor(sf::Color::Black);
+			healthBarBackground.setSize(sf::Vector2f(350, 35));
+			healthBarBackground.setFillColor(sf::Color(200, 0, 0));
+			healthBarBackground.setPosition(100, 1000);
 
-		healthText.setFont(font);
-		healthText.setString("Health:");
-		healthText.setCharacterSize(24);
-		healthText.setFillColor(sf::Color::White);
-		healthText.setPosition(25, 5);
-		healthText.setOutlineThickness(2);
-		healthText.setOutlineColor(sf::Color::Black);
+			healthBarForeground.setSize(sf::Vector2f(200, 30));
+			healthBarForeground.setFillColor(sf::Color(0, 200, 0));
+			healthBarForeground.setPosition(100, 1000);
+			healthBarForeground.setOutlineThickness(2);
+			healthBarForeground.setOutlineColor(sf::Color::Black);
 
-		healthNumber.setFont(font);
-		healthNumber.setString("");
-		healthNumber.setCharacterSize(24);
-		healthNumber.setFillColor(sf::Color::White);
-		healthNumber.setPosition(225, 5);
-		healthNumber.setOutlineThickness(2);
-		healthNumber.setOutlineColor(sf::Color::Black);
+			healthText.setFont(font);
+			healthText.setString("HP:");
+			healthText.setCharacterSize(fontSize);
+			healthText.setFillColor(sf::Color::White);
+			healthText.setPosition(25, 995);
+			healthText.setOutlineThickness(2);
+			healthText.setOutlineColor(sf::Color::Black);
 
+			healthNumber.setFont(font);
+			healthNumber.setString("");
+			healthNumber.setCharacterSize(fontSize);
+			healthNumber.setFillColor(sf::Color::White);
+			healthNumber.setPosition(235, 995);
+			healthNumber.setOutlineThickness(2);
+			healthNumber.setOutlineColor(sf::Color::Black);
+		}
 	}
 }
 
@@ -183,10 +194,25 @@ void Scene::Update(const float _delta_time)
 		int maxHealth = static_cast<int>(FindGameObjectType("Player")->GetComponent<Health>()->GetMaxHealth());
 		float healthPercentage = static_cast<float>(health) / maxHealth;
 		healthNumber.setString(std::to_string(health));
-		healthBarForeground.setSize(sf::Vector2f(200 * healthPercentage, 24));
+		if (health < 100 && !moveHealthText)
+		{
+			moveHealthText = true;
+			sf::Vector2f healthPos = healthNumber.getPosition();
+			healthNumber.setPosition(healthPos + sf::Vector2f(10, 0));
+		}
+		healthBarForeground.setSize(sf::Vector2f(350 * healthPercentage, 35));
 
 		int score = (FindGameObjectType("Player")->GetComponent<Score>()->GetScore());
 		scoreText.setString("Score: " + std::to_string(score));
+
+		timeScore += _delta_time;
+		timeText.setString("Time: " + std::to_string(static_cast<int>(timeScore)));
+	}
+	else
+	{
+		healthNumber.setString("0");
+		healthBarForeground.setSize(sf::Vector2f(0, 35));
+		scoreText.setString("Score: 0");
 	}
 }
 
@@ -210,6 +236,7 @@ void Scene::Render(sf::RenderWindow* _window)
 	_window->draw(healthText);
 	_window->draw(healthNumber);
 	_window->draw(scoreText);
+	_window->draw(timeText);
 }
 
 // Methode pour obtenir le nom de la scene.
