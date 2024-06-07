@@ -63,7 +63,7 @@ public:
 private:
     // Variable pour verifier si l'objet est en train de sauter.
     bool isJumping;
-    bool isAttack;
+    bool isAttack = false;
     bool DoorColliding = false;
     bool DoorReached = false;
 

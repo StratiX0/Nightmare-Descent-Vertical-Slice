@@ -297,7 +297,7 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Death, 15);
 
 		// Definir le nombre de frames pour l'etat Death
-		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Attack, 4);
+		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Attack, 13);
 
 		// Definir le nombre de frames pour l'etat Idle
 		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Idle, 15);
