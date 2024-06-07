@@ -48,6 +48,7 @@ public:
 
     // Methodes pour gérer la frame actuelle.
     void SetCurrentFrame(int _currentFrame) { currentFrame = _currentFrame; }
+    int GetCurrentFrame() const { return currentFrame; }
 
     // Methodes pour gerer le temps ecoule depuis le debut de l'animation.
     void SetCurrentTime(float _currentTime) { currentTime = _currentTime; }

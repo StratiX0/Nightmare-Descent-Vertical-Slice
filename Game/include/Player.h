@@ -125,15 +125,18 @@ public:
             owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::SpriteState::Jump);
         }
 
-        // Si le joueur est mort, met l'animation de mort, attend 2 secondes et change la couleur du RectangleShapeRenderer en rouge. Puis affiche la scene de défaite.
+        // Si le joueur est mort, met l'animation de mort, attend qu'elle se termine et change la couleur du RectangleShapeRenderer en rouge. Puis affiche la scene de défaite.
         if (owner->GetComponent<Health>()->IsDead() || owner->GetPosition().y > 1080)
         {
+            owner->GetComponent<AnimatedSpriteComponent>()->SetFrameTime(0.2f);
             owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::SpriteState::Death);
 
-            // détruit le gameobject et change de scène
-            owner->~GameObject();
+            if (owner->GetComponent<AnimatedSpriteComponent>()->GetCurrentFrame() == 14) {
+                // détruit le gameobject et change de scène
+                owner->~GameObject();
 
-            scene_module->SetScene<DefeatScene>();
+                scene_module->SetScene<DefeatScene>();
+            }
         }
 
         // Met a jour la position et la vitesse du GameObject.
