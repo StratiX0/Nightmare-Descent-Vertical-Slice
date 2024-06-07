@@ -159,7 +159,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)lib\Debug;$(SolutionDir)lib;$(ProjectDir)lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics-s.lib;sfml-window-s.lib;sfml-system-s.lib;opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-audio-s.lib;sfml-graphics-s.lib;sfml-window-s.lib;sfml-system-s.lib;opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <CopyFileToFolders />
   </ItemDefinitionGroup>
@@ -172,6 +172,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Door.h" />
     <ClInclude Include="include\Enemy.h" />
     <ClInclude Include="include\Menu.h" />
     <ClInclude Include="include\Player.h" />
@@ -179,7 +180,7 @@
     <ClInclude Include="Scenes\DefaultScene.h" />
     <ClInclude Include="Scenes\DefeatScene.h" />
     <ClInclude Include="Scenes\MenuScene.h" />
-    <ClInclude Include="Scenes\Victory.h" />
+    <ClInclude Include="Scenes\VictoryScene.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="..\Assets\Run.png">

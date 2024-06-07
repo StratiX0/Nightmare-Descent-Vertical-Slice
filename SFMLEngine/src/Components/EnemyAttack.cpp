@@ -49,7 +49,12 @@ void EnemyAttack::IsColliding()
         // Si le GameObject actuel est un ennemi, Si le joueur est en collision avec l'ennemi, inflige des degâts de collision.
         if (SquareCollider::IsColliding(*enemyCollider, *playerCollider) && !isPlayerAbove)
         {
-            InflictCollisionDamage(enemyCollider, playerCollider);
+            if (player->GetComponent<Physics>()->IsAttacking()) {
+
+            }
+            else if (!player->GetComponent<Physics>()->IsAttacking()) {
+                InflictCollisionDamage(enemyCollider, playerCollider);
+            }            
         }
     }
 

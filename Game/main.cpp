@@ -2,6 +2,7 @@
 #include "SceneModule.h"
 #include "Scenes/DefaultScene.h"
 #include "Scenes/MenuScene.h"
+#include "Scenes/VictoryScene.h"
 
 
 int main()

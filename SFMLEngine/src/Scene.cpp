@@ -328,6 +328,40 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 		Score* score = game_object->CreateComponent<Score>();
 	}
 
+	if (game_object->GetName() == "Door")
+	{
+		animated_sprite->SetFrameTime(0.1f);
+		// Definir le chemin du fichier pour l'etat Idle
+		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::SpriteState::Idle, "Assets/Door.png");
+		// Charger la texture a partir du chemin du fichier pour l'etat Idle
+		animated_sprite->LoadTexture(animated_sprite->GetStateFilePath(AnimatedSpriteComponent::SpriteState::Idle));
+
+		// Definir le nombre de frames pour l'etat Running
+		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Running, 5);
+
+		// Definir le nombre de frames pour l'etat Idle
+		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Idle, 1);
+
+		// Definir l'etat actuel a Idle
+		animated_sprite->state = AnimatedSpriteComponent::SpriteState::Idle;
+
+		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::SpriteState::Idle, "Assets/Door.png");
+		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::SpriteState::Running, "Assets/Door_opening.png");
+
+		// Calcule l'echelle en fonction de la taille du gameObject et du sprite (_size *taille du gameObject* / _sprite *taille du sprite*)
+		float scaleX = (_size.x / (animated_sprite->GetSprite()->getTextureRect().width / 5));
+		float scaleY = (_size.y / (animated_sprite->GetSprite()->getTextureRect().height));
+
+		// Definis l'echelle du sprite
+		animated_sprite->GetSprite()->setScale(scaleX, scaleY);
+		animated_sprite->SetDefaultScale(scaleX, scaleY);
+
+		health->SetMaxHealth(50);
+		health->SetHealth(50);
+
+		DoorGameObject* Door = game_object->CreateComponent<DoorGameObject>();
+	}
+
 	if (game_object->GetName() == "Wizard")
 	{
 		animated_sprite->SetFrameTime(0.1f);

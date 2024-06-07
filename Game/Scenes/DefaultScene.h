@@ -6,6 +6,7 @@
 #include "Scene.h"
 #include "DefeatScene.h"
 #include "Background.h"
+#include "Door.h"
 #include <SFML/Audio.hpp>
 
 
@@ -130,14 +131,21 @@ public:
         CreateEnvironment("Bush", "Environment", "Assets/Bush.png", Maths::Vector2f(10050.0f, 625.0f), Maths::Vector2f(50.0f, 50.0f));
 
 		CreateEnvironment("Tree", "Environment", "Assets/DeadTree2.png", Maths::Vector2f(10150.0f, 425.0f), Maths::Vector2f(150.0f, 250.0f));
-
-        CreateEnvironment("Tombstone", "Environment", "Assets/Door.png", Maths::Vector2f(11000.0f, 470.0f), Maths::Vector2f(150.0f, 150.0f));
         
         //////////////////////////////////
         //         Creer de L'UI        //
         //////////////////////////////////
 
         CreateEnvironment("Touches", "Touches", "Assets/Touches.png", Maths::Vector2f(550.0f, 350.0f), Maths::Vector2f(654.0f, 336.0f));
+
+        CreateEnvironment("Message", "End", "Assets/End_message.png", Maths::Vector2f(10600.0f, 150.0f), Maths::Vector2f(546.0f, 180.0f));
+
+        /////////////////////////////////
+        //    Creer l'entite Porte     //
+        /////////////////////////////////
+
+        GameObject* Door = CreateInGameObject("Door", "Door", Maths::Vector2f(10800.0f, 0.0f), Maths::Vector2f(35.0f, 160.0f), 1.0f, sf::Color::Transparent);
+        Door->CreateComponent<DoorGame>();
 
         /////////////////////////////////
         //    Creer l'entite joueur    //

@@ -10,6 +10,7 @@
 #include "Components/Health.h"
 #include "Components/PlayerAttack.h"
 #include "Components/EnemyAttack.h"
+#include "Components/DoorClass.h"
 #include "Components/Projectile.h"
 #include "Components/SpriteRenderer.h"
 #include "Components/Score.h"

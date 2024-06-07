@@ -89,7 +89,10 @@
     <ClInclude Include="Scenes\DefeatScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scenes\Victory.h">
+    <ClInclude Include="Scenes\VictoryScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Door.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

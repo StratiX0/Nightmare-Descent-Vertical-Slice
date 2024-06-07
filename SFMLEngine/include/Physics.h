@@ -26,9 +26,17 @@ public:
     bool IsJumping() { return isJumping; }
     void SetJumping(bool _isJumping) { isJumping = _isJumping; }
 
-    // Methodes pour obtenir et definir si l'objet est en train de sauter.
+    // Methodes pour obtenir et definir si l'objet est en train de d'attaquer.
     bool IsAttacking() { return isAttack; }
-    void SetAttack(bool _isAttacking) { isAttack = _isAttacking; }
+    void SetAttack(bool _isAttack) { isAttack = _isAttack; }
+
+    // Methodes pour obtenir et definir si la porte est en collision.
+    bool DoorIsColliding() { return DoorColliding; }
+    void SetDoorIsColliding(bool _DoorIsColliding) { DoorColliding = _DoorIsColliding; }
+
+    // Methodes pour obtenir et definir si la porte a été atteinte.
+    bool DoorIsReached() { return DoorReached; }
+    void SetDoorIsReached(bool _DoorIsReached) { DoorReached = _DoorIsReached; }
 
     // Methodes pour obtenir et definir la masse de l'objet.
     float GetMass() { return mass; }
@@ -56,6 +64,8 @@ private:
     // Variable pour verifier si l'objet est en train de sauter.
     bool isJumping;
     bool isAttack;
+    bool DoorColliding = false;
+    bool DoorReached = false;
 
     // Variable pour stocker la masse de l'objet.
     float mass = 1.0f;

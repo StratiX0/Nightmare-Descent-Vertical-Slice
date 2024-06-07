@@ -130,16 +130,10 @@ public:
         {
             owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::SpriteState::Death);
 
-                // Change the color of the RectangleShapeRenderer to red
-                if (auto renderer = owner->GetComponent<RectangleShapeRenderer>())
-                {
-                    renderer->SetColor(sf::Color::Red); // Assuming SFML, adjust accordingly for your framework
-                }
+            // détruit le gameobject et change de scène
+            owner->~GameObject();
 
-                // Destroy the game object (if necessary, otherwise handle accordingly)
-                owner->~GameObject();
-
-                scene_module->SetScene<DefeatScene>();
+            scene_module->SetScene<DefeatScene>();
         }
 
         // Met a jour la position et la vitesse du GameObject.
