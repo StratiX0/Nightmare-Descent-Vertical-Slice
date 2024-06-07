@@ -61,7 +61,7 @@ public:
         GetOwner()->SetPosition(Maths::Vector2f(position.x, position.y - 0.1f));
 
         // Si la touche D est enfoncee et que le joueur ne touche pas un obstacle a droite, deplace le monde vers la gauche et met le sprite du joueur en etat de course.
-        if (InputModule::GetKey(sf::Keyboard::D) && !owner->GetComponent<Physics>()->collidingRight)
+        if (InputModule::GetKey(sf::Keyboard::D) && !owner->GetComponent<Physics>()->collidingRight && !owner->GetComponent<Health>()->IsDead())
         {
             owner->GetComponent<AnimatedSpriteComponent>()->SetDirection(AnimatedSpriteComponent::MovementDirection::Right);
             if (!owner->GetComponent<Physics>()->IsJumping())
@@ -73,7 +73,7 @@ public:
         }
 
         // Si la touche Q est enfoncee et que le joueur ne touche pas un obstacle a gauche, deplace le monde vers la droite et met le sprite du joueur en etat de course.
-        if (InputModule::GetKey(sf::Keyboard::Q) && !owner->GetComponent<Physics>()->collidingLeft)
+        if (InputModule::GetKey(sf::Keyboard::Q) && !owner->GetComponent<Physics>()->collidingLeft && !owner->GetComponent<Health>()->IsDead())
         {
             owner->GetComponent<AnimatedSpriteComponent>()->SetDirection(AnimatedSpriteComponent::MovementDirection::Left);
             if (!owner->GetComponent<Physics>()->IsJumping())
@@ -92,7 +92,7 @@ public:
 
         //-------------------------------------------COMMANDE POUR L'ATTAQUE----------------------------------------------//
         // Si le bouton de souris est enfoncee et que le joueur n'est pas deja en train d'attaquer, fait attaquer le joueur.
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !owner->GetComponent<Physics>()->IsAttacking())
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !owner->GetComponent<Physics>()->IsAttacking() && !owner->GetComponent<Health>()->IsDead())
         {
             owner->GetComponent<Physics>()->SetAttack(true);
             //soundAttack.play();
@@ -110,7 +110,7 @@ public:
         //--------------------------------------------------------------------------------------------------------------//
         
         // Si la touche Z est enfoncee et que le joueur n'est pas deja en train de sauter, fait sauter le joueur.
-        if (InputModule::GetKey(sf::Keyboard::Z) && !owner->GetComponent<Physics>()->IsJumping())
+        if (InputModule::GetKey(sf::Keyboard::Z) && !owner->GetComponent<Physics>()->IsJumping() && !owner->GetComponent<Health>()->IsDead())
         {
             velocity.y = -jumpForce;
             owner->GetComponent<Physics>()->SetJumping(true);
