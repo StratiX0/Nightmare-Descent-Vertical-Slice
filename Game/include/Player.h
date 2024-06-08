@@ -4,7 +4,7 @@
 #include "../Scenes/DefeatScene.h"
 #include "Engine.h"
 #include "Modules/SceneModule.h"
-//#include <SFML/Audio.hpp>
+#include <SFML/Audio.hpp>
 
 class Physics;
 class AnimatedSpriteComponent;
@@ -15,32 +15,28 @@ class SquareCollider;
 class Player : public Component
 {
 public:
-    //sf::SoundBuffer bufferJump;
-    //sf::SoundBuffer bufferStep;
-    //sf::SoundBuffer bufferAttack;
-    //sf::Sound soundJump;
-    //sf::Sound soundStep;
-    //sf::Sound soundAttack;
+    sf::SoundBuffer bufferJump;
+    sf::SoundBuffer bufferStep;
+    sf::SoundBuffer bufferAttack;
+    sf::Sound soundJump;
+    sf::Sound soundStep;
+    sf::Sound soundAttack;
     
 
-    //Player()
-    //{
-        // Chargez les sons à partir des fichiers
-        //if (!bufferJump.loadFromFile("Assets/jumping.ogg")) {
-            // Gérez l'erreur si le fichier ne peut pas être chargé
-        //}
-        //if (!bufferStep.loadFromFile("Assets/running.ogg")) {
-            // Gérez l'erreur si le fichier ne peut pas être chargé
-        //}
-        //if (!bufferAttack.loadFromFile("Assets/attack.ogg")) {
-        // Gérez l'erreur si le fichier ne peut pas être chargé
-    //}
+    Player()
+    {
+         //Chargez les sons à partir des fichiers
+        if (!bufferJump.loadFromFile("Assets/jumping.wav")) {
+             //Gérez l'erreur si le fichier ne peut pas être chargé
+        }
+        if (!bufferAttack.loadFromFile("Assets/attack.wav")) {
+         //Gérez l'erreur si le fichier ne peut pas être chargé
+    }
 
-        // Créez les objets sf::Sound pour jouer les sons
-        //soundJump.setBuffer(bufferJump);
-        //soundStep.setBuffer(bufferStep);
-        //soundAttack.setBuffer(bufferAttack);
-    //}
+         //Créez les objets sf::Sound pour jouer les sons
+        soundJump.setBuffer(bufferJump);
+        soundAttack.setBuffer(bufferAttack);
+    }
 
     // Met a jour le joueur.
     void Update(const float _delta_time) override
@@ -69,7 +65,6 @@ public:
                 owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::SpriteState::Running);
             }
             MoveWorld(-speed * _delta_time);
-            //soundStep.play();
         }
 
         // Si la touche Q est enfoncee et que le joueur ne touche pas un obstacle a gauche, deplace le monde vers la droite et met le sprite du joueur en etat de course.
@@ -81,7 +76,6 @@ public:
                 owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::SpriteState::Running);
             }
             MoveWorld(speed * _delta_time);
-            //soundStep.play();
         }
 
         // Si ni la touche D, ni la touche Q, ni la touche Z ne sont enfoncees, met le sprite du joueur en etat d'inactivite.
@@ -95,7 +89,7 @@ public:
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !owner->GetComponent<Physics>()->IsAttacking() && !owner->GetComponent<Health>()->IsDead())
         {
             owner->GetComponent<Physics>()->SetAttack(true);
-            //soundAttack.play();
+            soundAttack.play();
         }
         // Si le joueur est en train d'attaquer, selon la direction fait défiler le monde et active l'état d'attaque.
         if (owner->GetComponent<Physics>()->IsAttacking())
@@ -103,10 +97,10 @@ public:
             owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::SpriteState::Attack);
 
             if (owner->GetComponent<AnimatedSpriteComponent>()->GetCurrentFrame() < 8 && owner->GetComponent<AnimatedSpriteComponent>()->GetCurrentFrame() > 4) {
-                if (owner->GetComponent<AnimatedSpriteComponent>()->GetDirection() == 1 && !owner->GetComponent<Physics>()->collidingRight) {
+                if (owner->GetComponent<AnimatedSpriteComponent>()->GetDirection() == 1 && !owner->GetComponent<Physics>()->collidingRight && owner->GetComponent<Physics>()->IsGrounded()) {
                     MoveWorld(-speed * _delta_time);
                 }
-                else if (owner->GetComponent<AnimatedSpriteComponent>()->GetDirection() == 0 && !owner->GetComponent<Physics>()->collidingLeft) {
+                else if (owner->GetComponent<AnimatedSpriteComponent>()->GetDirection() == 0 && !owner->GetComponent<Physics>()->collidingLeft && owner->GetComponent<Physics>()->IsGrounded()) {
                     MoveWorld(speed * _delta_time);
                 }
             }
@@ -123,7 +117,7 @@ public:
             velocity.y = -jumpForce;
             owner->GetComponent<Physics>()->SetJumping(true);
             owner->GetComponent<AnimatedSpriteComponent>()->SetDirection(AnimatedSpriteComponent::MovementDirection::Up);
-            //soundJump.play();
+            soundJump.play();
         }
        
         // Si le joueur est en train de sauter, ajoute la gravite a la vitesse verticale et active l'état de saut.

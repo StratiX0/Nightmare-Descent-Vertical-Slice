@@ -20,27 +20,28 @@ public:
     DefaultScene() : Scene("DefaultScene")
     {
 
-		// Créez un objet sf::Music 1 et 2 pour jouer de la musique de fond.
-        //sf::Music backgroundMusic1;
-        //sf::Music backgroundMusic2;
+		 /*Créez un objet sf::Music 1 et 2 pour jouer de la musique de fond.*/
+        sf::Music backgroundMusic;
+        sf::Music backgroundMusic2;
         
-        // Chargez la musique à partir d'un fichier
-        //if (!backgroundMusic.openFromFile("Assets/backgroundmusic.ogg")) {
-            // Gérez l'erreur si le fichier ne peut pas être chargé
-        //}
+         /*Chargez la musique à partir d'un fichier*/
+        if (!backgroundMusic.openFromFile("Assets/backgroundmusic.ogg")) {
+            printf("impossible de charger le son");
+             //Gérez l'erreur si le fichier ne peut pas être chargé
+        }
 
-        // Jouez la musique
-        //backgroundMusic.play();
+         /*Jouez la musique*/
+        backgroundMusic.play();
          
-        //if (!backgroundMusic2.openFromFile("Assets/wind.ogg")) {
-            // Gérez l'erreur si le fichier ne peut pas être chargé
-        //}
+        if (!backgroundMusic2.openFromFile("Assets/wind.ogg")) {
+             //Gérez l'erreur si le fichier ne peut pas être chargé
+        }
          
-        // Réduisez le volume du son du vent à 50% du maximum
-        //backgroundMusic2.setVolume(50);
+         //Réduisez le volume du son du vent à 50% du maximum
+        backgroundMusic2.setVolume(50);
         
-        // Jouez la deuxième musique
-        //backgroundMusic2.play();
+         //Jouez la deuxième musique
+        backgroundMusic2.play();
 
         // Cree les arriere-plans de la scene.
         CreateBackgrounds("Assets/Background2.png");
