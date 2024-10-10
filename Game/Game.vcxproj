@@ -172,6 +172,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Music.h" />
+    <ClInclude Include="Music.h" />
     <ClInclude Include="include\Door.h" />
     <ClInclude Include="include\Enemy.h" />
     <ClInclude Include="include\Menu.h" />
@@ -382,6 +384,10 @@
       <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
       <DestinationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assets/%(Filename)%(Extension)</DestinationFileName>
     </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\Background3.png" />
+    <Image Include="Assets\Door.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

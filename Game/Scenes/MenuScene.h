@@ -6,7 +6,6 @@
 #include "Enemy.h"
 #include "Background.h"
 #include "Menu.h"
-#include <SFML/Audio.hpp>
 
 
 // La classe DefaultScene herite de la classe Scene
@@ -19,17 +18,6 @@ public:
     {
         // Créez ici les éléments de votre menu principal.
         // Par exemple, vous pouvez créer des boutons "Jouer", "Options" et "Quitter".
-        /*Créez un objet sf::Music 1 et 2 pour jouer de la musique de fond.*/
-        sf::Music backgroundMusicMenu;
-
-        /*Chargez la musique à partir d'un fichier*/
-        if (!backgroundMusicMenu.openFromFile("Assets/summon_of_the_fallen.wav")) {
-            printf("impossible de charger le son");
-            //Gérez l'erreur si le fichier ne peut pas être chargé
-        }
-
-        /*Jouez la musique*/
-        backgroundMusicMenu.play();
 
         // Cree les arriere-plans de la scene.
         CreateBackgrounds("Assets/Background.png");

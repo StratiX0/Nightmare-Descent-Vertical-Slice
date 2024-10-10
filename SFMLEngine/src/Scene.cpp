@@ -342,11 +342,15 @@ GameObject* Scene::CreateInGameObject(const std::string& _name, const std::strin
 		// Definir le nombre de frames pour l'etat Idle
 		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Idle, 1);
 
+		// Definir le nombre de frames pour l'etat Idle
+		animated_sprite->SetStateFrameCount(AnimatedSpriteComponent::SpriteState::Jump, 1);
+
 		// Definir l'etat actuel a Idle
 		animated_sprite->state = AnimatedSpriteComponent::SpriteState::Idle;
 
 		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::SpriteState::Idle, "Assets/Door.png");
 		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::SpriteState::Running, "Assets/Door_opening.png");
+		animated_sprite->SetStateFilePath(AnimatedSpriteComponent::SpriteState::Jump, "Assets/open_door.png");
 
 		// Calcule l'echelle en fonction de la taille du gameObject et du sprite (_size *taille du gameObject* / _sprite *taille du sprite*)
 		float scaleX = (_size.x / (animated_sprite->GetSprite()->getTextureRect().width / 5));

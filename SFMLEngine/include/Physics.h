@@ -38,6 +38,10 @@ public:
     bool DoorIsReached() { return DoorReached; }
     void SetDoorIsReached(bool _DoorIsReached) { DoorReached = _DoorIsReached; }
 
+    // Methodes pour obtenir et definir si la porte a été atteinte.
+    bool DoorIsOpen() { return DoorOpen; }
+    void SetDoorIsOpen(bool _DoorIsOpen) { DoorOpen = _DoorIsOpen; }
+
     // Methodes pour obtenir et definir la masse de l'objet.
     float GetMass() { return mass; }
     void SetMass(float _mass) { mass = _mass; }
@@ -66,6 +70,7 @@ private:
     bool isAttack = false;
     bool DoorColliding = false;
     bool DoorReached = false;
+    bool DoorOpen = false;
 
     // Variable pour stocker la masse de l'objet.
     float mass = 1.0f;

@@ -27,12 +27,12 @@ public:
 	// Methode pour mettre a jour le composant Attack.
 	void Update(float _delta_time) override;
 
+	float projectileTimer;
+
 private:
 
 	// Degats infliges par collision au joueur.   
 	float collisionDamage;
-
-	float projectileTimer;
 
 	std::string name;
 

@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 #include "Scene.h" 
+#include <SFML/Audio.hpp>
 
 class Physics;
 class AnimatedSpriteComponent;
@@ -9,6 +10,20 @@ class AnimatedSpriteComponent;
 class Enemy : public Component
 {
 public:
+
+    sf::SoundBuffer buffer;
+    sf::Sound sound;
+
+    Enemy() {
+        // Chargez le son à partir d'un fichier
+        if (!buffer.loadFromFile("Assets/fireball.wav")) {
+            // Gérez l'erreur si le fichier ne peut pas être chargé
+        }
+
+        // Créez un objet sf::Sound pour jouer le son
+        sound.setBuffer(buffer);
+    }
+
 
 	void Start() override
 	{
@@ -21,6 +36,8 @@ public:
 
         // Recupere le GameObject proprietaire de ce composant.
         GameObject* owner = GetOwner();
+        // Recupere le GameObject de type "Player".
+        GameObject* player = GetOwner()->GetScene()->FindGameObjectType("Player");
 
         SetPlatformLimits();
 
@@ -50,8 +67,12 @@ public:
 			owner->~GameObject();
         }
 
-		if (owner->GetName() == "Thrower")
+		if (owner->GetName() == "Wizard")
         {
+            if (owner->GetComponent<EnemyAttack>()->projectileTimer <= 0.0f && position.x - player->GetPosition().x <= 650) {
+                // Jouez le son
+                sound.play();
+            }
             if (owner->GetComponent<EnemyAttack>()->GetStopToShoot())
             {
                 owner->GetComponent<AnimatedSpriteComponent>()->SetState(AnimatedSpriteComponent::SpriteState::Idle);

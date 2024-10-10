@@ -4,6 +4,7 @@
 #include "../Scenes/DefeatScene.h"
 #include "Engine.h"
 #include "Modules/SceneModule.h"
+#include "Door.h"
 #include <SFML/Audio.hpp>
 
 class Physics;
@@ -16,10 +17,8 @@ class Player : public Component
 {
 public:
     sf::SoundBuffer bufferJump;
-    sf::SoundBuffer bufferStep;
     sf::SoundBuffer bufferAttack;
     sf::Sound soundJump;
-    sf::Sound soundStep;
     sf::Sound soundAttack;
     
 
@@ -31,7 +30,7 @@ public:
         }
         if (!bufferAttack.loadFromFile("Assets/attack.wav")) {
          //Gérez l'erreur si le fichier ne peut pas être chargé
-    }
+        }
 
          //Créez les objets sf::Sound pour jouer les sons
         soundJump.setBuffer(bufferJump);

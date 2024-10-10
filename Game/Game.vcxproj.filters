@@ -95,6 +95,12 @@
     <ClInclude Include="include\Door.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Music.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Music.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="..\Assets\DarkTree.png">
@@ -225,5 +231,13 @@
     <ResourceCompile Include="Game.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\Background3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\Door.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
